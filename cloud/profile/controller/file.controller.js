@@ -32,9 +32,9 @@ const upload = async (req, res) => {
             nama_lengkap = req.body.nama_lengkap;
             wa = req.body.wa;
             alamat_tinggal = req.body.alamat_tinggal;
-            alamat_KTP = req.body.alamat_KTP;
-            profesi = rq.body.profesi;
-            const query = `INSERT INTO users(nama_lengkap, wa, alamat_tinggal, alamat_KTP, profesi, link_gambar) values ('${nama_lengkap}', ${wa}, '${alamat_tinggal}', '${alamat_KTP}', '${profesi}' '${publicUrl}');`
+            alamat_ktp = req.body.alamat_ktp;
+            profesi = req.body.profesi;
+            const query = `INSERT INTO profile(nama_lengkap, wa, alamat_tinggal, alamat_ktp, profesi, link_gambar) values ('${nama_lengkap}', '${wa}', '${alamat_tinggal}', '${alamat_ktp}', '${profesi}', '${publicUrl}');`
             db.query(query, (err, results) => {
                 if (err) {
                     console.error(err.detail);
