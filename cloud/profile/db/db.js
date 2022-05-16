@@ -3,8 +3,8 @@ const { Pool } = require('pg');
 const pool = new Pool({
     user: "postgres",
     host:'localhost',
-	password: "hudahuda",
-	database: "database1",
+	password: "fadil123",
+	database: "nyobatest",
     port: 5432,
 });
 
@@ -15,7 +15,5 @@ pool.connect((err) =>{
     }
     console.log('Database Connected ');
 });
-
-module.exports = pool;
 
 module.exports = pool;
