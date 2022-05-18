@@ -1,7 +1,9 @@
 const express = require('express')
-const db = require('../db/db')
+const db = require('../model/model')
 const Helper = require('./helper');
 const crypto = require('crypto')
+const dbUser = db.users;
+// const Op = db.Sequelize.Op;
 
 const User = {
 
@@ -11,75 +13,81 @@ const User = {
 
     async signup_post(req, res, next) {
         try {
-            temp = req.session;
-            temp.username = req.body.username;
-            temp.password = req.body.password;
-            temp.email = req.body.email;
-            temp.phone = req.body.phone;
+          const resultHash = await Helper.hashPassword(req.body.password);
+          const user = {
+              username : req.body.username,
+              password : resultHash,
+              email : req.body.email,
+              phone : req.body.phone,
+          };
+          
         
-            if (!temp.password || !temp.email ){
+            if (!user.password || !user.email){
               return res.status(400).send({'message': 'email and password must be provided'});
             }
         
-            if (!Helper.isValidEmail(temp.email)) {
+            if (!Helper.isValidEmail(user.email)) {
               return res.status(400).send({ 'message': 'Please enter a valid email address' });
             }
         
-            const checkUserQuery = `SELECT * FROM users WHERE email = '${temp.email}';`
-            const result = await db.query(checkUserQuery)
-            if (Array.isArray(result.rows) && result.rows.length) {
-              return res.status(400).send({ status: "email is already used" });
-            } 
-            
-            try { 
-            const resultHash = await Helper.hashPassword(temp.password);
-            const signupQuery = `INSERT INTO users(id, username, email, no_phone, password) VALUES($1, '${temp.username}','${temp.email}','${temp.phone}','${resultHash}');`
-              
-            db.query(signupQuery, [crypto.randomUUID()], (err, result) => {
-              res.status(200).send({ status: "successfully signup"})
-            }) 
-            console.log('Signup Success');
-            } catch (err) {
-                console.error(err.message);
-            }
+            await dbUser.findOne({where: {email: user.email}})
+            .then(data => {
+              if (data !== null) {
+                return res.status(400).send({ status: "email is already used" });
+              } else {
+                dbUser.create(user)
+                .then(data => {
+                  console.log('Signup Success');
+                  res.status(201).send(data)
+                })
+              }
+            })
+            .catch( err => {
+              console.log(err.message);
+            })
                
           } catch (err) {
-            console.error(err);
+            console.error(err.message);
           }
     },
 
     async login_post (req, res, next) {
-        temp = req.body;
-        temp.email = req.body.email;
-        temp.password = req.body.password;
+        
+        const user = {
+          email : req.body.email,
+          password : req.body.password,
+        }
 
-        if (!temp.email|| !temp.password) {
+        if (!user.email|| !user.password) {
         return res.status(400).send({'message': 'email and password is provided'});
         }
 
-        if (!Helper.isValidEmail(req.body.email)) {
+        if (!Helper.isValidEmail(user.email)) {
         return res.status(400).send({ 'message': 'Please enter a valid email address' });
         }
-
         
-
-        
-        const query = `SELECT * FROM users WHERE email = '${temp.email}';`;
-        try {
-        const { rows } = await db.query(query);
-        if (!rows[0]) {
-            return res.status(400).send({'message': 'The credentials you provided is incorrect'});
-        }
-        if(!Helper.comparePassword(rows[0].password, temp.password)) {
-            return res.status(400).send({ 'message': 'The credentials you provided is incorrect' });
-        }
-        const token = Helper.generateToken(rows[0].id, rows[0].email);
-        res.cookie('jwt', token);
-        return res.status(200).send({ token });
-        } catch(error) {
-        return res.status(400).send(error)
-        }
-
+        await dbUser.findOne({where: {email: user.email}})
+            .then(data => {
+              if (data === null) {
+                return res.status(400).send({ status: "your email is not registered" });
+              } else {
+                try {
+                  if(!Helper.comparePassword(data.dataValues.password, user.password)) {
+                  return res.status(400).send({ 'message': 'The credentials you provided is incorrect' })
+                  }
+                  console.log('berhasil login');
+                   const token = Helper.generateToken(data.dataValues.id, user.email);
+                  res.cookie('jwt', token);
+                  return res.status(200).send({ token });
+                } catch (err) {
+                  console.log(err.message);
+                }
+              }
+            })
+            .catch( err => {
+              console.log(err.message);
+              res.status(500).send(err.message)
+            })
     },
 
     async delete_post (req, res, next) {
