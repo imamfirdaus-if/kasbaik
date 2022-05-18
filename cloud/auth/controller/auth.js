@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const db = require('../db/db')
+
 
 SECRET = process.env.SECRET
 const Auth = {
