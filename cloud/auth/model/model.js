@@ -28,5 +28,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 db.users = require("./user.model")(sequelize, Sequelize);
+db.profile = require("./profile.model")(sequelize, Sequelize);
+db.borrower = require("./borrower.model")(sequelize, Sequelize);
+db.mitra = require("./mitra.model")(sequelize, Sequelize);
 
 module.exports = db;

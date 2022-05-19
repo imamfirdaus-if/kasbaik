@@ -1,6 +1,6 @@
 const express = require('express')
 const db = require('../model/model')
-const Helper = require('./helper');
+const Helper = require('../middleware/helper');
 const crypto = require('crypto')
 const dbUser = db.users;
 // const Op = db.Sequelize.Op;
@@ -59,11 +59,11 @@ const User = {
         }
 
         if (!user.email|| !user.password) {
-        return res.status(400).send({'message': 'email and password is provided'});
+          return res.status(400).send({'message': 'email and password is provided'});
         }
 
         if (!Helper.isValidEmail(user.email)) {
-        return res.status(400).send({ 'message': 'Please enter a valid email address' });
+          return res.status(400).send({ 'message': 'Please enter a valid email address' });
         }
         
         await dbUser.findOne({where: {email: user.email}})
@@ -76,9 +76,10 @@ const User = {
                   return res.status(400).send({ 'message': 'The credentials you provided is incorrect' })
                   }
                   console.log('berhasil login');
-                   const token = Helper.generateToken(data.dataValues.id, user.email);
+                  const token = Helper.generateToken(data.dataValues.id, user.email);
                   res.cookie('jwt', token);
-                  return res.status(200).send({ token });
+                  console.log({token});
+                  return res.status(200).send('Successfully logged in');
                 } catch (err) {
                   console.log(err.message);
                 }
