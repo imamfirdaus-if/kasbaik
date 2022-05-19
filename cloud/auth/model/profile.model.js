@@ -6,6 +6,9 @@ module.exports = (sequelize, Sequelize) => {
         allowNull: false,
         primaryKey: true
       },
+      id_users: {
+        type: Sequelize.STRING
+      },
       nama_lengkap: {
         type: Sequelize.STRING
       },

@@ -1,8 +1,10 @@
 const db = require("../model/model");
 const dbBorrower = db.borrower;
 const dbMitra = db.mitra;
+const dbProfile = db.profile;
 
 const addBorrower = async (req, res, next) =>{
+    let id_user = req.id;
     const obj = {
         id: 1,
         nama: "suhe",
@@ -39,10 +41,13 @@ const addBorrower = async (req, res, next) =>{
 
     const borrower = await dbBorrower.create(data_borrower);
     console.log(borrower.toJSON());
-    // const profile = await profileModel.findAll();
+    const profile = await dbProfile.findOne({where: {id_users: id_user}});
+    // console.log("All users:", JSON.stringify(profile));
+    const objek = JSON.parse(JSON.stringify(profile));
+
     if (borrower.toJSON()){
         let data1 = {
-            name: obj.nama,
+            name: objek.nama_lengkap,
             reason_borrower: borrower.reason_borrower,
             dependents_amount: borrower.dependents_amount,
             status: borrower.status

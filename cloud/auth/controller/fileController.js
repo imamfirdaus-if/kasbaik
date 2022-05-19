@@ -26,13 +26,13 @@ const upload = async (req, res) => {
             res.status(400).send('No file uploaded.');
             return;
         }
+        let id_user = req.id;
         let foto_diri;
         let foto_ktp;
         let foto_selfie;
 
         const profile = {
             nama_lengkap : req.body.nama_lengkap,
-            wa : req.body.wa,
             alamat_tinggal : req.body.alamat_tinggal,
             alamat_ktp : req.body.alamat_ktp,
             profesi : req.body.profesi,
@@ -82,9 +82,10 @@ const upload = async (req, res) => {
         proms.then(async (message) => {
             // Handle results
             
-            await dbUser.create(profile)
+            await dbUser.update(profile, {where: {id_users: id_user}})
             .then(data => {
                 console.log("data berhasil dimasukkan");
+                console.log(req.id);
                 res.status(201).send(data)
             })
             // const query = `INSERT INTO profile(nama_lengkap, wa, alamat_tinggal, alamat_ktp, profesi, foto_diri, foto_ktp, foto_selfie) values ('${nama_lengkap}', '${wa}', '${alamat_tinggal}', '${alamat_ktp}', '${profesi}', '${foto_diri}', '${foto_ktp}', '${foto_selfie}');`

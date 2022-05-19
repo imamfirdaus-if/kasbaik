@@ -3,6 +3,7 @@ const db = require('../model/model')
 const Helper = require('../middleware/helper');
 const crypto = require('crypto')
 const dbUser = db.users;
+const dbProfile = db.profile;
 // const Op = db.Sequelize.Op;
 
 const User = {
@@ -38,14 +39,20 @@ const User = {
                 dbUser.create(user)
                 .then(data => {
                   console.log('Signup Success');
-                  res.status(201).send(data)
+                  console.log(data.toJSON());
+                  if (data.toJSON()){
+                    dbProfile.create({ id_users: data.id, no_wa: data.phone })
+                    .then(data => {
+                      res.status(201).send(data)
+                    })
+                  }
+                  // res.status(201).send(data)
                 })
               }
             })
             .catch( err => {
               console.log(err.message);
-            })
-               
+            })   
           } catch (err) {
             console.error(err.message);
           }
