@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.beranda.daftar.RegisterActivity">
+
+    <TextView
+        android:id="@+id/title_halaman_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Halaman Register"
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <EditText
+        android:id="@+id/ed_fullname"
+        android:layout_width="250dp"
+        android:layout_marginTop="32dp"
+        android:layout_height="wrap_content"
+        android:hint="Nama Lengkap"
+        app:layout_constraintTop_toBottomOf="@+id/title_halaman_register"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/ed_email"
+        android:layout_width="250dp"
+        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        app:layout_constraintTop_toBottomOf="@+id/ed_fullname"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+    <EditText
+        android:id="@+id/ed_phone_number"
+        android:layout_width="250dp"
+        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:hint="Nomor Handphone"
+        app:layout_constraintTop_toBottomOf="@+id/ed_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <EditText
+        android:id="@+id/ed_password"
+        android:inputType="textPassword"
+        android:layout_width="250dp"
+        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content"
+        android:hint="Masukan Password"
+        app:layout_constraintTop_toBottomOf="@+id/ed_phone_number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        app:layout_constraintTop_toBottomOf="@id/ed_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
