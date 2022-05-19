@@ -5,6 +5,7 @@ const dbProfile = db.profile;
 
 const addBorrower = async (req, res, next) =>{
     let id_user = req.id;
+    // console.log(id_user);
     const obj = {
         id: 1,
         nama: "suhe",
@@ -13,10 +14,10 @@ const addBorrower = async (req, res, next) =>{
     
     const data_borrower = {
         loan : req.body.loan,
-        reason_borrower : req.body.reason,
-        dependents_amount : req.body.dependents,
-        payment_id : req.body.payment,
-        status : "Pending",
+        reason_borrower : req.body.reason_borrower,
+        dependents_amount : req.body.dependents_amount,
+        payment_id : req.body.payment_id,
+        status : "pending",
     }
 
     // const borrower = await dbBorrower.create(data_borrower)
@@ -40,11 +41,10 @@ const addBorrower = async (req, res, next) =>{
     // }
 
     const borrower = await dbBorrower.create(data_borrower);
-    console.log(borrower.toJSON());
     const profile = await dbProfile.findOne({where: {id_users: id_user}});
-    // console.log("All users:", JSON.stringify(profile));
+    console.log(profile.toJSON());
     const objek = JSON.parse(JSON.stringify(profile));
-
+    
     if (borrower.toJSON()){
         let data1 = {
             name: objek.nama_lengkap,
