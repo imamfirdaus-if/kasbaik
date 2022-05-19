@@ -4,24 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_ijo"
     tools:context=".ui.beranda.daftar.RegisterActivity">
 
-    <TextView
-        android:id="@+id/title_halaman_register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Halaman Register"
-        android:textSize="24sp"
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:src="@drawable/logo_kasibaik"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
+
+
     <EditText
         android:id="@+id/ed_fullname"
         android:layout_width="250dp"
         android:layout_marginTop="32dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:paddingStart="16dp"
+        android:background="@drawable/rounded_corners"
         android:hint="Nama Lengkap"
-        app:layout_constraintTop_toBottomOf="@+id/title_halaman_register"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -29,7 +36,9 @@
         android:id="@+id/ed_email"
         android:layout_width="250dp"
         android:layout_marginTop="16dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:paddingStart="16dp"
+        android:background="@drawable/rounded_corners"
         android:hint="Email"
         app:layout_constraintTop_toBottomOf="@+id/ed_fullname"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,7 +47,9 @@
         android:id="@+id/ed_phone_number"
         android:layout_width="250dp"
         android:layout_marginTop="16dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:paddingStart="16dp"
+        android:background="@drawable/rounded_corners"
         android:hint="Nomor Handphone"
         app:layout_constraintTop_toBottomOf="@+id/ed_email"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,16 +60,22 @@
         android:inputType="textPassword"
         android:layout_width="250dp"
         android:layout_marginTop="16dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:paddingStart="16dp"
+        android:background="@drawable/rounded_corners"
         android:hint="Masukan Password"
         app:layout_constraintTop_toBottomOf="@+id/ed_phone_number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/btn_register"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:text="Register"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/orange"
+        android:layout_marginTop="32dp"
         app:layout_constraintTop_toBottomOf="@id/ed_password"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

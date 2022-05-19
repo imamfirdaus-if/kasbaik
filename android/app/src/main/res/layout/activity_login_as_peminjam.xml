@@ -4,46 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_ijo"
     tools:context=".ui.beranda.login.peminjam.LoginAsPeminjamActivity">
 
+   <ImageView
+       android:id="@+id/logo"
+       android:layout_width="match_parent"
+       android:layout_height="200dp"
+       android:src="@drawable/logo_kasibaik"
+       android:layout_marginTop="32dp"
+       android:layout_marginStart="32dp"
+       android:layout_marginEnd="32dp"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"/>
+
     <TextView
-        android:id="@+id/title_halaman_login_peminjam"
+        android:id="@+id/tv_login_as_borrwer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Halaman Login peminjam"
-        android:textSize="24sp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:text="Login Sebagai Peminjam"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <EditText
         android:id="@+id/ed_email_login_peminjam"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:hint="Masukan Email"
+        android:paddingStart="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_corners"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_halaman_login_peminjam"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login_as_borrwer"
         />
 
     <EditText
         android:id="@+id/ed_password_login_peminjam"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
         android:inputType="textPassword"
         android:hint="Masukan Password"
+        android:layout_marginTop="16dp"
+        android:paddingStart="16dp"
+        android:background="@drawable/rounded_corners"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_email_login_peminjam"
         />
 
-    <Button
+    <TextView
+        android:id="@+id/dont_have_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Belum Punya Akun? Daftar Akun"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/ed_password_login_peminjam"
+        app:layout_constraintStart_toStartOf="@id/ed_password_login_peminjam"/>
+
+    <Button
+        android:id="@+id/btn_login_peminjam"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
         android:text="@string/login"
-        app:layout_constraintTop_toBottomOf="@id/ed_password_login_peminjam"
+        android:textColor="@color/orange"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/dont_have_account"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
