@@ -16,6 +16,7 @@ const Auth = {
                 console.log(decodedToken);
                 req.id = decodedToken.userId
                 req.email = decodedToken.email 
+                // console.log(req.id);
                 next();
               }
             });

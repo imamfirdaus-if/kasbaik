@@ -1,6 +1,6 @@
 module.exports = (sequelize, Sequelize) => {
     const User = sequelize.define("users", {
-      id: {
+      id_user: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
@@ -16,8 +16,12 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       phone: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT,
+
       }
+    }, {
+      updatedAt: false,
+      freezeTableName: true,
     });
   
     return User;
