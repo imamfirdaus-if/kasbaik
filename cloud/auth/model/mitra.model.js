@@ -1,12 +1,12 @@
 module.exports = (sequelize, Sequelize) => {
     const Mitra = sequelize.define("mitras", {
-        id: {
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER
+        id_user: {
+            type: Sequelize.STRING
         },
-        name: {
+        id_mitra: {
+            type: Sequelize.STRING
+        },
+        nama_lengkap: {
             type: Sequelize.STRING
         },
         reason_borrower: {
@@ -19,6 +19,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
     });
-  
+    Mitra.removeAttribute('id');
     return Mitra;
   };

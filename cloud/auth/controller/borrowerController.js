@@ -1,62 +1,52 @@
 const db = require("../model/model");
+const Helper = require("../middleware/helper");
 const dbBorrower = db.borrower;
 const dbMitra = db.mitra;
-const dbProfile = db.profile;
+const dbProfile = db.profileUser;
+const dbProfileMitra = db.profileMitra
+const dbUser= db.users;
 
 const addBorrower = async (req, res, next) =>{
-    let id_user = req.id;
-    // console.log(id_user);
-    const obj = {
-        id: 1,
-        nama: "suhe",
-        npm: 1906355522
-    }
     
-    const data_borrower = {
-        loan : req.body.loan,
-        reason_borrower : req.body.reason_borrower,
-        dependents_amount : req.body.dependents_amount,
-        payment_id : req.body.payment_id,
-        status : "pending",
-    }
+    try {
+        let id_user = req.id;
 
-    // const borrower = await dbBorrower.create(data_borrower)
-    // .then(data => {
-    //     console.log(data);
-    //     console.log(data.dataValues.id);
-    //     if (data) {
-    //         let data1 = {
-    //             name: obj.nama,
-    //             reason_borrower: data.dataValues.reason_borrower,
-    //             dependents_amount: data.dataValues.dependents_amount,
-    //             status: data.dataValues.status
-    //         }
-    //         console.log(data1);
-    //         const mitra = await dbMitra.create(data1);
-    //     }
-    //     res.status(200).send(data)
-    // })
-    // return{
-    //     data: borrower
-    // }
+        const mitraList = await dbProfileMitra.findAll({attributes: ['id', 'partner_name']})
+        console.log(Helper.toObject(mitraList));
+        let id_mitra = Helper.toObject(mitraList)[0].id
+        const data_borrower = {
 
-    const borrower = await dbBorrower.create(data_borrower);
-    const profile = await dbProfile.findOne({where: {id_users: id_user}});
-    console.log(profile.toJSON());
-    const objek = JSON.parse(JSON.stringify(profile));
-    
-    if (borrower.toJSON()){
-        let data1 = {
-            name: objek.nama_lengkap,
-            reason_borrower: borrower.reason_borrower,
-            dependents_amount: borrower.dependents_amount,
-            status: borrower.status
+            loan_amount : req.body.loan_amount,
+            reason_borrower : req.body.reason_borrower,
+            monthly_income : req.body.monthly_income,
+            dependents_amount : req.body.dependents_amount,
+            payment_id : req.body.payment_id,
+            id_mitra 
         }
-        console.log(data1);
-        const mitradata = await dbMitra.create(data1);
-        return res.status(200).send(mitradata);
+
+        const borrower = await dbBorrower.create(data_borrower);
+        const profile = await dbProfile.findOne({where: {id_user: id_user}});
+        const objek = Helper.toObject(profile);
+    
+        if (borrower.toJSON()){
+            let data1 = {
+                id_user,
+                id_mitra,
+                nama_lengkap: objek.nama_lengkap,
+                reason_borrower: borrower.reason_borrower,
+                dependents_amount: borrower.dependents_amount,
+                status: borrower.status
+            }
+            console.log(data1);
+            const mitradata = await dbMitra.create(data1);
+            return res.status(200).send(mitradata);
+        }
+    return res.status(200).send();
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send(err);
     }
-    return res.status(200).send(borrower);
+    
     
 }
 

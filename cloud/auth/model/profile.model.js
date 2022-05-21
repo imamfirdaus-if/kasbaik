@@ -33,6 +33,10 @@ module.exports = (sequelize, Sequelize) => {
       foto_selfie: {
         type: Sequelize.STRING
       }
+    }, {
+      updatedAt: false,
+      createdAt : false,
+      freezeTableName: true,
     });
   
     return Profile;

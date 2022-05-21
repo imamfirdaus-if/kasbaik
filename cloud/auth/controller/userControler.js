@@ -3,7 +3,8 @@ const db = require('../model/model')
 const Helper = require('../middleware/helper');
 const crypto = require('crypto')
 const dbUser = db.users;
-const dbProfile = db.profile;
+const dbProfile = db.profileUser;
+const dbProfileMitra = db.profileMitra
 // const Op = db.Sequelize.Op;
 
 
@@ -19,6 +20,7 @@ const signup_post = async(req, res, next) => {
         password : resultHash,
         email : req.body.email,
         phone : req.body.phone,
+        role : req.body.role,
     };
     
   
@@ -39,10 +41,20 @@ const signup_post = async(req, res, next) => {
           .then(data => {
             console.log('Signup Success');
             console.log(data.toJSON());
-            dbProfile.create({ id_user: data.id_user, no_wa: data.phone })
-            .then(data => {
+            if (data.role === 'user') {
+              dbProfile.create({ id_user: data.id_user, nama_lengkap: data.username, no_wa: data.phone })
+              .then(data => {
+              console.log('berhasil created dbProfile');
               res.status(201).send(data)
-            }) 
+            })
+            } else if (data.role === 'mitra') {
+              dbProfileMitra.create({id_user : data.id_user, partner_name : data.username, phone : data.phone})
+              .then(data => {
+              console.log('berhaisil created dbProfileMitra');
+              res.status(201).send(data)
+              })
+            }
+            
           }) 
         }
       })
@@ -79,7 +91,7 @@ const login_post= async(req, res, next) => {
         }
         
         console.log('berhasil login');
-        const token = Helper.generateToken(data.dataValues.id_user, user.email);
+        const token = Helper.generateToken(data.dataValues.id_user, user.email, data.role );
         res.cookie('jwt', token);
         console.log({token});
         return res.status(200).send('Successfully logged in');
