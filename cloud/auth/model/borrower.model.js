@@ -1,21 +1,27 @@
 module.exports = (sequelize, Sequelize) => {
     const Borrower = sequelize.define("borrowers", {
-        id: {
+        id_borrower: {
+            type: Sequelize.UUID,
+            defaultValue: Sequelize.UUIDV4,
             allowNull: false,
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER
+            primaryKey: true
         },
-        loan: {
+        loan_amount: {
             type: Sequelize.INTEGER
         },
         reason_borrower: {
             type: Sequelize.STRING
         },
+        monthly_income: {
+            type: Sequelize.INTEGER
+        },
         dependents_amount: {
             type: Sequelize.INTEGER
         },
         payment_id: {
+            type: Sequelize.STRING
+        },
+        id_mitra: {
             type: Sequelize.STRING
         },
         status: {

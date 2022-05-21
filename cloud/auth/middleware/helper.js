@@ -17,15 +17,20 @@ const Helper = {
     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
   },
   
-  generateToken(id, email) {
+  generateToken(id, email, role) {
     const token = jwt.sign(
     {
       userId: id,
-      email: email
+      email: email,
+      role: role
     },
-      SECRET, { expiresIn: '10m' }
+      SECRET, { expiresIn: '1d' }
     )
     return token;
+  },
+
+  toObject(data) {
+    return JSON.parse(JSON.stringify(data));
   }
 }
 

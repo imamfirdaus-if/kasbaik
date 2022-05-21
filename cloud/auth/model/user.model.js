@@ -17,7 +17,10 @@ module.exports = (sequelize, Sequelize) => {
       },
       phone: {
         type: Sequelize.BIGINT,
-
+      }, 
+      role: {
+        type: Sequelize.ENUM("user", "mitra", "admin"),
+        defaultValue: ('user')
       }
     }, {
       updatedAt: false,
