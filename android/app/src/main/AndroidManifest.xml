@@ -13,16 +13,9 @@
         android:theme="@style/Theme.KasBaik">
         <activity
             android:name=".ui.pengguna.donasi.DonasiActivity"
-            android:exported="true"
+            android:exported="false"
             android:label="@string/title_activity_donasi"
-            >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            />
         <activity
             android:name=".ui.beranda.login.mitra.LoginAsMitraActivity"
             android:exported="false" />
@@ -46,7 +39,13 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false">
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
     </application>
