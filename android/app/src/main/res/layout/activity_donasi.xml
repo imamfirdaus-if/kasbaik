@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.pengguna.donasi.DonasiActivity">
+
+
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:background="@color/background_ijo"-->
+<!--        android:theme="@style/Theme.KasBaik.AppBarOverlay">-->
+
+<!--        <androidx.appcompat.widget.AppCompatImageView-->
+<!--            android:id="@+id/iv_home"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:minHeight="?actionBarSize"-->
+<!--            android:minWidth="?actionBarSize"-->
+<!--            tools:src="@drawable/ic_baseline_home_24"-->
+<!--            />-->
+
+<!--        &lt;!&ndash;        <TextView&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:id="@+id/title"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_width="wrap_content"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:gravity="center"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:minHeight="?actionBarSize"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:padding="@dimen/appbar_padding"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:text="@string/app_name"&ndash;&gt;-->
+<!--        &lt;!&ndash;            android:textAppearance="@style/TextAppearance.Widget.AppCompat.Toolbar.Title" />&ndash;&gt;-->
+
+<!--        -->
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tl_foll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_foll"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tl_foll"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
