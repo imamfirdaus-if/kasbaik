@@ -6,6 +6,9 @@ module.exports = (sequelize, Sequelize) => {
         id_mitra: {
             type: Sequelize.STRING
         },
+        id_borrower: {
+            type: Sequelize.STRING
+        },
         nama_lengkap: {
             type: Sequelize.STRING
         },
