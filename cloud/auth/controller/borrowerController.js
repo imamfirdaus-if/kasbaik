@@ -13,9 +13,9 @@ const addBorrower = async (req, res, next) =>{
 
         const mitraList = await dbProfileMitra.findAll({attributes: ['id', 'partner_name']})
         console.log(Helper.toObject(mitraList));
-        let id_mitra = Helper.toObject(mitraList)[0].id
+        let id_mitra = Helper.toObject(mitraList)[0].id || req.body.id_mitra;
         const data_borrower = {
-
+            id_user: id_user,
             loan_amount : req.body.loan_amount,
             reason_borrower : req.body.reason_borrower,
             monthly_income : req.body.monthly_income,
@@ -32,8 +32,10 @@ const addBorrower = async (req, res, next) =>{
             let data1 = {
                 id_user,
                 id_mitra,
+                id_borrower: borrower.id_borrower,
                 nama_lengkap: objek.nama_lengkap,
                 reason_borrower: borrower.reason_borrower,
+                monthly_income : borrower.monthly_income,
                 dependents_amount: borrower.dependents_amount,
                 status: borrower.status
             }
@@ -41,7 +43,7 @@ const addBorrower = async (req, res, next) =>{
             const mitradata = await dbMitra.create(data1);
             return res.status(200).send(mitradata);
         }
-    return res.status(200).send();
+        return res.status(200).send();
     } catch (err) {
         console.log(err);
         return res.status(500).send(err);
@@ -49,7 +51,6 @@ const addBorrower = async (req, res, next) =>{
     
     
 }
-
 module.exports = {
     addBorrower
 }

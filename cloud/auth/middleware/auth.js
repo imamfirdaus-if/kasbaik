@@ -16,7 +16,7 @@ const Auth = {
                 req.id = decodedToken.userId
                 req.email = decodedToken.email 
                 req.role = decodedToken.role
-                
+                req.objek = decodedToken
                 next()
               }
             });
@@ -70,7 +70,7 @@ verifyTokenUser(req, res, next){
           req.role = decodedToken.role
         
           if (req.role === 'user'){
-            next('route')
+            next()
           }else {
             return res.status(500).send('anda tidak dapat masuk ke daerah user')
           }
