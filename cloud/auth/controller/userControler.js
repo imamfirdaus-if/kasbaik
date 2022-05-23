@@ -25,17 +25,17 @@ const signup_post = async(req, res, next) => {
     
   
       if (!user.password || !user.email){
-        return res.status(400).send({'message': 'email and password must be provided'});
+        return res.status(400).send({ message : 'email and password must be provided'});
       }
   
       if (!Helper.isValidEmail(user.email)) {
-        return res.status(400).send({ 'message': 'Please enter a valid email address' });
+        return res.status(400).send({ message : 'Please enter a valid email address' });
       }
   
       await dbUser.findOne({where: {email: user.email}})
       .then(data => {
         if (data !== null) {
-          return res.status(400).send({ status: "email is already used" });
+          return res.status(400).send({ message : "email is already used" });
         } else {
           dbUser.create(user)
           .then(data => {
@@ -61,6 +61,7 @@ const signup_post = async(req, res, next) => {
       
   } catch (err) {
     console.error(err.message);
+    return res.status(500).send(err)
   }
 }
     
@@ -73,28 +74,30 @@ const login_post= async(req, res, next) => {
     }
   
     if (!user.email|| !user.password) {
-      return res.status(400).send({'message': 'email and password is provided'});
+      return res.status(400).send({ message : 'email and password is provided'});
     }
   
     if (!Helper.isValidEmail(user.email)) {
-      return res.status(400).send({ 'message': 'Please enter a valid email address' });
+      return res.status(400).send({ message : 'Please enter a valid email address' });
     }
     
     await dbUser.findOne({where: {email: user.email}})
       .then(data => {
         if (data === null) {
-          return res.status(400).send({ status: "your email is not registered" });
+          return res.status(400).send({ message : "your email is not registered" });
         } else {
         
         if(!Helper.comparePassword(data.dataValues.password, user.password)) {
-          return res.status(400).send({ 'message': 'The credentials you provided is incorrect' })
+          return res.status(400).send({ message : 'The credentials you provided is incorrect' })
         }
         
         console.log('berhasil login');
         const token = Helper.generateToken(data.dataValues.id_user, user.email, data.role );
         res.cookie('jwt', token);
         console.log({token});
+     
         return res.status(200).send({token});
+
         }
       })
         
@@ -137,6 +140,7 @@ const logout_post = async(req, res, next) => {
             
   } catch (err) {
     console.log(err.message);
+    return res.status(500).send(err)
   }
 }
 

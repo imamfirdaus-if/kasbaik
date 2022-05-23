@@ -1,11 +1,9 @@
 const express = require('express')
 const app =express()
 require('dotenv').config()
-
 const bodyParser = require('body-parser');
 const db = require('./model/model')
 const cookieParser = require('cookie-parser');
-const jwt = require('jsonwebtoken')
 const userRouter = require('./router/router')
 const User = db.users
 app.use(express.json());
@@ -27,18 +25,6 @@ app.get('/', async (req, res) => {
   }
 });
 
-
-
-app.get('/getAllUsers', async (req, res) => {
-  try {
-      await User.findAll()
-      .then ( data => {
-        res.status(201).send(data)
-      })
-  } catch (err) {
-    console.log(err.message);
-  }
-});
 
 PORT = process.env.PORT
 app.listen(PORT || 8080, () => {console.log(`Application is running on ${PORT}!! `)})

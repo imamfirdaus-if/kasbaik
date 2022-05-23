@@ -21,7 +21,7 @@ module.exports = (sequelize, Sequelize) => {
         dependents_amount: {
             type: Sequelize.INTEGER
         },
-        payment_id: {
+        id_payment: {
             type: Sequelize.STRING
         },
         id_mitra: {
