@@ -55,16 +55,13 @@ dependencies {
     // check response req with okhttp3
     implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7'
     // Glide
-<<<<<<< HEAD
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     // imageslider
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
 
-=======
     implementation 'com.github.bumptech.glide:glide:4.13.1'
     //ViewPager2
     implementation "androidx.viewpager2:viewpager2:1.0.0"
->>>>>>> baf00f1e38050bad450ca89a3aeb682db7230014
 
 
 }
