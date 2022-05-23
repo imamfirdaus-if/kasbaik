@@ -96,7 +96,7 @@ const profile_post = async (req, res, next) => {
                     
                 }else {
                     console.log('data gagal diupdate');
-                    return res.status(404).send('gagal diupdate')
+                    return res.status(404).send({message : "gagal diupdate, user tidak ditemukan"})
                 }
                 
             })
@@ -117,7 +117,7 @@ const profile_post = async (req, res, next) => {
                 message: "File size cannot be larger than 2MB"
             });
         }
-        res.status(500).send(err);
+        return res.status(500).send(err);
     }
 };
 

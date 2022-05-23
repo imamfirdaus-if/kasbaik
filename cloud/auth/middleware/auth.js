@@ -16,8 +16,8 @@ const Auth = {
                 req.id = decodedToken.userId
                 req.email = decodedToken.email 
                 req.role = decodedToken.role
-                req.objek = decodedToken
-                next()
+                
+                return next()
               }
             });
         } else {

@@ -20,20 +20,21 @@ const profileMitra_post = async (req, res, next) => {
                 console.log("data berhasil dimasukkan");
             }else {
                 console.log('data gagal diupdate');
-                return res.status(404).send('gagal diupdate')
+                return res.status(404).send({ message: 'data gagal diupdate, user tidak ditemukan'})
             }
         })
         
         await dbProfileMitra.findAll({where: {id_user: req.id}})
             .then(data => {
             if (data[0] === undefined) {
-                return res.status(404) 
+                return res.status(404)
             }
             return res.status(200).send(data[0].toJSON())
             })
          
     } catch (err) {
         console.log(err);
+        return res.status(403).send(err)
     }
 }
 
@@ -57,15 +58,18 @@ const seeAllBorrowers = async (req, res) => {
 const editStatusBorrower = async (req, res) => {
     try {
         const result = await dbProfileMitra.findOne({where: {id_user: req.id}})
-        const getIdMitra = Helper.toObject(result).id
+        
+        const getIdMitra = Helper.toObject(result).id_mitra
 
         await dbMitra.findAll({where: {id_mitra: getIdMitra}})
         .then(data => {
             const data1 = {
                 status : req.body.status
             }
+            // mengupdate status pada table mitras
             dbMitra.update(data1,{where: {id_borrower: req.body.id_borrower}})
             .then(data2 => {
+                // mengupdate status pada table borrower
                 dbBorrower.update(data1,{where: {id_borrower: req.body.id_borrower}})
                 .then(data3 => {
                     return res.status(200).send(data3)
@@ -77,7 +81,8 @@ const editStatusBorrower = async (req, res) => {
 
 
     } catch (err) {
-        
+        console.log(err.message)
+        return res.status(404).send(err);
     }
 }
 

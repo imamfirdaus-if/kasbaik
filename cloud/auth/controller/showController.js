@@ -65,7 +65,7 @@ const mitraData = async (req, res) => {
     try {
         const result = await dbProfileMitra.findOne({where: {id_user: req.id}})
         
-        const getIdMitra = Helper.toObject(result).id
+        const getIdMitra = Helper.toObject(result).id_mitra
 
         await dbMitra.findAll({where: {id_mitra: getIdMitra}})
         .then(data => {

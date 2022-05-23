@@ -11,16 +11,17 @@ const addBorrower = async (req, res, next) =>{
     try {
         let id_user = req.id;
 
-        const mitraList = await dbProfileMitra.findAll({attributes: ['id', 'partner_name']})
+        const mitraList = await dbProfileMitra.findAll({attributes: ['id_mitra', 'partner_name']})
         console.log(Helper.toObject(mitraList));
-        let id_mitra = Helper.toObject(mitraList)[0].id || req.body.id_mitra;
+        // code id mitra dibawah ini nantinya ditentukan dari hasil pilih oleh borrower
+        let id_mitra = Helper.toObject(mitraList)[1].id_mitra || req.body.id_mitra;
         const data_borrower = {
             id_user: id_user,
             loan_amount : req.body.loan_amount,
             reason_borrower : req.body.reason_borrower,
             monthly_income : req.body.monthly_income,
             dependents_amount : req.body.dependents_amount,
-            payment_id : req.body.payment_id,
+            id_payment : req.body.payment_id,
             id_mitra 
         }
 
@@ -42,8 +43,10 @@ const addBorrower = async (req, res, next) =>{
             console.log(data1);
             const mitradata = await dbMitra.create(data1);
             return res.status(200).send(mitradata);
+        } else {
+            throw err
         }
-        return res.status(200).send();
+        
     } catch (err) {
         console.log(err);
         return res.status(500).send(err);
