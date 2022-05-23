@@ -1,13 +1,11 @@
 package com.hitzvera.kasbaik.api
 
 
+import com.hitzvera.kasbaik.response.HomeUserResponse
 import com.hitzvera.kasbaik.response.LoginResponse
 import com.hitzvera.kasbaik.response.UserResponse
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface ApiService {
     @FormUrlEncoded
@@ -17,6 +15,7 @@ interface ApiService {
         @Field("email") email: String,
         @Field("phone") phone: String,
         @Field("password") password: String,
+        @Field("role") role: String,
     ): Call<UserResponse>
 
     @FormUrlEncoded
@@ -25,6 +24,11 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): Call<LoginResponse>
+
+    @GET("home")
+    fun requestHomePeminjam(
+        @Header("Authorization") auth: String,
+    ): Call<HomeUserResponse>
 
 
 

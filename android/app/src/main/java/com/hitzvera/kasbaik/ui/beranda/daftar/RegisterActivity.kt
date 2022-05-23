@@ -30,8 +30,15 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 val email = binding.edEmail.text.trim().toString()
                 val phone = binding.edPhoneNumber.text.trim().toString()
                 val password = binding.edPassword.text.trim().toString()
+                val isMitra = binding.cbLoginAsMitra.isChecked
+                lateinit var role: String;
+                if(isMitra){
+                    role = "mitra"
+                } else {
+                    role = "user"
+                }
                 if(validateForm(username, email, phone, password)) {
-                    viewModel.createAccount(username, email, phone, password, this)
+                    viewModel.createAccount(username, email, phone, password, role,this)
                     viewModel.isLoading.observe(this){
                         showLoading(it)
                     }

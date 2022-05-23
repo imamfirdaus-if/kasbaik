@@ -23,10 +23,11 @@ class RegisterViewModel: ViewModel() {
         email: String,
         phone: String,
         password: String,
+        role: String,
         context: Context
     ) {
         _isLoading.value = true
-        ApiConfig.getApiService().requestCreateAcountUser(username, email, phone, password)
+        ApiConfig.getApiService().requestCreateAcountUser(username, email, phone, password, role)
             .enqueue(object: Callback<UserResponse>{
                 override fun onResponse(
                     call: Call<UserResponse>,
