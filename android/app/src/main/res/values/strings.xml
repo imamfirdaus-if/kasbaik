@@ -14,6 +14,9 @@
     <string name="login">masuk</string>
     <string name="isikas">isikas</string>
     <string name="halaman_login">Halaman login</string>
+
+    <string name="data_have_to_be_valid">data have to be valid</string>
+
     <string name="title_activity_donasi">DonasiActivity</string>
     <string name="tab_text_1">Donasi Sekali</string>
     <string name="tab_text_2">Donasi Rutin</string>
