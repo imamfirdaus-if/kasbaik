@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">KasBaik</string>
+    <string name="title_menu_1">Bantu Ragam Sektor Usaha</string>
+    <string name="title_menu_2">Berdayakan sesama</string>
+    <string name="title_menu_3">Satu satunya pinjaman bebas riba, dengan bunga 0%</string>
+    <string name="title_menu_4">Mari Mulai saling bantu</string>
+    <string name="desc_menu_1">Donasimu di KasBaik akan terus bermanfaat hingga usaha kecil mereka berkembang. Bantuan berupa pinjaman modal usaha dari para donatur dan akan terus bergulir untuk bantu pedagang kecil lainnya.</string>
+    <string name="desc_menu_2">Pedagang kecil yang akan mulai usaha, terdaftar dalam mitra KasBaik dan telah melengkapi semua persyaratan akan diberdayakan dengan pinjaman modal yang diberikan.</string>
+    <string name="desc_menu_3">KasBaik memberikan bantuan produktif dengan pinjaman kepada yang membutuhkan dengan durari dan pengembalian dana di sesuaikan dengan kemampuan penerima bantuan. KasBaik tidak meminta imbalan apapun dari peminjam kas.</string>
+    <string name="desc_menu_4">Kebaikan anda sebesar apapun akan sangat berarti</string>
+    <string name="get_started">Mulai</string>
+    <string name="about">Tentang</string>
+    <string name="register">daftar</string>
+    <string name="login">masuk</string>
+    <string name="isikas">isikas</string>
+    <string name="halaman_login">Halaman login</string>
+
+    <string name="data_have_to_be_valid">data have to be valid</string>
+
+    <string name="title_activity_donasi">DonasiActivity</string>
+    <string name="tab_text_1">Donasi Sekali</string>
+    <string name="tab_text_2">Donasi Rutin</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="donasi_sekali">Donasi Sekali</string>
+    <string name="donasi_rutin">Donasi Rutin</string>
+</resources>

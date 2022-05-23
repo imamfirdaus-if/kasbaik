@@ -95,7 +95,9 @@ const login_post= async(req, res, next) => {
         const token = Helper.generateToken(data.dataValues.id_user, user.email, data.role );
         res.cookie('jwt', token);
         console.log({token});
-        return res.status(200).send(data);
+     
+        return res.status(200).send({token});
+
         }
       })
         
