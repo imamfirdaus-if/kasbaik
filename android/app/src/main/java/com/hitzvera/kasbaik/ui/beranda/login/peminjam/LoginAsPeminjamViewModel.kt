@@ -32,7 +32,7 @@ class LoginAsPeminjamViewModel: ViewModel() {
                         _isLoading.value = false
                     } else {
                         val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
-                        Toast.makeText(context, jsonObj.getString("status"), Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, jsonObj.getString("message"), Toast.LENGTH_LONG).show()
                         _isLoading.value = false
                     }
                 }

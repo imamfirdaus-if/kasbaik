@@ -2,19 +2,37 @@ package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
 import com.hitzvera.kasbaik.R
+import com.hitzvera.kasbaik.databinding.ActivityHomePeminjamBinding
 
 class HomePeminjamActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: HomePeminjamViewModel
+    private lateinit var binding: ActivityHomePeminjamBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home_peminjam)
+        binding = ActivityHomePeminjamBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
+        viewModel = ViewModelProvider(this)[HomePeminjamViewModel::class.java]
+        viewModel.reqHomePeminjam(this)
+        viewModel.homeUserResponse.observe(this){
+            if(it!=null){
+                binding.welcomeTitle.text = getString(R.string.greet_user, it.username)
+            }
+        }
+        viewModel.isLoading.observe(this){
+            if(it!=null){
+                showLoading(it)
+            }
+        }
         val imageList = ArrayList<SlideModel>() // Create image list
-
-// imageList.add(SlideModel("String Url" or R.drawable)
-// imageList.add(SlideModel("String Url" or R.drawable, "title") You can add title
 
         imageList.add(SlideModel(R.drawable.image_bantu_usaha, "The animal population decreased by 58 percent in 42 years."))
         imageList.add(SlideModel(R.drawable.image_berdayakan_sesama, "Elephants and tigers may become extinct."))
@@ -22,5 +40,12 @@ class HomePeminjamActivity : AppCompatActivity() {
 
         val imageSlider = findViewById<ImageSlider>(R.id.image_slider)
         imageSlider.setImageList(imageList)
+    }
+    private fun showLoading(isLoading: Boolean){
+        if(isLoading) {
+            binding.progressBarHome.visibility = View.VISIBLE
+        } else {
+            binding.progressBarHome.visibility = View.GONE
+        }
     }
 }
