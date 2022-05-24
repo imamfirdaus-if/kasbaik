@@ -20,8 +20,9 @@ class HomePeminjamActivity : AppCompatActivity() {
         binding = ActivityHomePeminjamBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val token = intent.getStringExtra(TOKEN)
         viewModel = ViewModelProvider(this)[HomePeminjamViewModel::class.java]
-        viewModel.reqHomePeminjam(this)
+        viewModel.reqHomePeminjam(this, token!!)
         viewModel.homeUserResponse.observe(this){
             if(it!=null){
                 binding.welcomeTitle.text = getString(R.string.greet_user, it.username)
@@ -47,5 +48,8 @@ class HomePeminjamActivity : AppCompatActivity() {
         } else {
             binding.progressBarHome.visibility = View.GONE
         }
+    }
+    companion object {
+        const val TOKEN = "token"
     }
 }

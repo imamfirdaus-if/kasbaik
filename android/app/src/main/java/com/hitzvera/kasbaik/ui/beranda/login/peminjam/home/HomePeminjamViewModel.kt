@@ -19,9 +19,9 @@ class HomePeminjamViewModel: ViewModel() {
     private var _homeUserResponse = MutableLiveData<HomeUserResponse>()
     val homeUserResponse: LiveData<HomeUserResponse> = _homeUserResponse
 
-    fun reqHomePeminjam(context: Context){
+    fun reqHomePeminjam(context: Context, token: String){
         _isLoading.value = true
-        ApiConfig.getApiService().requestHomePeminjam()
+        ApiConfig.getApiService().requestHomePeminjam("jwt=$token")
             .enqueue(object: Callback<HomeUserResponse> {
                 override fun onResponse(
                     call: Call<HomeUserResponse>,

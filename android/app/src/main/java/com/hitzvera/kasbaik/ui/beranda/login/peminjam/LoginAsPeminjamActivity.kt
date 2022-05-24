@@ -1,6 +1,7 @@
 package com.hitzvera.kasbaik.ui.beranda.login.peminjam
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -14,6 +15,7 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityLoginAsPeminjamBinding
     private lateinit var viewModel: LoginAsPeminjamViewModel
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +34,10 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
                 login(email, password)
                 viewModel.token.observe(this){
                     if (it!=null){
-                        val intent = Intent(this, HomePeminjamActivity::class.java)
-                        startActivity(intent)
+                        Intent(this, HomePeminjamActivity::class.java).also { intent ->
+                            intent.putExtra(HomePeminjamActivity.TOKEN, it.token)
+                            startActivity(intent)
+                        }
                     }
                 }
                 viewModel.isLoading.observe(this){
@@ -66,5 +70,9 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             binding.progressBarLoginPeminjam.visibility = View.GONE
         }
+    }
+
+    companion object {
+        const val TOKEN = "token"
     }
 }
