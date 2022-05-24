@@ -3,6 +3,7 @@ package com.hitzvera.kasbaik.api
 
 import com.hitzvera.kasbaik.response.HomeUserResponse
 import com.hitzvera.kasbaik.response.LoginResponse
+import com.hitzvera.kasbaik.response.ProfileResponse
 import com.hitzvera.kasbaik.response.UserResponse
 import retrofit2.Call
 import retrofit2.http.*
@@ -30,6 +31,8 @@ interface ApiService {
         @Header("Cookie") auth: String,
     ): Call<HomeUserResponse>
 
-
-
+    @GET("profile")
+    fun getRequestProfile(
+        @Header("Cookie") auth: String,
+    ): Call<ProfileResponse>
 }

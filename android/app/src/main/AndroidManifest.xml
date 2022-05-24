@@ -13,10 +13,18 @@
         android:theme="@style/Theme.KasBaik"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.beranda.login.peminjam.home.profile.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.beranda.login.peminjam.home.zakat.ZakatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.beranda.login.peminjam.home.pinjamdana.PinjamDanaActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.pengguna.donasi.DonasiActivity"
             android:exported="false"
-            android:label="@string/title_activity_donasi"
-            />
+            android:label="@string/title_activity_donasi" />
         <activity
             android:name=".ui.beranda.login.mitra.LoginAsMitraActivity"
             android:exported="false" />
@@ -44,13 +52,11 @@
         <activity
             android:name=".ui.beranda.BerandaActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".MainActivity"
