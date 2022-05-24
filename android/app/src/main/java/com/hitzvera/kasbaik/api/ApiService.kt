@@ -27,7 +27,7 @@ interface ApiService {
 
     @GET("home")
     fun requestHomePeminjam(
-        @Header("Authorization") auth: String,
+        @Header("Cookie") auth: String,
     ): Call<HomeUserResponse>
 
 
