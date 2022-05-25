@@ -9,6 +9,9 @@ module.exports = (sequelize, Sequelize) => {
         id_user: {
             type: Sequelize.STRING
         },
+        id_mitra: {
+            type: Sequelize.STRING
+        },
         loan_amount: {
             type: Sequelize.INTEGER
         },
@@ -21,17 +24,37 @@ module.exports = (sequelize, Sequelize) => {
         dependents_amount: {
             type: Sequelize.INTEGER
         },
-        id_payment: {
-            type: Sequelize.STRING
-        },
-        id_mitra: {
-            type: Sequelize.STRING
+        payment_method: {
+            type: Sequelize.ENUM("cicil", "cash"),
+            defaultValue: "cicil"
         },
         status: {
-            type: Sequelize.ENUM("pending", "accepted", "rejected"),
+            type: Sequelize.ENUM("pending", "accepted", "rejected", "payment", "done"),
             defaultValue: "pending"
         },
-    });
+        tenor :{
+            type: Sequelize.INTEGER,
+            defaultValue: 60
+        },
+        pinjaman_ke : {
+            type: Sequelize.INTEGER,
+            defaultValue: 0
+        },
+        telat : {
+            type: Sequelize.STRING
+        }, 
+        donasi: {
+            type: Sequelize.INTEGER
+        },
+        updatedAt: {
+          type: Sequelize.DATEONLY
+        },
+        createdAt : {
+          type: Sequelize.DATEONLY
+        },
+    }, {
+        freezeTableName: true,
+      });
   
     return Borrower;
   };

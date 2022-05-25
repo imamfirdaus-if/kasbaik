@@ -7,13 +7,23 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true
       },
       id_user: {
-        type: Sequelize.STRING
+        type: Sequelize.UUID
       },
       nama_lengkap: {
         type: Sequelize.STRING
       },
-      no_wa: {
+      credit_score: {
+        type: Sequelize.INTEGER,
+        defaultValue: 0
+      },
+      phone: {
         type: Sequelize.STRING
+      },
+      usia: {
+        type: Sequelize.INTEGER
+      },
+      gender : {
+        type: Sequelize.ENUM("laki-laki", "perempuan"),
       },
       alamat_tinggal: {
         type: Sequelize.STRING
@@ -32,10 +42,14 @@ module.exports = (sequelize, Sequelize) => {
       },
       foto_selfie: {
         type: Sequelize.STRING
-      }
+      },
+      updatedAt: {
+        type: Sequelize.DATEONLY
+      },
+      createdAt : {
+        type: Sequelize.DATEONLY
+      },
     }, {
-      updatedAt: false,
-      createdAt : false,
       freezeTableName: true,
     });
   

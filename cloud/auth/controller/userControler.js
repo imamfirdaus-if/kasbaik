@@ -42,16 +42,16 @@ const signup_post = async(req, res, next) => {
             console.log('Signup Success');
             console.log(data.toJSON());
             if (data.role === 'user') {
-              dbProfile.create({ id_user: data.id_user, nama_lengkap: data.username, no_wa: data.phone })
-              .then(data => {
+              dbProfile.create({ id_user: data.id_user, nama_lengkap: data.username, phone: data.phone })
+              .then(data1 => {
               console.log('berhasil created dbProfile');
-              res.status(201).send(data)
+              res.status(201).send({user : data, profile: data1})
             })
             } else if (data.role === 'mitra') {
               dbProfileMitra.create({id_user : data.id_user, partner_name : data.username, phone : data.phone})
-              .then(data => {
+              .then(data1 => {
               console.log('berhaisil created dbProfileMitra');
-              res.status(201).send(data)
+              res.status(201).send({user : data, profile: data1})
               })
             }
             
@@ -96,7 +96,10 @@ const login_post= async(req, res, next) => {
         res.cookie('jwt', token);
         console.log({token});
      
-        return res.status(200).send({token});
+        return res.status(200).json({
+          user : data,
+          token
+        });
 
         }
       })
@@ -127,6 +130,7 @@ const delete_post = async(req, res, next) => {
   }
 }
 
+//digunakan untuk mengupdate password dari users
 const update_post = async(req, res, next) => {
 
 }

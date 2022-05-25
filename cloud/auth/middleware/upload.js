@@ -17,7 +17,7 @@ let processFile = Multer({
     storage: Multer.memoryStorage(),
     limits: { fileSize: maxSize },
     
-}).array('file', 3);
+}).any('file');
 let processFileMiddleware = util.promisify(processFile);
 
 module.exports = processFileMiddleware;

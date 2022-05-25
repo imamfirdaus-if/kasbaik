@@ -36,6 +36,7 @@ router.get('/profile', Auth.verifyTokenUser , showController.profileData)
 // digunakan untuk membuat request peminjaman uang oleh peminjam
 router.post("/borrower", Auth.verifyTokenUser, borrowerController.addBorrower);
 router.get("/borrower", Auth.verifyTokenUser, showController.borrowerData)
+router.put("/borrower", Auth.verifyTokenUser, borrowerController.updateBorrower)
 
 // digunakan untuk mengupdate profile dari mitra
 router.post("/mitraprof", Auth.verifyTokenMitra, mitraController.profileMitra_post )
@@ -46,5 +47,11 @@ router.get("/mitraprof", Auth.verifyTokenMitra, showController.mitraProfileData)
 // digunakan oleh mitra untuk melihat dan mengupdate semua list request peminjaman
 router.post("/updatestatus", Auth.verifyTokenMitra, mitraController.editStatusBorrower);
 router.get("/updatestatus", Auth.verifyTokenMitra, showController.mitraData);
+// router.get("/updatestatus/:id_borrower", Auth.verifyTokenMitra, showController.mitraData);
+
+// digunakan untuk menambahkan payment request oleh mitra
+router.post("/payment", Auth.verifyTokenMitra, mitraController.createPayment)
+router.get("/payment", Auth.verifyToken, showController.paymentData)
+
 
 module.exports = router
