@@ -49,7 +49,7 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun validateLogin(email: String, password: String): Boolean{
         if(android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
-            && password.length >= 6 && password.isNotEmpty() && email.isNotEmpty()) {
+            && password.isNotEmpty() && email.isNotEmpty()) {
             return true
         }
         return false

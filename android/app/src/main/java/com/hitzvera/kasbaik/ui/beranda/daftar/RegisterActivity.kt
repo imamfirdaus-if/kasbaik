@@ -4,11 +4,11 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.view.Window
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityRegisterBinding
@@ -25,6 +25,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this)[RegisterViewModel::class.java]
+        setupRadioButton()
         binding.btnRegister.setOnClickListener(this)
 
     }
@@ -36,13 +37,10 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 val email = binding.edEmail.text.trim().toString()
                 val phone = binding.edPhoneNumber.text.trim().toString()
                 val password = binding.edPassword.text.trim().toString()
-                val isMitra = binding.cbLoginAsMitra.isChecked
-                lateinit var role: String;
-                role = if(isMitra){
-                    "mitra"
-                } else {
-                    "user"
-                }
+                val radioId: Int = binding.radioGroupSebagai.checkedRadioButtonId
+
+                val radioButton: RadioButton = findViewById(radioId)
+                val role: String = radioButton.text.toString()
                 if(validateForm(username, email, phone, password)) {
                     viewModel.createAccount(username, email, phone, password, role,this)
                     viewModel.isLoading.observe(this){
@@ -53,6 +51,14 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 }
             }
+        }
+    }
+
+    private fun setupRadioButton(){
+        binding.tvRegistrasiSebagai.text = getString(R.string.regis_as, getString(R.string.user))
+        binding.radioGroupSebagai.setOnCheckedChangeListener { _, i ->
+            val radio: RadioButton = findViewById(i)
+            binding.tvRegistrasiSebagai.text = getString(R.string.regis_as, radio.text)
         }
     }
 
