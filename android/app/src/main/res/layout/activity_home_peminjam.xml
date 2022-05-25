@@ -11,7 +11,7 @@
         android:id="@+id/welcome_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Selamat datang User"
+        android:text="@string/greet_user"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="24sp"

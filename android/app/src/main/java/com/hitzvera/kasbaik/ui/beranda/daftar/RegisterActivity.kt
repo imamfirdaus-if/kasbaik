@@ -1,12 +1,18 @@
 package com.hitzvera.kasbaik.ui.beranda.daftar
 
+import android.app.Dialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityRegisterBinding
+import com.hitzvera.kasbaik.ui.beranda.login.LoginActivity
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -32,15 +38,18 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
                 val password = binding.edPassword.text.trim().toString()
                 val isMitra = binding.cbLoginAsMitra.isChecked
                 lateinit var role: String;
-                if(isMitra){
-                    role = "mitra"
+                role = if(isMitra){
+                    "mitra"
                 } else {
-                    role = "user"
+                    "user"
                 }
                 if(validateForm(username, email, phone, password)) {
                     viewModel.createAccount(username, email, phone, password, role,this)
                     viewModel.isLoading.observe(this){
                         showLoading(it)
+                    }
+                    viewModel.isSuccessful.observe(this){
+                        showCustomDialog(it)
                     }
                 }
             }
@@ -59,6 +68,34 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             Toast.makeText(this, "Data have to be valid", Toast.LENGTH_SHORT).show()
             false
+        }
+    }
+
+    private fun showCustomDialog(state: String){
+        if(state == "success"){
+            val dialog = Dialog(this)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setCancelable(true)
+            dialog.setContentView(R.layout.register_pop_up_success)
+            val btnLogin: Button = dialog.findViewById(R.id.btn_login)
+            btnLogin.setOnClickListener {
+                Intent(this, LoginActivity::class.java).also {
+                    startActivity(it)
+                }
+            }
+            dialog.show()
+        } else if(state == "failed") {
+            val dialog = Dialog(this)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setCancelable(true)
+            dialog.setContentView(R.layout.register_pop_up_failed)
+            viewModel.errorMessage.observe(this){
+                val tvErrorMessage: TextView = dialog.findViewById(R.id.tv_error_message)
+                tvErrorMessage.text = it
+            }
+            val retryBtn: Button = dialog.findViewById(R.id.btn_retry)
+            retryBtn.setOnClickListener { dialog.dismiss() }
+            dialog.show()
         }
     }
 
