@@ -29,8 +29,34 @@
         android:textStyle="bold"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@id/ed_username"
-        app:layout_constraintTop_toBottomOf="@id/logo"
-        app:layout_constraintBottom_toTopOf="@id/ed_username"/>
+        app:layout_constraintTop_toBottomOf="@id/logo" />
+
+    <RadioGroup
+        android:id="@+id/radio_group_sebagai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="@+id/tv_registrasi_sebagai"
+        app:layout_constraintTop_toBottomOf="@+id/tv_registrasi_sebagai">
+
+        <RadioButton
+            android:id="@+id/radio_user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/user"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/radio_mitra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="mitra"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+    </RadioGroup>
 
 
     <EditText
@@ -43,7 +69,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_registrasi_sebagai" />
+        app:layout_constraintTop_toBottomOf="@+id/radio_group_sebagai" />
 
     <EditText
         android:id="@+id/ed_email"
@@ -82,15 +108,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_phone_number" />
 
-    <CheckBox
-        android:id="@+id/cb_login_as_mitra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Login sebagai Mitra"
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/ed_password"
-        app:layout_constraintStart_toStartOf="@id/ed_password"
-        />
 
     <Button
         android:id="@+id/btn_register"
@@ -102,7 +119,7 @@
         android:textColor="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cb_login_as_mitra" />
+        app:layout_constraintTop_toBottomOf="@id/ed_password" />
 
     <ProgressBar
         android:id="@+id/progressBar_register"
