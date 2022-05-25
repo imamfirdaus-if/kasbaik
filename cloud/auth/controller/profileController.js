@@ -38,6 +38,9 @@ const profile_post = async (req, res, next) => {
 
         const profile = {
             nama_lengkap : req.body.nama_lengkap,
+            phone : req.body.phone,
+            usia : req.body.usia,
+            gender : req.body.gender,
             alamat_tinggal : req.body.alamat_tinggal,
             alamat_ktp : req.body.alamat_ktp,
             profesi : req.body.profesi,

@@ -7,7 +7,7 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true
       },
       id_user: {
-        type: Sequelize.STRING
+        type: Sequelize.UUID,
       },
       partner_name: {
         type: Sequelize.STRING
@@ -16,12 +16,18 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       phone: {
+        type: Sequelize.BIGINT
+      },
+      foto_profile: {
         type: Sequelize.STRING
       },
-      
+      updatedAt: {
+        type: Sequelize.DATEONLY
+      },
+      createdAt : {
+        type: Sequelize.DATEONLY
+      },
     }, {
-        updatedAt: false,
-        createdAt : false,
         freezeTableName: true,
       });
   

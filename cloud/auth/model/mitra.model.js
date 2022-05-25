@@ -12,6 +12,19 @@ module.exports = (sequelize, Sequelize) => {
         nama_lengkap: {
             type: Sequelize.STRING
         },
+        usia: {
+            type: Sequelize.INTEGER
+        },
+        gender : {
+            type: Sequelize.ENUM("laki-laki", "perempuan"),
+        },
+        profesi: {
+            type: Sequelize.STRING
+        },
+        credit_score: {
+            type: Sequelize.INTEGER,
+            
+        },
         reason_borrower: {
             type: Sequelize.STRING
         },
@@ -19,7 +32,27 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER
         },
         status: {
+            type: Sequelize.ENUM("pending", "accepted", "rejected", "payment", "done"),
+        },
+        tenor :{
+            type: Sequelize.INTEGER,
+            defaultValue: 60
+        },
+        pinjaman_ke : {
+            type: Sequelize.INTEGER,
+            defaultValue: 0
+        },
+        telat : {
             type: Sequelize.STRING
+        }, 
+        donasi: {
+            type: Sequelize.INTEGER
+        },
+        updatedAt: {
+          type: Sequelize.DATEONLY
+        },
+        createdAt : {
+          type: Sequelize.DATEONLY
         },
     });
     Mitra.removeAttribute('id');

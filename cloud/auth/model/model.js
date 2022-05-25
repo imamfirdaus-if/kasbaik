@@ -32,5 +32,6 @@ db.profileUser = require("./profile.model")(sequelize, Sequelize);
 db.borrower = require("./borrower.model")(sequelize, Sequelize);
 db.mitra = require("./mitra.model")(sequelize, Sequelize);
 db.profileMitra = require("./mitraProfile.model")(sequelize, Sequelize);
+db.payment = require("./payment.model")(sequelize, Sequelize);
 
 module.exports = db;
