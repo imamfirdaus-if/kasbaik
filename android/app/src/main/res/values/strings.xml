@@ -25,5 +25,6 @@
     <string name="donasi_sekali">Donasi Sekali</string>
     <string name="donasi_rutin">Donasi Rutin</string>
 
-    <string name="greet_user">Selamat datang %1$s</string>
+    <string name="greet_user">Selamat datang <font fgcolor="#FFE8750C">%1$s</font></string>
+    <string name="regis_as">Daftar menjadi <font fgcolor="#FFE8750C">%1$s</font></string>
 </resources>

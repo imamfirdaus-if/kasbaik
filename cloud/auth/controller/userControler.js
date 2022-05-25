@@ -35,7 +35,10 @@ const signup_post = async(req, res, next) => {
       await dbUser.findOne({where: {email: user.email}})
       .then(data => {
         if (data !== null) {
-          return res.status(400).send({ message : "email is already used" });
+          return res.status(400).send({
+            error: true,
+            message: "email is already used"
+          });
         } else {
           dbUser.create(user)
           .then(data => {
@@ -84,7 +87,10 @@ const login_post= async(req, res, next) => {
     await dbUser.findOne({where: {email: user.email}})
       .then(data => {
         if (data === null) {
-          return res.status(400).send({ message : "your email is not registered" });
+          return res.status(400).send({
+            error: true,
+            message: "your email is not registered"
+          });
         } else {
         
         if(!Helper.comparePassword(data.dataValues.password, user.password)) {

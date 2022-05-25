@@ -18,6 +18,12 @@ class RegisterViewModel: ViewModel() {
     private var _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private var _isSuccessful = MutableLiveData<String>()
+    val isSuccessful: LiveData<String> = _isSuccessful
+
+    private var _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> = _errorMessage
+
     fun createAccount(
         username: String,
         email: String,
@@ -27,6 +33,7 @@ class RegisterViewModel: ViewModel() {
         context: Context
     ) {
         _isLoading.value = true
+        _isSuccessful.value = "pending"
         ApiConfig.getApiService().requestCreateAcountUser(username, email, phone, password, role)
             .enqueue(object: Callback<UserResponse>{
                 override fun onResponse(
@@ -37,12 +44,17 @@ class RegisterViewModel: ViewModel() {
                         Toast.makeText(context, "Sucessfully make an account", Toast.LENGTH_SHORT).show()
                         Log.e("REGISTER", response.body().toString())
                         _isLoading.value = false
+                        _isSuccessful.value = "success"
                     } else {
+                        _isLoading.value = false
+                        _isSuccessful.value = "failed"
                         try {
-                            val jObjError = JSONObject(response.errorBody()!!.string())
+                            val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
+                            val mErrorMessage = jsonObj.getString("message")
+                            _errorMessage.value = mErrorMessage
                             Toast.makeText(
                                 context,
-                                jObjError.getJSONObject("error").getString("message"),
+                                mErrorMessage,
                                 Toast.LENGTH_LONG
                             ).show()
                         } catch (e: Exception) {
@@ -54,6 +66,7 @@ class RegisterViewModel: ViewModel() {
                 override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                     Toast.makeText(context, "Failed make an account", Toast.LENGTH_SHORT).show()
                     _isLoading.value = false
+                    _isSuccessful.value = "failed"
                 }
 
             })
