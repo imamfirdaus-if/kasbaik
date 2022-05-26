@@ -5,7 +5,7 @@ const dbMitra = db.mitra;
 const dbProfile = db.profileUser;
 const dbProfileMitra = db.profileMitra
 const dbUser= db.users;
-const Op = require('Sequelize').Op;
+const Op = require('sequelize').Op;
 
 const addBorrower = async (req, res, next) =>{
     
@@ -37,7 +37,7 @@ const addBorrower = async (req, res, next) =>{
         }
 
         //check peminjaman aktif
-        await dbBorrower.findAll({where: {id_user : id_user, status : { [Op.or] : ["pending", "accepted", "payment"]}}}) 
+        await dbBorrower.findAll({where: {id_user : id_user,status : { [Op.or] : ["pending", "accepted", "payment"]}}}) 
         .then ( async checkList => {
             console.log(checkList.length);
             if (checkList[0] !== undefined) {
@@ -46,6 +46,19 @@ const addBorrower = async (req, res, next) =>{
             const borrower = await dbBorrower.create(data_borrower);
             const profile = await dbProfile.findOne({where: {id_user: id_user}});
             const objek = Helper.toObject(profile);
+            
+            // make credit_score
+            const creds = Helper.creditMaker(
+                    objek.usia, 
+                    borrower.loan_amount,
+                    borrower.tenor,
+                    borrower.monthly_income,
+                    borrower.dependents_amount,
+                    pinjaman_ke,
+                    borrower.cre
+
+                )
+            console.log(creds);
             if (borrower.toJSON()){
                 let data1 = {
                     id_user,
@@ -56,6 +69,7 @@ const addBorrower = async (req, res, next) =>{
                     gender : objek.gender,
                     profesi : objek.profesi,
                     credit_score : objek.credit_score,
+                    loan_amount : borrower.loan_amount,
                     reason_borrower: borrower.reason_borrower,
                     monthly_income : borrower.monthly_income,
                     dependents_amount: borrower.dependents_amount,
@@ -63,10 +77,12 @@ const addBorrower = async (req, res, next) =>{
                     pinjaman_ke : borrower.pinjaman_ke,
                     telat : borrower.telat,
                     donasi : borrower.donasi,
+                    tenor :borrower.tenor,
                 }
-                console.log(data1);
+                
+                
                 const mitradata = await dbMitra.create(data1);
-                return res.status(200).send(mitradata);
+                return res.status(200).send({borrower, mitradata});
             } else {
                 throw err
             }
@@ -76,8 +92,6 @@ const addBorrower = async (req, res, next) =>{
         console.log(err);
         return res.status(500).send({ message: err});
     }
-    
-    
 }
 
 const updateBorrower = async (req, res) => {

@@ -22,8 +22,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         credit_score: {
-            type: Sequelize.INTEGER,
-            
+            type: Sequelize.INTEGER,   
+        },
+        loan_amount: {
+            type : Sequelize.INTEGER,
         },
         reason_borrower: {
             type: Sequelize.STRING
@@ -42,9 +44,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             defaultValue: 0
         },
-        telat : {
-            type: Sequelize.STRING
-        }, 
         donasi: {
             type: Sequelize.INTEGER
         },

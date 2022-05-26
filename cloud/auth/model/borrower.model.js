@@ -40,9 +40,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             defaultValue: 0
         },
-        telat : {
-            type: Sequelize.STRING
-        }, 
         donasi: {
             type: Sequelize.INTEGER
         },

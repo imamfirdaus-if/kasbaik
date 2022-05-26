@@ -5,7 +5,7 @@ const crypto = require('crypto')
 const dbUser = db.users;
 const dbProfile = db.profileUser;
 const dbProfileMitra = db.profileMitra
-// const Op = db.Sequelize.Op;
+
 
 
 const index = async(req, res, next) => {
