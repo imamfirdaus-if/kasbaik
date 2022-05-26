@@ -1,6 +1,5 @@
 package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.profile
 import android.content.Context
-import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
