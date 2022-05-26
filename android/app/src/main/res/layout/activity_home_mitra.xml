@@ -135,10 +135,26 @@
         app:layout_constraintEnd_toEndOf="@id/container"/>
 
     <Button
+        android:id="@+id/btn_edit_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:text="Edit Profile"/>
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/orange"
+        android:backgroundTint="@color/white"
+        android:text="Edit Profile"
+        app:layout_constraintTop_toBottomOf="@+id/container"/>
+
+    <Button
+        android:id="@+id/btn_list_peminjam"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/orange"
+        android:backgroundTint="@color/white"
+        android:text="List Peminjam"
+        app:layout_constraintTop_toBottomOf="@+id/btn_edit_profile"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
