@@ -15,6 +15,7 @@ import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityHomePeminjamBinding
+import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.pinjamdana.PinjamDanaActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.profile.ProfileActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.zakat.ZakatActivity
 import com.hitzvera.kasbaik.ui.beranda.tentang.AboutActivity
@@ -66,6 +67,11 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
                         btnLengkapi.text = "Lengkapi profile"
                         btnLengkapi.setOnClickListener { goToProfile() }
                         dialog.show()
+                    } else {
+                        Intent(this, PinjamDanaActivity::class.java).also { intent ->
+                            intent.putExtra(TOKEN, intent.getStringExtra(TOKEN))
+                            startActivity(intent)
+                        }
                     }
                 }
             }
