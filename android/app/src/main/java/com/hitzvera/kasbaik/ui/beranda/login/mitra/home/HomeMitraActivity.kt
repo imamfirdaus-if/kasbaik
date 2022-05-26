@@ -16,7 +16,6 @@ class HomeMitraActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val token = intent.getStringExtra(TOKEN)
-        binding.greetMitra.text = token
 
     }
     companion object {
