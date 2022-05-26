@@ -53,5 +53,6 @@ router.get("/updatestatus", Auth.verifyTokenMitra, showController.mitraData);
 router.post("/payment", Auth.verifyTokenMitra, mitraController.createPayment)
 router.get("/payment", Auth.verifyToken, showController.paymentData)
 
+router.get("/userpayment", Auth.verifyToken, showController.userPaymentData)
 
 module.exports = router

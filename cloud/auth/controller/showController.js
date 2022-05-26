@@ -6,6 +6,8 @@ const dbBorrower = db.borrower
 const dbProfileMitra = db.profileMitra
 const dbMitra = db.mitra
 const dbPayment = db.payment
+const dbUserPayment = db.userPayment
+const moment = require('moment')
 
 const userData = async (req, res) => {
     try {
@@ -25,6 +27,15 @@ const profileData = async (req, res) => {
         if (req.role === 'user') {
             await dbProfile.findOne({where: {id_user : req.id}})
             .then(data => {
+                console.log(data.updatedAt, data.createdAt);
+                let a = moment(data.updatedAt, 'YYYY-MM-DD')
+                let b = moment(data.createdAt, 'YYYY-MM-DD')
+                let beda = a.diff(b, 'minutes')
+                let c = [2010, 1, 28]
+                const e = moment(c, 'YYYY-MM-DD').add(5, 'days').format('YYYY-MM-DD');
+                console.log(moment().add(8, 'weeks').format('YYYY-MM-DD'));
+                console.log(e);
+                console.log(beda);
                 return res.status(200).send(data)
             })
         } else if (req.role === 'mitra'){
@@ -114,11 +125,24 @@ const paymentData = async (req, res) => {
     }
 }
 
+const userPaymentData = async (req, res) => {
+    try {   
+        await dbUserPayment.findOne({where: {id_user: req.id}})
+        .then(data => {
+            return res.status(200).send({user_payment : data})
+        })
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send(err)
+    }
+}
+
 module.exports = {
     userData,
     profileData,
     borrowerData,
     mitraProfileData,
     mitraData,
-    paymentData
+    paymentData,
+    userPaymentData
 }
