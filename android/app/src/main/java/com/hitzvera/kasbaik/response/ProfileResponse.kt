@@ -11,16 +11,16 @@ data class ProfileResponse(
 	val creditScore: Int,
 
 	@field:SerializedName("gender")
-	val gender: Any? = null,
+	val gender: String? = null,
 
 	@field:SerializedName("nama_lengkap")
 	val namaLengkap: String? = null,
 
 	@field:SerializedName("foto_selfie")
-	val fotoSelfie: Any? = null,
+	val fotoSelfie: String? = null,
 
 	@field:SerializedName("foto_ktp")
-	val fotoKtp: Any? = null,
+	val fotoKtp: String? = null,
 
 	@field:SerializedName("id_user")
 	val idUser: String? = null,
@@ -29,7 +29,7 @@ data class ProfileResponse(
 	val alamatTinggal: String? = null,
 
 	@field:SerializedName("profesi")
-	val profesi: Int? = null,
+	val profesi: String? = null,
 
 	@field:SerializedName("alamat_ktp")
 	val alamatKtp: String? = null,
@@ -38,8 +38,9 @@ data class ProfileResponse(
 	val phone: String? = null,
 
 	@field:SerializedName("foto_diri")
-	val fotoDiri: Any? = null,
+	val fotoDiri: String? = null,
 
 	@field:SerializedName("id_profile")
-	val idProfile: String? = null
+	val idProfile: String? = null,
+
 )

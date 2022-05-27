@@ -28,6 +28,7 @@ const profile_post = async (req, res, next) => {
         if (req.files[0] === undefined) {
             res.status(400)
             throw "tidak ada file yang di upload";
+    
         }
         let id_user = req.id;
         
@@ -60,7 +61,7 @@ const profile_post = async (req, res, next) => {
         
         let proms = new Promise((resolve, reject) => {
             req.files.forEach ( (fil) => {
-            const blob = bucket.file(fil.originalname.replace("", `data ${id_user}` ));  
+            const blob = bucket.file(fil.originalname.replace("", `data${id_user}` ));  
             
             const blobStream = blob.createWriteStream({
                 resumable: false,
