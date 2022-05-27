@@ -138,7 +138,23 @@ const delete_post = async(req, res, next) => {
 
 //digunakan untuk mengupdate password dari users
 const update_post = async(req, res, next) => {
-
+  try {
+    data = {
+      password : Helper.hashPassword(req.body.password)
+    }
+    await dbUser.update(data,{where: {id_user : req.id}})
+    .then(data1 => {
+      console.log('berhasil diupdate');
+      if ( data1[0] === 1){
+        res.status(200).send({ message : 'berhasil diupdate'})
+      }
+      
+    })
+    
+  } catch (err) {
+    console.log(err);
+    return res.status(500).send(err)
+  }
 }
 
 const logout_post = async(req, res, next) => {

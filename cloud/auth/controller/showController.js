@@ -7,6 +7,7 @@ const dbProfileMitra = db.profileMitra
 const dbMitra = db.mitra
 const dbPayment = db.payment
 const dbUserPayment = db.userPayment
+const dbCredit = db.credit
 const moment = require('moment')
 
 const userData = async (req, res) => {
@@ -137,6 +138,19 @@ const userPaymentData = async (req, res) => {
     }
 }
 
+const creditData = async (req, res) => {
+    try {
+        console.log(req.params.id_borrower);
+        await dbCredit.findOne({where: {id_borrower: req.params.id_borrower}})
+        .then(data => {
+            return res.status(200).send({data})
+        })
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send(err)
+    }
+}
+
 module.exports = {
     userData,
     profileData,
@@ -144,5 +158,6 @@ module.exports = {
     mitraProfileData,
     mitraData,
     paymentData,
-    userPaymentData
+    userPaymentData,
+    creditData
 }
