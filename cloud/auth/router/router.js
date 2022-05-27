@@ -26,6 +26,9 @@ router.get('/delete', Auth.verifyToken, showController.profileData)
 
 router.get('/home', Auth.verifyToken, showController.userData)
 
+//digunakan untuk mengupdate password
+router.post('/updatepassword', Auth.verifyToken, userController.update_post)
+
 //digunakan untuk melakukan update dari profile user
 router.post("/profile", Auth.verifyTokenUser, fileController.profile_post);
 router.get('/profile', Auth.verifyTokenUser , showController.profileData)
@@ -54,5 +57,8 @@ router.post("/payment", Auth.verifyTokenMitra, mitraController.createPayment)
 router.get("/payment", Auth.verifyToken, showController.paymentData)
 
 router.get("/userpayment", Auth.verifyToken, showController.userPaymentData)
+
+//see credit
+router.get("/credit/:id_borrower", Auth.verifyToken, showController.creditData )
 
 module.exports = router

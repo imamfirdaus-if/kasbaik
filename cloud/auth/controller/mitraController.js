@@ -4,6 +4,7 @@ const dbMitra = db.mitra
 const dbBorrower = db.borrower
 const dbPayment = db.payment
 const dbUserPayment = db.userPayment
+const dbCredit = db.credit
 const Helper = require('../middleware/helper')
 const processFile = require("../middleware/upload");
 const { format } = require("util");
@@ -66,7 +67,7 @@ const profileMitra_post = async (req, res, next) => {
          
     } catch (err) {
         console.log(err);
-        return res.status(403).send(err)
+        return res.status(403).send({ message: err})
     }
 }
 
@@ -154,14 +155,24 @@ const createPayment = async (req, res) => {
                 throw "data tidak ditemukan"
             }
             const lookUserPay = await dbUserPayment.findOne({where: {id_borrower: dataPayment.id_borrower}})
+
             if (lookUserPay.dataValues.total_payment >= lookUserPay.dataValues.loan_amount){
                 let status1 = {
                     status : 'done'
                 }
+                const now  = moment().format('YYYY-MM-DD HH')
+                let diff = moment(now).diff(lookUserPay.dataValues.createdAt, 'days');
+                let dif = Helper.convertTelat(diff)
+                let p = {
+                    telatkat : dif
+                }
+                
                 const c1= await dbMitra.update(status1, {where : {id_borrower : dataPayment.id_borrower}})
                 const c2 =await dbBorrower.update(status1, {where : {id_borrower : dataPayment.id_borrower}})
-                console.log(c1,c2);
-                throw "sudah lunas"
+                const c3 = await dbCredit.update(p, {where : {id_borrower : dataPayment.id_borrower}})
+                
+                console.log(diff, c1, c2, c3);
+                throw "Tagihan ini sudah lunas"
             }
             const createPay = await dbPayment.create(dataPayment)
             .then(async data1 => {
@@ -179,7 +190,7 @@ const createPayment = async (req, res) => {
         // await dbPayment.create(dataPayment)
     } catch (err) {
         console.log(err);
-        return res.status(400).send(err)
+        return res.status(400).send({ message : err})
     }
 }
 

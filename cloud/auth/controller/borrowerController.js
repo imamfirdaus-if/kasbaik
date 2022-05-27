@@ -4,6 +4,7 @@ const dbBorrower = db.borrower;
 const dbMitra = db.mitra;
 const dbProfile = db.profileUser;
 const dbProfileMitra = db.profileMitra
+const dbCredit = db.credit
 const dbUser= db.users;
 const Op = require('sequelize').Op;
 
@@ -55,10 +56,22 @@ const addBorrower = async (req, res, next) =>{
                     borrower.monthly_income,
                     borrower.dependents_amount,
                     pinjaman_ke,
-                    borrower.cre
-
+                    objek.profesi, 
+                    borrower.donasi,
                 )
             console.log(creds);
+            const p = {
+                id_borrower: borrower.id_borrower,
+                id_user,
+                id_mitra,
+                usiakat : creds.usiaKat,
+                econkat : creds.econCombineKat,
+                profesikat : creds.profesiKat,
+                pinjamankat : creds.pinjamanKeKat,
+                donasikat : creds.donasiKat
+            }
+            console.log(p);
+            
             if (borrower.toJSON()){
                 let data1 = {
                     id_user,
@@ -80,9 +93,9 @@ const addBorrower = async (req, res, next) =>{
                     tenor :borrower.tenor,
                 }
                 
-                
+                const hasilcreds = await dbCredit.create(p)
                 const mitradata = await dbMitra.create(data1);
-                return res.status(200).send({borrower, mitradata});
+                return res.status(200).send({borrower, mitradata, hasilcreds});
             } else {
                 throw err
             }

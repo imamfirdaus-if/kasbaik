@@ -32,7 +32,7 @@ module.exports = (sequelize, Sequelize) => {
         type: Sequelize.STRING
       },
       profesi: {
-        type: Sequelize.STRING
+        type: Sequelize.ENUM('buruh', 'pengajar', 'pedagang', 'pekerja lepas', 'wirausaha', 'pns', 'tni/polri', 'wiraswasta')
       },
       foto_diri: {
         type: Sequelize.STRING

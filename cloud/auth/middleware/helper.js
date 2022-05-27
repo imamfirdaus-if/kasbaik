@@ -33,7 +33,7 @@ const Helper = {
     return JSON.parse(JSON.stringify(data));
   },
 
-  creditMaker(usia, pinjaman, tenor, pemasukan, tanggungan, pinjaman_ke) {
+  creditMaker(usia, pinjaman, tenor, pemasukan, tanggungan, pinjaman_ke, profesi, donasi) {
     // check usia 
     usia > 64 ? usiaKat =1 : usiaKat=2; 
 
@@ -65,9 +65,35 @@ const Helper = {
       pinjamanKeKat =3
     }
 
-    //check 
+    //check profesiKat
+    profesi === 'buruh' ||'pengajar' || 'pns' || 'tni/polri', 'wiraswasta' ? profesiKat = 1 : profesiKat =2; 
+
+    //check donasi
+    if (donasi >= 100000){
+      donasiKat= 3
+    } else if (donasi >= 50000){
+      donasiKat =2
+    } else if (donasi >=1000){
+      donasiKat =1
+    } else {
+      donasiKat = 0
+    }
     
-    return {usiaKat, econCombineKat, pinjamanKeKat}
+    return {usiaKat, econCombineKat, pinjamanKeKat, profesiKat, donasiKat}
+  },
+
+  convertTelat (telat) {
+    let telatKat;
+    if (telat <=0){
+      telatKat = 0
+    } else if (telat <= 7){
+      telatKat = 1
+    } else if (telat <= 30){
+      telatKat = 2
+    } else {
+      telatKat = 3
+    }
+    return telatKat;
   }
 }
 
