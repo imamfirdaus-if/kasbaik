@@ -56,4 +56,9 @@ interface ApiService {
         @Field("tenor") tenor: Int,
         @Field("dependents_amount") dependentsAmount: Int
     ): Call<PostBorrowerResponse>
+
+    @GET("updatestatus")
+    fun getRequestBorrower(
+        @Header("Cookie") auth: String
+    ): Call<List<GetUpdateStatusResponseItem>>
 }
