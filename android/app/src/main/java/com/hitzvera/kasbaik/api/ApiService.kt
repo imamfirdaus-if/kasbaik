@@ -1,10 +1,7 @@
 package com.hitzvera.kasbaik.api
 
 
-import com.hitzvera.kasbaik.response.HomeUserResponse
-import com.hitzvera.kasbaik.response.LoginResponse
-import com.hitzvera.kasbaik.response.ProfileResponse
-import com.hitzvera.kasbaik.response.UserResponse
+import com.hitzvera.kasbaik.response.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -28,10 +25,6 @@ interface ApiService {
         @Field("password") password: String
     ): Call<LoginResponse>
 
-//    @GET("home")
-//    fun requestHomePeminjam(
-//        @Header("Cookie") auth: String,
-//    ): Call<HomeUserResponse>
 
     @GET("profile")
     fun getRequestProfile(
@@ -51,4 +44,16 @@ interface ApiService {
         @Part("alamat_ktp") alamatKtp: RequestBody,
         @Part("profesi") profesi: RequestBody,
     ): Call<ProfileResponse>
+
+    @FormUrlEncoded
+    @POST("borrower")
+    fun postRequestBorrwer(
+        @Header("Cookie") auth: String,
+        @Field("loan_amount") loanAmount: Int,
+        @Field("reason_borrower") reasonBorrower: String,
+        @Field("monthly_income") monthlyIncome: Int,
+        @Field("payment_method") paymentMethod: String,
+        @Field("tenor") tenor: Int,
+        @Field("dependents_amount") dependentsAmount: Int
+    ): Call<PostBorrowerResponse>
 }

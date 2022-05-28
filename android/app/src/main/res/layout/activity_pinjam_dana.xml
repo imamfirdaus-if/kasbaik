@@ -1,217 +1,305 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_ijo"
-    tools:context=".ui.beranda.login.peminjam.home.pinjamdana.PinjamDanaActivity">
+    android:layout_width="match_parent"
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/title_pinjaman_page"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:text="Lengkapi Data Dibawah Untuk Peminjaman Dana"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_ijo"
+        tools:context=".ui.beranda.login.peminjam.home.pinjamdana.PinjamDanaActivity">
 
-    <TextView
-        android:id="@+id/tv_label_jumlah_pinjaman"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jumlah Pinjaman"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginVertical="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_pinjaman_page"/>
+        <TextView
+            android:id="@+id/title_pinjaman_page"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Lengkapi Data Dibawah Untuk Peminjaman Dana"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_jumlah_pinjaman"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corners"
-        android:hint="Jumlah Pinjaman"
-        android:layout_marginStart="16dp"
-        android:padding="12dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_jumlah_pinjaman"/>
+        <TextView
+            android:id="@+id/tv_label_jumlah_pinjaman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Jumlah Pinjaman"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_pinjaman_page" />
 
-    <ImageButton
-        android:id="@+id/btn_add"
-        android:contentDescription="Add per 500 rupiah"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/add"
-        android:layout_marginTop="8dp"
-        android:padding="12dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@id/tv_jumlah_pinjaman"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_jumlah_pinjaman"/>
+        <TextView
+            android:id="@+id/tv_jumlah_pinjaman"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_corners"
+            android:hint="Jumlah Pinjaman"
+            android:padding="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_jumlah_pinjaman" />
 
-    <ImageButton
-        android:id="@+id/btn_minus"
-        android:contentDescription="decrease per 500 rupiah"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/subtract"
-        android:layout_marginTop="8dp"
-        android:padding="12dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@id/btn_add"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_jumlah_pinjaman"/>
+        <ImageButton
+            android:id="@+id/btn_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="Add per 500 rupiah"
+            android:padding="12dp"
+            android:src="@drawable/add"
+            app:layout_constraintStart_toEndOf="@id/tv_jumlah_pinjaman"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_jumlah_pinjaman" />
 
-    <TextView
-        android:id="@+id/tv_label_tenor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tenor"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginVertical="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_jumlah_pinjaman"/>
+        <ImageButton
+            android:id="@+id/btn_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="decrease per 500 rupiah"
+            android:padding="12dp"
+            android:src="@drawable/subtract"
+            app:layout_constraintStart_toEndOf="@id/btn_add"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_jumlah_pinjaman" />
 
-    <EditText
-        android:id="@+id/tv_tenor"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corners"
-        android:hint="Jangka waktu pinjaman"
-        android:layout_marginHorizontal="16dp"
-        android:padding="12dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_tenor"/>
+        <TextView
+            android:id="@+id/tv_label_tenor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Tenor"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_jumlah_pinjaman" />
 
-    <TextView
-        android:id="@+id/tv_label_pemasukan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pemasukan"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginVertical="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_tenor"/>
+        <EditText
+            android:id="@+id/tv_tenor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_corners"
+            android:hint="Jangka waktu pinjaman"
+            android:inputType="number"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_tenor" />
 
-    <EditText
-        android:id="@+id/tv_pemasukan"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corners"
-        android:hint="Rp"
-        android:layout_marginHorizontal="16dp"
-        android:padding="12dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_pemasukan"/>
+        <TextView
+            android:id="@+id/tv_label_pemasukan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Pemasukan"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tenor" />
 
-    <TextView
-        android:id="@+id/tv_label_tanggungan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tanggungan"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginVertical="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_pemasukan"/>
+        <EditText
+            android:id="@+id/tv_pemasukan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_corners"
+            android:hint="Rp"
+            android:inputType="number"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_pemasukan" />
 
-    <EditText
-        android:id="@+id/tv_tanggungan"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corners"
-        android:hint="Jangka waktu pinjaman"
-        android:layout_marginHorizontal="16dp"
-        android:padding="12dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_tanggungan"/>
+        <TextView
+            android:id="@+id/tv_label_tanggungan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Tanggungan"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_pemasukan" />
 
-    <TextView
-        android:id="@+id/tv_label_telat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Telat"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginVertical="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/tv_label_donasi"
-        app:layout_constraintTop_toBottomOf="@id/tv_tanggungan"/>
+        <EditText
+            android:id="@+id/tv_tanggungan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_corners"
+            android:hint="Masukan Tanggungan Anda"
+            android:inputType="number"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_tanggungan" />
 
-    <TextView
-        android:id="@+id/tv_label_donasi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Donasi"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginVertical="16dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tv_label_telat"
-        app:layout_constraintTop_toBottomOf="@id/tv_tanggungan"/>
+        <TextView
+            android:id="@+id/tv_label_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Alasan Meminjam"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_tanggungan" />
 
-    <EditText
-        android:id="@+id/tv_telat"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corners"
-        android:layout_marginStart="16dp"
-        android:padding="12dp"
-        android:hint="optional"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@id/tv_label_telat"
-        app:layout_constraintEnd_toEndOf="@id/tv_label_telat"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_telat"/>
+        <EditText
+            android:id="@+id/tv_reason"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_corners"
+            android:hint="Masukan Alasan Anda meminjam"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_reason" />
 
-    <EditText
-        android:id="@+id/tv_donasi"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corners"
-        android:layout_marginStart="16dp"
-        android:padding="12dp"
-        android:hint="optional"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@id/tv_label_donasi"
-        app:layout_constraintEnd_toEndOf="@id/tv_label_donasi"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_donasi"/>
+        <TextView
+            android:id="@+id/tv_label_payment_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Metode pembayaran"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_reason" />
 
-    <Button
-        android:id="@+id/btn_ajukan_pinjaman"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="ajukan pinjaman dana"
-        android:textColor="@color/orange"
-        android:backgroundTint="@color/white"
-        android:layout_marginTop="16dp"
-        android:layout_marginHorizontal="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_donasi"
-        app:layout_constraintStart_toStartOf="@id/tv_tanggungan"
-        app:layout_constraintEnd_toEndOf="@+id/tv_tanggungan"/>
+        <RadioGroup
+            android:id="@+id/radio_group_payment_method"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="@+id/tv_label_payment_method"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_payment_method">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <RadioButton
+                android:id="@+id/radio_cicil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="cicil"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <RadioButton
+                android:id="@+id/radio_cash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="cash"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/tv_label_telat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Telat"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/tv_label_donasi"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/radio_group_payment_method" />
+
+        <TextView
+            android:id="@+id/tv_label_donasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:layout_marginStart="16dp"
+            android:text="Donasi"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_label_telat"
+            app:layout_constraintTop_toBottomOf="@id/radio_group_payment_method" />
+
+        <TextView
+            android:id="@+id/tv_telat"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_corners"
+            android:hint="optional"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="@id/tv_label_telat"
+            app:layout_constraintStart_toStartOf="@id/tv_label_telat"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_telat" />
+
+        <TextView
+            android:id="@+id/tv_donasi"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_corners"
+            android:hint="optional"
+            android:padding="12dp"
+            app:layout_constraintEnd_toEndOf="@id/tv_label_donasi"
+            app:layout_constraintStart_toStartOf="@id/tv_label_donasi"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_donasi" />
+
+        <Button
+            android:id="@+id/btn_ajukan_pinjaman"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/white"
+            android:text="ajukan pinjaman dana"
+            android:textColor="@color/orange"
+            app:layout_constraintEnd_toEndOf="@+id/tv_donasi"
+            app:layout_constraintStart_toStartOf="@id/tv_telat"
+            app:layout_constraintTop_toBottomOf="@+id/tv_donasi" />
+
+        <ProgressBar
+            android:id="@+id/progressBar_pinjam_dana"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

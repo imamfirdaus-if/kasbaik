@@ -65,11 +65,14 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
                         val tvDeskripsi: TextView = dialog.findViewById(R.id.text_description)
                         tvDeskripsi.text = "Profile Anda Belum lengkap Silahkan lengkapi"
                         btnLengkapi.text = "Lengkapi profile"
-                        btnLengkapi.setOnClickListener { goToProfile() }
+                        btnLengkapi.setOnClickListener {
+                            goToProfile()
+                            dialog.dismiss()
+                        }
                         dialog.show()
                     } else {
                         Intent(this, PinjamDanaActivity::class.java).also { intent ->
-                            intent.putExtra(TOKEN, intent.getStringExtra(TOKEN))
+                            intent.putExtra(TOKEN, token)
                             startActivity(intent)
                         }
                     }
