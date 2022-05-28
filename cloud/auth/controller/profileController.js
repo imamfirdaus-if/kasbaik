@@ -60,7 +60,7 @@ const profile_post = async (req, res, next) => {
         
         let proms = new Promise((resolve, reject) => {
             req.files.forEach ( (fil) => {
-            const blob = bucket.file(fil.originalname.replace("", `data ${id_user}` ));  
+            const blob = bucket.file(fil.originalname.replace("", `data${id_user}` ));  
             
             const blobStream = blob.createWriteStream({
                 resumable: false,

@@ -154,14 +154,28 @@ const createPayment = async (req, res) => {
             if (data[0] === undefined){
                 throw "data tidak ditemukan"
             }
+            
             const lookUserPay = await dbUserPayment.findOne({where: {id_borrower: dataPayment.id_borrower}})
-
-            if (lookUserPay.dataValues.total_payment >= lookUserPay.dataValues.loan_amount){
+            
+            await dbPayment.create(dataPayment)
+            .then(async data1 => {
+                let tempTotalPay = lookUserPay.dataValues.total_payment + data1.amount_payment
+                let objekxx = {
+                    total_payment: tempTotalPay
+                }
+                const updateUserPay = await dbUserPayment.update(objekxx,{where: {id_borrower: data1.id_borrower}})
+                console.log(updateUserPay);
+                console.log(tempTotalPay);
+                
+                res.status(200).send({tablePayment: data1})
+            })
+            const lookUserPay1 = await dbUserPayment.findOne({where: {id_borrower: dataPayment.id_borrower}})
+            if (lookUserPay1.dataValues.total_payment >= lookUserPay1.dataValues.loan_amount){
                 let status1 = {
                     status : 'done'
                 }
                 const now  = moment().format('YYYY-MM-DD HH')
-                let diff = moment(now).diff(lookUserPay.dataValues.createdAt, 'days');
+                let diff = moment(now).diff(lookUserPay1.dataValues.createdAt, 'days');
                 let dif = Helper.convertTelat(diff)
                 let p = {
                     telatkat : dif
@@ -172,19 +186,9 @@ const createPayment = async (req, res) => {
                 const c3 = await dbCredit.update(p, {where : {id_borrower : dataPayment.id_borrower}})
                 
                 console.log(diff, c1, c2, c3);
-                throw "Tagihan ini sudah lunas"
+                console.log('lunas');
             }
-            const createPay = await dbPayment.create(dataPayment)
-            .then(async data1 => {
-                let tempTotalPay = lookUserPay.dataValues.total_payment + data1.amount_payment
-                let objekxx = {
-                    total_payment: tempTotalPay
-                }
-                const updateUserPay = await dbUserPayment.update(objekxx,{where: {id_borrower: data1.id_borrower}})
-                console.log(updateUserPay);
-                console.log(tempTotalPay);
-            })
-            return res.status(200).send({tablePayment: createPay})
+            return 
         })
         
         // await dbPayment.create(dataPayment)
