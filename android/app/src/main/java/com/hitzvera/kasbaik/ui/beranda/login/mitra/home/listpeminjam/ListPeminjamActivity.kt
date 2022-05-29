@@ -1,13 +1,14 @@
 package com.hitzvera.kasbaik.ui.beranda.login.mitra.home.listpeminjam
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityListPeminjamBinding
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.HomeMitraActivity
+import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.listpeminjam.detailpinjaman.DetailPinjamanActivity
 
 class ListPeminjamActivity : AppCompatActivity() {
 
@@ -15,7 +16,18 @@ class ListPeminjamActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListPeminjamBinding
     private lateinit var viewModel: ListPeminjamViewModel
     private val listPeminjamAdapter: ListPeminjamAdapter by lazy {
-        ListPeminjamAdapter()
+        ListPeminjamAdapter(ListPeminjamAdapter.OnClickListener{ item ->
+            Intent(this, DetailPinjamanActivity::class.java).also {
+                it.putExtra(DetailPinjamanActivity.NAMA_PEMINJAM, item.namaLengkap)
+                it.putExtra(DetailPinjamanActivity.CREDIT_SCORE, item.creditScore)
+                it.putExtra(DetailPinjamanActivity.PINJAMAN_KE, item.pinjamanKe)
+                it.putExtra(DetailPinjamanActivity.LOAN_AMOUNT, item.loanAmount)
+                it.putExtra(DetailPinjamanActivity.REASON, item.reasonBorrower)
+                it.putExtra(DetailPinjamanActivity.TOKEN, token)
+                it.putExtra(DetailPinjamanActivity.ID_BORROWER, item.idBorrower)
+                startActivity(it)
+            }
+        })
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

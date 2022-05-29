@@ -61,4 +61,12 @@ interface ApiService {
     fun getRequestBorrower(
         @Header("Cookie") auth: String
     ): Call<List<GetUpdateStatusResponseItem>>
+
+    @FormUrlEncoded
+    @POST("updatestatus")
+    fun postRequestUpdateStatus(
+        @Header("Cookie") auth: String,
+        @Field("status") status: String,
+        @Field("id_borrower") idBorrower: String,
+    ): Call<PostUpdataStatusResponse>
 }
