@@ -8,7 +8,7 @@ import com.hitzvera.kasbaik.databinding.ItemListPeminjamBinding
 import com.hitzvera.kasbaik.response.Borrower
 import com.hitzvera.kasbaik.response.GetUpdateStatusResponseItem
 
-class ListPeminjamAdapter: RecyclerView.Adapter<ListPeminjamAdapter.ViewHolder>() {
+class ListPeminjamAdapter(private val onClickListener: OnClickListener): RecyclerView.Adapter<ListPeminjamAdapter.ViewHolder>() {
 
     private var oldBorrowerItem = emptyList<GetUpdateStatusResponseItem>()
 
@@ -25,6 +25,9 @@ class ListPeminjamAdapter: RecyclerView.Adapter<ListPeminjamAdapter.ViewHolder>(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(oldBorrowerItem[position])
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(oldBorrowerItem[position])
+        }
     }
 
     override fun getItemCount(): Int = oldBorrowerItem.size
@@ -36,5 +39,8 @@ class ListPeminjamAdapter: RecyclerView.Adapter<ListPeminjamAdapter.ViewHolder>(
         diffResult.dispatchUpdatesTo(this)
     }
 
+    class OnClickListener(val clickListener: (getUpdateStatusResponseItem: GetUpdateStatusResponseItem) -> Unit){
+        fun onClick(getUpdateStatusResponseItem: GetUpdateStatusResponseItem) = clickListener(getUpdateStatusResponseItem)
+    }
 
 }
