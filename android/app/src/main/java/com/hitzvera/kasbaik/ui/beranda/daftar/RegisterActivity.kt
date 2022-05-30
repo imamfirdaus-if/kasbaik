@@ -12,7 +12,7 @@ import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityRegisterBinding
-import com.hitzvera.kasbaik.ui.beranda.login.LoginActivity
+import com.hitzvera.kasbaik.ui.beranda.login.peminjam.LoginAsPeminjamActivity
 
 class RegisterActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -85,7 +85,7 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             dialog.setContentView(R.layout.register_pop_up_success)
             val btnLogin: Button = dialog.findViewById(R.id.btn_login)
             btnLogin.setOnClickListener {
-                Intent(this, LoginActivity::class.java).also {
+                Intent(this, LoginAsPeminjamActivity::class.java).also {
                     startActivity(it)
                 }
             }

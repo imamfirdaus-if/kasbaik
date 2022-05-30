@@ -25,6 +25,9 @@ class LoginAsPeminjamViewModel: ViewModel() {
     private var _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
+    private var _loginResponse = MutableLiveData<LoginResponse>()
+    val loginResponse: LiveData<LoginResponse> = _loginResponse
+
 
     fun loginUser(email: String, password: String, context: Context){
         _isLoading.value = true
@@ -39,6 +42,7 @@ class LoginAsPeminjamViewModel: ViewModel() {
                         _token.postValue(response.body())
                         _isLoading.value = false
                         _isSuccessful.value = "success"
+                        _loginResponse.postValue(response.body())
                     } else {
                         _isSuccessful.value = "failed"
                         val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())

@@ -22,7 +22,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityProfileBinding
-import com.hitzvera.kasbaik.ui.beranda.login.LoginActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.HomePeminjamActivity
 import com.hitzvera.kasbaik.utils.reduceFileImage
 import com.hitzvera.kasbaik.utils.uriToFile
