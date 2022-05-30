@@ -13,7 +13,6 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityDetailPinjamanBinding
-import com.hitzvera.kasbaik.ui.beranda.login.LoginActivity
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.listpeminjam.ListPeminjamActivity
 
 class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
