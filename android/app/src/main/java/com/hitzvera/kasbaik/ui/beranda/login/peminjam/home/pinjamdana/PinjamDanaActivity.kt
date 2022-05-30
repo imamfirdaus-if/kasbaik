@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityPinjamDanaBinding
-import com.hitzvera.kasbaik.ui.beranda.login.LoginActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.HomePeminjamActivity
 import org.w3c.dom.Text
 

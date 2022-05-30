@@ -13,7 +13,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityLoginAsPeminjamBinding
-import com.hitzvera.kasbaik.ui.beranda.login.LoginActivity
+import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.HomeMitraActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.HomePeminjamActivity
 
 class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
@@ -75,12 +75,20 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
             tvTitle.text = "Login Berhasil"
             btnLogin.visibility = View.GONE
             dialog.setOnDismissListener {
-                viewModel.token.observe(this){
+                viewModel.loginResponse.observe(this){
                     if (it!=null){
-                        Intent(this, HomePeminjamActivity::class.java).also { intent ->
-                            intent.putExtra(HomePeminjamActivity.TOKEN, it.token)
-                            startActivity(intent)
+                        if(it.user.role == "user"){
+                            Intent(this, HomePeminjamActivity::class.java).also { intent ->
+                                intent.putExtra(HomePeminjamActivity.TOKEN, it.token)
+                                startActivity(intent)
+                            }
+                        } else {
+                            Intent(this, HomeMitraActivity::class.java).also { intent ->
+                                intent.putExtra(HomePeminjamActivity.TOKEN, it.token)
+                                startActivity(intent)
+                            }
                         }
+
                     }
                 }
             }

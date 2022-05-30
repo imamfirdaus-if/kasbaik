@@ -8,7 +8,7 @@ import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityBerandaBinding
 import com.hitzvera.kasbaik.ui.beranda.daftar.RegisterActivity
 import com.hitzvera.kasbaik.ui.beranda.isikas.IsiKasActivity
-import com.hitzvera.kasbaik.ui.beranda.login.LoginActivity
+import com.hitzvera.kasbaik.ui.beranda.login.peminjam.LoginAsPeminjamActivity
 import com.hitzvera.kasbaik.ui.beranda.tentang.AboutActivity
 
 class BerandaActivity : AppCompatActivity(), View.OnClickListener {
@@ -37,7 +37,7 @@ class BerandaActivity : AppCompatActivity(), View.OnClickListener {
                 startActivity(intent)
             }
             R.id.login -> {
-                val intent = Intent(this, LoginActivity::class.java)
+                val intent = Intent(this, LoginAsPeminjamActivity::class.java)
                 startActivity(intent)
             }
             R.id.register -> {
