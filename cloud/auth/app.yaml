@@ -1,8 +1,2 @@
 runtime: nodejs16
 
-env_variables:
-  DB_USER: postgres
-  DB_PASS: Postgretoomuch34
-  DB_NAME: database1
-  # e.g. my-awesome-project:us-central1:my-cloud-sql-instance
-  INSTANCE_UNIX_SOCKET: /cloudsql/test-project-351401:us-central1:nyobatest
