@@ -15,9 +15,9 @@ const Op = require('sequelize').Op;
 const moment = require('moment')
 
 //inisiasi storage client with credentials
-const storage = new Storage({ keyFilename: "google-cloud-key.json" });
+const storage = new Storage({ keyFilename: "kasbaik-credentials.json" });
 // const storage = new Storage();
-const bucket= storage.bucket("nyoba_project");
+const bucket= storage.bucket("nyoba_project_bucket");
 
 // this function is for updating the profile of mitra tables
 const profileMitra_post = async (req, res, next) => {
