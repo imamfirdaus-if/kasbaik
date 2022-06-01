@@ -103,6 +103,7 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
             btnLogin.visibility = View.GONE
             dialog.setOnDismissListener {
                 Intent(this, ListPeminjamActivity::class.java).also {
+                    it.putExtra(TOKEN, token)
                     startActivity(it)
                 }
             }
