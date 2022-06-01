@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityHomeMitraBinding
+import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.editprofile.MitraProfileActivity
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.listpeminjam.ListPeminjamActivity
 
 class HomeMitraActivity : AppCompatActivity(), View.OnClickListener {
@@ -21,6 +22,7 @@ class HomeMitraActivity : AppCompatActivity(), View.OnClickListener {
 
         token = intent.getStringExtra(TOKEN)!!
         binding.btnListPeminjam.setOnClickListener(this)
+        binding.btnEditProfile.setOnClickListener(this)
 
     }
 
@@ -36,6 +38,13 @@ class HomeMitraActivity : AppCompatActivity(), View.OnClickListener {
                     startActivity(it)
                 }
             }
+            R.id.btn_edit_profile -> {
+                Intent(this, MitraProfileActivity::class.java).also {
+                    it.putExtra(TOKEN, token)
+                    startActivity(it)
+                }
+            }
+
         }
     }
 }

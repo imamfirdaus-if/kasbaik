@@ -13,6 +13,12 @@
         android:theme="@style/Theme.KasBaik"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.beranda.login.mitra.home.editprofile.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.beranda.login.mitra.home.editprofile.MitraProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.beranda.login.mitra.home.listpeminjam.detailpinjaman.DetailPinjamanActivity"
             android:exported="false" />
         <activity
@@ -38,19 +44,13 @@
             android:name=".ui.beranda.login.mitra.LoginAsMitraActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.beranda.login.mitra.LoginAsPeminjamActivity"
+            android:name=".ui.beranda.login.peminjam.LoginAsPeminjamActivity"
             android:exported="false" />
         <activity
             android:name=".ui.beranda.login.peminjam.home.HomePeminjamActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.beranda.login.peminjam.LoginAsPeminjamActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.beranda.daftar.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.beranda.login.LoginActivity"
             android:exported="false" />
         <activity
             android:name=".ui.beranda.isikas.IsiKasActivity"

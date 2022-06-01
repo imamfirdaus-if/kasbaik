@@ -69,4 +69,19 @@ interface ApiService {
         @Field("status") status: String,
         @Field("id_borrower") idBorrower: String,
     ): Call<PostUpdataStatusResponse>
+
+    @GET("mitraprof")
+    fun getRequestMitraProfile(
+        @Header("Cookie") auth: String,
+    ): Call<GetMitraProfileResponse>
+
+    @Multipart
+    @POST("mitraprof")
+    fun postRequestMitraProf(
+        @Header("Cookie") auth: String,
+        @Part file: MultipartBody.Part,
+        @Part("partner_name") partnerName: RequestBody,
+        @Part("location_mitra") location: RequestBody,
+        @Part("phone") phone: RequestBody,
+    ): Call<GetMitraProfileResponse>
 }
