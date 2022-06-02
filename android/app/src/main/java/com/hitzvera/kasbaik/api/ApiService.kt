@@ -81,7 +81,7 @@ interface ApiService {
         @Header("Cookie") auth: String,
         @Part file: MultipartBody.Part,
         @Part("partner_name") partnerName: RequestBody,
-        @Part("location_mitra") location: RequestBody,
+        @Part("location_mitra") locationMitra: RequestBody,
         @Part("phone") phone: RequestBody,
     ): Call<GetMitraProfileResponse>
 }
