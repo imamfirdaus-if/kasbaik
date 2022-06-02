@@ -83,8 +83,10 @@ class RegisterActivity : AppCompatActivity(), View.OnClickListener {
             dialog.setContentView(R.layout.register_pop_up_success)
             val btnLogin: Button = dialog.findViewById(R.id.btn_login)
             btnLogin.setOnClickListener {
+                dialog.dismiss()
                 Intent(this, LoginAsPeminjamActivity::class.java).also {
                     startActivity(it)
+                    finish()
                 }
             }
             dialog.show()
