@@ -33,5 +33,11 @@
         <item>pending</item>
         <item>accepted</item>
         <item>rejected</item>
+        <item>payment</item>
+    </string-array>
+
+    <string-array name="method">
+        <item>cash</item>
+        <item>cicil</item>
     </string-array>
 </resources>
