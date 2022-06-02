@@ -10,9 +10,9 @@
     <string name="desc_menu_4">Kebaikan anda sebesar apapun akan sangat berarti</string>
     <string name="get_started">Mulai</string>
     <string name="about">Tentang</string>
-    <string name="register">daftar</string>
-    <string name="login">masuk</string>
-    <string name="isikas">isikas</string>
+    <string name="register">Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="isikas">Isi Kas</string>
     <string name="halaman_login">Halaman login</string>
 
     <string name="data_have_to_be_valid">data have to be valid</string>
@@ -27,11 +27,17 @@
 
     <string name="greet_user">Selamat datang <font fgcolor="#FFE8750C">%1$s</font></string>
     <string name="regis_as">Daftar menjadi <font fgcolor="#FFE8750C">%1$s</font></string>
-    <string name="user">user</string>
+    <string name="user">User</string>
 
     <string-array name="status">
         <item>pending</item>
         <item>accepted</item>
         <item>rejected</item>
+        <item>payment</item>
+    </string-array>
+
+    <string-array name="method">
+        <item>cash</item>
+        <item>cicil</item>
     </string-array>
 </resources>
