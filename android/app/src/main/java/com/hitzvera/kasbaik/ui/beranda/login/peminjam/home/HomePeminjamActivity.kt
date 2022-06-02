@@ -24,18 +24,33 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var viewModel: HomePeminjamViewModel
     private lateinit var binding: ActivityHomePeminjamBinding
+    private lateinit var token: String
+    private var hasStopped = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomePeminjamBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val token = intent.getStringExtra(TOKEN)
+        token = intent.getStringExtra(TOKEN).toString()
         viewModel = ViewModelProvider(this)[HomePeminjamViewModel::class.java]
-
-        profileResponse(token!!)
+        hasStopped = 0
+        profileResponse(token)
         imageSlider()
         clickListener()
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        if(hasStopped == 1){
+            recreate()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        hasStopped = 1
     }
 
     override fun onClick(view: View) {
@@ -54,22 +69,28 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
                goToProfile()
             }
             R.id.btn_pinjam_dana -> {
-                val token = intent.getStringExtra(TOKEN)
-                viewModel.reqProfilePeminjam(this, token!!)
+//                viewModel.reqProfilePeminjam(this, token!!)
                 viewModel.profileResponse.observe(this){
                     if(it!=null && it.alamatTinggal.isNullOrBlank()){
                         val dialog = Dialog(this)
                         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+                        dialog.setCancelable(true)
                         dialog.setContentView(R.layout.pop_up_command)
                         val btnLengkapi: Button = dialog.findViewById(R.id.btn_isi)
                         val tvDeskripsi: TextView = dialog.findViewById(R.id.text_description)
                         tvDeskripsi.text = "Profile Anda Belum lengkap Silahkan lengkapi"
                         btnLengkapi.text = "Lengkapi profile"
-                        btnLengkapi.setOnClickListener {
-                            goToProfile()
-                            dialog.dismiss()
+                        if(!dialog.isShowing){
+                            dialog.show()
                         }
-                        dialog.show()
+                        btnLengkapi.setOnClickListener {
+                            dialog.dismiss()
+                            Log.e("button", "button working")
+                        }
+                        dialog.setOnDismissListener {
+                            goToProfile()
+                            Log.e("dismis", "it's been dismissed")
+                        }
                     } else {
                         Intent(this, PinjamDanaActivity::class.java).also { intent ->
                             intent.putExtra(TOKEN, token)

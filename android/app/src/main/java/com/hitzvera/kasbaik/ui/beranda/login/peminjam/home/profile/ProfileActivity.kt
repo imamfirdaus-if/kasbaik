@@ -248,9 +248,9 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
                     tvSuccessful.text = "Data berhasil diperbarui"
                     btnLogin.visibility = View.GONE
                     dialog.show()
-                    dialog.setOnDismissListener {
-                        recreate()
-                    }
+//                    dialog.setOnDismissListener {
+//                        dialog.dismiss()
+//                    }
                 } else if (it == "failed"){
                     val dialog = Dialog(this)
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)

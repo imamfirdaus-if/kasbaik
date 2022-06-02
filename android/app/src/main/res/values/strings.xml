@@ -27,7 +27,7 @@
 
     <string name="greet_user">Selamat datang <font fgcolor="#FFE8750C">%1$s</font></string>
     <string name="regis_as">Daftar menjadi <font fgcolor="#FFE8750C">%1$s</font></string>
-    <string name="user">User</string>
+    <string name="user">user</string>
 
     <string-array name="status">
         <item>pending</item>
