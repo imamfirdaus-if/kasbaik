@@ -1,7 +1,7 @@
 package com.hitzvera.kasbaik.response
 
 data class PaymentResponse(
-    val tablePayment: tablePaymentResponse
+    val tablePayment: List<tablePaymentResponse>
 )
 
 data class tablePaymentResponse(

@@ -95,14 +95,6 @@ class DetailPaymentActivity : AppCompatActivity(), View.OnClickListener {
             val tvSuccessful: TextView = dialog.findViewById(R.id.tv_successful)
             tvSuccessful.text = "Berhasil membuat payment"
             btnLogin.visibility = View.GONE
-            dialog.setOnDismissListener {
-                Intent(this, PaymentActivity::class.java).also {
-                    it.putExtra(DetailPinjamanActivity.TOKEN, token)
-                    startActivity(it)
-                    finish()
-
-                }
-            }
             dialog.show()
         } else if(state == "failed") {
             val dialog = Dialog(this)
