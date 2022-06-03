@@ -1,14 +1,13 @@
 package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.status
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hitzvera.kasbaik.api.ApiConfig
-import com.hitzvera.kasbaik.response.Borrower
-import com.hitzvera.kasbaik.response.PaymentResponse
-import com.hitzvera.kasbaik.response.TablePaymentResponse
+import com.hitzvera.kasbaik.response.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,8 +20,8 @@ class StatusViewModel: ViewModel() {
     private var _listBorrowing = MutableLiveData<List<Borrower>>()
     val listBorrowing: LiveData<List<Borrower>> = _listBorrowing
 
-    private var _listPayment = MutableLiveData<List<TablePaymentResponse>>()
-    val listPayment: LiveData<List<TablePaymentResponse>> = _listPayment
+    private var _listPayment = MutableLiveData<List<PaymentItem>>()
+    val listPayment: LiveData<List<PaymentItem>> = _listPayment
 
     fun getListBorrowing(token: String, context: Context){
         _isLoading.value = true
@@ -51,22 +50,23 @@ class StatusViewModel: ViewModel() {
 
     fun getListPayment(token: String, context: Context, id: String){
         _isLoading.value = true
-        ApiConfig.getApiService().getPayment("jwt=$token", id)
-            .enqueue(object : Callback<PaymentResponse>{
+        ApiConfig.getApiService().getPaymentFromUser("jwt=$token", id)
+            .enqueue(object : Callback<GetPaymentResponseUser>{
                 override fun onResponse(
-                    call: Call<PaymentResponse>,
-                    response: Response<PaymentResponse>
+                    call: Call<GetPaymentResponseUser>,
+                    response: Response<GetPaymentResponseUser>
                 ) {
                     if (response.isSuccessful){
                         _isLoading.value = false
-                        _listPayment.postValue(response.body()?.tablePayment)
+                        _listPayment.postValue(response.body()?.payment)
+                        Log.e("CEK", response.body().toString())
                     } else {
                         _isLoading.value = false
                         Toast.makeText(context, "failed to fetch data", Toast.LENGTH_LONG).show()
                     }
                 }
 
-                override fun onFailure(call: Call<PaymentResponse>, t: Throwable) {
+                override fun onFailure(call: Call<GetPaymentResponseUser>, t: Throwable) {
                     _isLoading.value = false
                     Toast.makeText(context, "failed to fetch data", Toast.LENGTH_SHORT).show()
                 }
