@@ -18,9 +18,9 @@ module.exports = (sequelize, Sequelize) => {
         amount_payment: {
             type: Sequelize.INTEGER
         },
-        createdAt : {
-          type: Sequelize.DATEONLY
-        },
+        payment_ke : {
+            type: Sequelize.INTEGER
+        }
     });
     
     return Payment;
