@@ -91,6 +91,11 @@ interface ApiService {
         @Query("id_borrower") idBorrower: String
     ): Call<PaymentResponse>
 
+    @GET("payment")
+    fun getPaymentFromUser(
+        @Header("Cookie") auth: String,
+        @Query("id_borrower") idBorrower: String
+    ): Call<GetPaymentResponseUser>
     @FormUrlEncoded
     @POST("payment")
     fun postPayment(

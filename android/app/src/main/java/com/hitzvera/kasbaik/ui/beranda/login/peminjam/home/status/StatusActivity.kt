@@ -3,12 +3,14 @@ package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.status
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityStatusBinding
 import com.hitzvera.kasbaik.response.Borrower
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.historypayment.HistoryAdapter
+import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.historypayment.HistoryViewModel
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.HomePeminjamActivity
 
 class StatusActivity : AppCompatActivity() {
@@ -18,6 +20,7 @@ class StatusActivity : AppCompatActivity() {
     private lateinit var idBorrower: String
     private lateinit var viewModel: StatusViewModel
     private lateinit var currentBorrowing: Borrower
+    private lateinit var viewModel2: HistoryViewModel
 
     private val adapter: StatusAdapter by lazy {
         StatusAdapter(StatusAdapter.OnClickListener{ item ->
@@ -39,22 +42,22 @@ class StatusActivity : AppCompatActivity() {
 
         viewModel.getListBorrowing(token, this)
         viewModel.listBorrowing.observe(this){
-            idBorrower = it?.last()?.idBorrower ?: "error"
-            currentBorrowing = it.last()
-            viewModel.getListPayment(token, this, idBorrower)
-            viewModel.listPayment.observe(this){ item ->
-                if(item!=null){
-                    adapter.setData(item)
+            if(it!=null){
+                currentBorrowing = it.last()
+                viewModel.getListPayment(token, this, currentBorrowing.idBorrower)
+                viewModel.listPayment.observe(this){ item ->
+                    if(item!=null){
+                        adapter.setData(item)
+                    }
                 }
+                viewModel.isLoading.observe(this){ item ->
+                    showLoading(item)
+                }
+                binding.tvStatus.text = currentBorrowing.status
+                binding.tvDibuat.text = currentBorrowing.createdAt
+                binding.tvJumlahPinjaman.text = currentBorrowing.loanAmount.toString()
             }
-            binding.tvStatus.text = currentBorrowing.status
-            binding.tvDibuat.text = currentBorrowing.createdAt
-            binding.tvJumlahPinjaman.text = currentBorrowing.loanAmount.toString()
         }
-
-
-
-
 
 
 
