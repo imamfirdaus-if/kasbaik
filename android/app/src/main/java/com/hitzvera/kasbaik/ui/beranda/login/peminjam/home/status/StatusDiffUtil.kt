@@ -1,9 +1,9 @@
-package com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.historypayment
+package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.status
 
 import androidx.recyclerview.widget.DiffUtil
 import com.hitzvera.kasbaik.response.TablePaymentResponse
 
-class PaymentDiffUtil(
+class StatusDiffUtil(
     private val oldList: List<TablePaymentResponse>,
     private val newList: List<TablePaymentResponse>
 ): DiffUtil.Callback() {

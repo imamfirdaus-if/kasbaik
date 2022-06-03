@@ -99,4 +99,9 @@ interface ApiService {
         @Field("payment_method") paymentMethod: String,
         @Field("amount_payment") amountPayment: Int
     ): Call<PaymentResponse>
+
+    @GET("borrower")
+    fun getRequestBorrowing(
+        @Header("Cookie") auth: String
+    ): Call<List<Borrower>>
 }

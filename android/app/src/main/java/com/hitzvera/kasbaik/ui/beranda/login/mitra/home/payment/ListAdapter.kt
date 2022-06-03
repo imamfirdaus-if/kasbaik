@@ -17,8 +17,6 @@ import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.detailpayment.De
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.historypayment.HistoryActivity
 
 class ListAdapter(private val onClickListener: OnClickListener, private val context: Context, private val token: String): RecyclerView.Adapter<ListAdapter.ViewHolder>() {
-
-    private val activity: PaymentActivity = context as PaymentActivity
     private var oldBorrowerItem = emptyList<GetUpdateStatusResponseItem>()
 
     inner class ViewHolder(private val binding: RvItemPeminjamBinding): RecyclerView.ViewHolder(binding.root){
