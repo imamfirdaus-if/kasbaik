@@ -13,6 +13,9 @@
         android:theme="@style/Theme.KasBaik"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.beranda.login.peminjam.home.status.StatusActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.beranda.login.mitra.home.payment.historypayment.HistoryActivity"
             android:exported="false" />
         <activity
@@ -21,7 +24,7 @@
         <activity
             android:name=".ui.beranda.login.mitra.home.payment.PaymentActivity"
             android:exported="false"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
         <activity
             android:name=".ui.beranda.login.mitra.home.editprofile.EditProfileActivity"
             android:exported="false" />
@@ -59,7 +62,7 @@
         <activity
             android:name=".ui.beranda.login.peminjam.home.HomePeminjamActivity"
             android:exported="false"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop" />
         <activity
             android:name=".ui.beranda.daftar.RegisterActivity"
             android:exported="false" />

@@ -100,6 +100,7 @@ class PinjamDanaActivity : AppCompatActivity(), View.OnClickListener {
                 Intent(this, HomePeminjamActivity::class.java).also {
                     it.putExtra(HomePeminjamActivity.TOKEN, token)
                     startActivity(it)
+                    finish()
                 }
             }
             dialog.show()

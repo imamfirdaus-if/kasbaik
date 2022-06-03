@@ -85,12 +85,17 @@ interface ApiService {
         @Part("phone") phone: RequestBody,
     ): Call<GetMitraProfileResponse>
 
-    @FormUrlEncoded
     @GET("payment")
     fun getPayment(
         @Header("Cookie") auth: String,
+        @Query("id_borrower") idBorrower: String
     ): Call<PaymentResponse>
 
+    @GET("payment")
+    fun getPaymentFromUser(
+        @Header("Cookie") auth: String,
+        @Query("id_borrower") idBorrower: String
+    ): Call<GetPaymentResponseUser>
     @FormUrlEncoded
     @POST("payment")
     fun postPayment(
@@ -99,4 +104,9 @@ interface ApiService {
         @Field("payment_method") paymentMethod: String,
         @Field("amount_payment") amountPayment: Int
     ): Call<PaymentResponse>
+
+    @GET("borrower")
+    fun getRequestBorrowing(
+        @Header("Cookie") auth: String
+    ): Call<List<Borrower>>
 }
