@@ -1,9 +1,8 @@
 module.exports = {
-    // HOST: "34.101.231.106",
-    //Postgretoomuch34
+    
     HOST:"localhost",
     USER: "postgres",
-    PASSWORD: "273023",
+    PASSWORD: "hudahuda",
     DB: "database1",
     dialect: "postgresql",
     pool: {

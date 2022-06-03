@@ -21,12 +21,8 @@ module.exports = (sequelize, Sequelize) => {
       role: {
         type: Sequelize.ENUM("user", "mitra", "admin"),
         defaultValue: ('user')
-      },
-      createdAt : {
-        type : Sequelize.DATEONLY,
       }
     }, {
-      updatedAt: false,
       freezeTableName: true,
     });
   

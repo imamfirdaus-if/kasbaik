@@ -113,9 +113,10 @@ const updateBorrower = async (req, res) => {
         let id_user = req.id;
         let data1 = {
             id_user,
-            usia : req.body.usia,
-            gender : req.body.gender,
-            profesi : req.body.profesi,
+            //usia : req.body.usia,
+            //gender : req.body.gender,
+            loan_amount : req.body.loan_amount,
+            //profesi : req.body.profesi,
             reason_borrower: req.body.reason_borrower,
             monthly_income : req.body.monthly_income,
             dependents_amount: req.body.dependents_amount,
@@ -126,8 +127,7 @@ const updateBorrower = async (req, res) => {
 
         await dbBorrower.findAll({where: {id_user: id_user , status : { [Op.or] : ["pending"]}}})
         .then(async data => {
-            console.log(data[0].id_borrower);
-            await dbBorrower.update(data1, {where: {id_borrower: data[0].id_borrower}})
+            await dbBorrower.update(data1, {where: {id_borrower: req.params.id_borrower}})
                 .then(async data2 => {
                     await dbMitra.update(data1,{where: {id_borrower: data[0].id_borrower}})
                     return res.status(200).send(data2)
@@ -140,8 +140,29 @@ const updateBorrower = async (req, res) => {
     }
 }
 
+const deleteBorrower = async (req, res) => {
+    try {
+        let lihatStatus = await dbBorrower.findOne({where: {id_borrower: req.params.id_borrower}})
+        let objek = Helper.toObject(lihatStatus)
+        if(objek.status !== 'pending'){
+            throw "tidak bisa dihapus, status bukan pending"
+        }
+        const hapusBorrower = await dbBorrower.destroy({where: {id_borrower : req.params.id_borrower}})
+        const hapusMitras = await dbMitra.destroy({where: {id_borrower :req.params.id_borrower}})
+        const hapusCreds = await dbCredit.destroy({where : {id_borrower : req.params.id_borrower}})
+        if (hapusBorrower !== 1 || hapusMitras !==1 || hapusMitras !==1){
+            console.log("something wrong");
+        }
+        return res.status(200).send({message : "data pinjaman berhasil dihapus"})
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send({status : err})
+    }
+}
+
 module.exports = {
     addBorrower,
-    updateBorrower
+    updateBorrower,
+    deleteBorrower
 }
 

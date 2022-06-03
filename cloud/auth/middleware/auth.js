@@ -41,7 +41,10 @@ const Auth = {
             req.id = decodedToken.userId
             req.email = decodedToken.email 
             req.role = decodedToken.role
-            if (req.role === 'mitra'){
+            if (req.role === 'admin') {
+              next();
+            }
+            else if (req.role === 'mitra'){
               next()
             } else {
               return res.status(500).send('anda tidak dapat masuk ke daerah mitra')
@@ -69,8 +72,10 @@ verifyTokenUser(req, res, next){
           req.id = decodedToken.userId
           req.email = decodedToken.email 
           req.role = decodedToken.role
-        
-          if (req.role === 'user'){
+          if (req.role === 'admin') {
+            next();
+          }
+          else if (req.role === 'user'){
             next()
           }else {
             return res.status(500).send('anda tidak dapat masuk ke daerah user')

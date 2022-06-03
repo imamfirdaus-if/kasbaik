@@ -18,13 +18,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         target_lunas: {
             type: Sequelize.DATEONLY
-        }, 
-        updatedAt: {
-          type: Sequelize.DATEONLY
-        },
-        createdAt : {
-          type: Sequelize.DATEONLY
-        },
+        }
       }, {
         freezeTableName: true,
       });

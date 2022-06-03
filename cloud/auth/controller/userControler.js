@@ -56,6 +56,8 @@ const signup_post = async(req, res, next) => {
               console.log('berhaisil created dbProfileMitra');
               res.status(201).send({user : data, profile: data1})
               })
+            } else {
+              res.status(201).send({user : data})
             }
             
           }) 
