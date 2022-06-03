@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_ijo"
+    tools:context=".ui.beranda.login.peminjam.home.status.StatusActivity">
+
+    <TextView
+        android:id="@+id/tv_label_status_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pinjaman Terbaru"
+        android:textColor="@color/white"
+        android:layout_marginTop="32dp"
+        android:textSize="32sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/rounded_corners"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_status_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_label_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Status"
+        android:textColor="@color/orange"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="@id/container"
+        app:layout_constraintStart_toStartOf="@+id/container"/>
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pending"
+        android:textColor="@color/orange"
+        android:textSize="20sp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintTop_toTopOf="@id/tv_label_status"
+        app:layout_constraintStart_toEndOf="@+id/tv_label_dibuat"/>
+
+    <TextView
+        android:id="@+id/tv_label_jumlah_pinjaman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jumlah Pinjaman"
+        android:textColor="@color/orange"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_status"
+        app:layout_constraintStart_toStartOf="@+id/container"/>
+
+    <TextView
+        android:id="@+id/tv_jumlah_pinjaman"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1000000"
+        android:textColor="@color/orange"
+        android:textSize="20sp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_label_jumlah_pinjaman"
+        app:layout_constraintBottom_toBottomOf="@id/tv_label_jumlah_pinjaman"/>
+
+    <TextView
+        android:id="@+id/tv_label_dibuat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Pinjaman"
+        android:textColor="@color/orange"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_jumlah_pinjaman"
+        app:layout_constraintStart_toStartOf="@+id/container"/>
+
+    <TextView
+        android:id="@+id/tv_dibuat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="21-20-2000"
+        android:textColor="@color/orange"
+        android:textSize="20sp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toEndOf="@+id/tv_label_dibuat"
+        app:layout_constraintBottom_toBottomOf="@id/tv_label_dibuat"/>
+
+    <TextView
+        android:id="@+id/tv_label_status_history_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="History Pembayaran"
+        android:textColor="@color/white"
+        android:layout_marginTop="32dp"
+        android:textSize="32sp"
+        app:layout_constraintTop_toBottomOf="@id/container"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginVertical="8dp"
+        android:layout_marginHorizontal="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_label_status_history_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+       />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
