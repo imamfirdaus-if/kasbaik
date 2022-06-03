@@ -1,4 +1,5 @@
-package com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.historypayment
+package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.status
+
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,8 +9,10 @@ import com.hitzvera.kasbaik.databinding.ItemListPeminjamBinding
 import com.hitzvera.kasbaik.databinding.RvItemPaymentBinding
 import com.hitzvera.kasbaik.response.Borrower
 import com.hitzvera.kasbaik.response.TablePaymentResponse
+import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.historypayment.HistoryAdapter
+import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.historypayment.PaymentDiffUtil
 
-class HistoryAdapter(private val onClickListener: OnClickListener): RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
+class StatusAdapter(private val onClickListener: OnClickListener): RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
 
     private var oldBorrowerItem = emptyList<TablePaymentResponse>()
 
