@@ -22,11 +22,7 @@ class ListAdapter(private val onClickListener: OnClickListener, private val cont
     private var oldBorrowerItem = emptyList<GetUpdateStatusResponseItem>()
 
     inner class ViewHolder(private val binding: RvItemPeminjamBinding): RecyclerView.ViewHolder(binding.root){
-        var jumlahPinjaman: TextView = binding.jumlahPinjaman
-        var namaPeminjam: TextView = binding.namaPeminjam
         var status: TextView = binding.status
-        var btAddPayment: ImageView = binding.btAddPayment
-        var btHistory: ImageView = binding.btHistoryPayment
         fun bind(listBorrower: GetUpdateStatusResponseItem){
             binding.jumlahPinjaman.text = listBorrower.loanAmount.toString()
             binding.namaPeminjam.text = listBorrower.namaLengkap
@@ -54,9 +50,9 @@ class ListAdapter(private val onClickListener: OnClickListener, private val cont
             binding.btHistoryPayment.setOnClickListener {
                 Intent(context, HistoryActivity::class.java).also {
                     it.putExtra(HistoryActivity.ID_BORROWER, listBorrower.idBorrower)
+                    it.putExtra(HistoryActivity.NAMA, listBorrower.namaLengkap)
                     it.putExtra(HistoryActivity.TOKEN, token)
                     context.startActivity(it)
-                    activity.finishMe()
                 }
             }
         }

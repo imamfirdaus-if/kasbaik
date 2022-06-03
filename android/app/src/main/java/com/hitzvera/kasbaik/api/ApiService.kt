@@ -85,10 +85,10 @@ interface ApiService {
         @Part("phone") phone: RequestBody,
     ): Call<GetMitraProfileResponse>
 
-    @FormUrlEncoded
     @GET("payment")
     fun getPayment(
         @Header("Cookie") auth: String,
+        @Query("id_borrower") idBorrower: String
     ): Call<PaymentResponse>
 
     @FormUrlEncoded

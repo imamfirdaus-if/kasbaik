@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_ijo"
-    tools:context=".ui.beranda.login.mitra.home.pembayaran.PaymentActivity">
+    tools:context=".ui.beranda.login.mitra.home.payment.PaymentActivity">
 
     <TextView
         android:id="@+id/title_list_pinjaman"
@@ -41,7 +41,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_result"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/item_list_peminjam"/>
+        tools:listitem="@layout/rv_item_peminjam"/>
 
     <ProgressBar
         android:id="@+id/progressBar_list_pinjaman"
