@@ -79,6 +79,7 @@ const addBorrower = async (req, res, next) =>{
                     id_borrower: borrower.id_borrower,
                     nama_lengkap: objek.nama_lengkap,
                     usia : objek.usia,
+                    phone : objek.phone,
                     gender : objek.gender,
                     profesi : objek.profesi,
                     credit_score : objek.credit_score,
