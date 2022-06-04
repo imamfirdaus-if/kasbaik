@@ -105,6 +105,7 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
                 Intent(this, ListPeminjamActivity::class.java).also {
                     it.putExtra(TOKEN, token)
                     startActivity(it)
+                    finish()
                 }
             }
             dialog.show()

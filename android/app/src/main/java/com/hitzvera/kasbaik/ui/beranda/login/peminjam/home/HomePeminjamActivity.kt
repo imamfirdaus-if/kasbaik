@@ -17,6 +17,7 @@ import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityHomePeminjamBinding
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.pinjamdana.PinjamDanaActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.profile.ProfileActivity
+import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.status.StatusActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.zakat.ZakatActivity
 import com.hitzvera.kasbaik.ui.beranda.tentang.AboutActivity
 
@@ -25,6 +26,7 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var viewModel: HomePeminjamViewModel
     private lateinit var binding: ActivityHomePeminjamBinding
     private lateinit var token: String
+    private lateinit var idBorrower: String
     private var hasStopped = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -99,6 +101,12 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
                     }
                 }
             }
+            R.id.btn_status -> {
+                Intent(this, StatusActivity::class.java).also {
+                    it.putExtra(TOKEN, token)
+                    startActivity(it)
+                }
+            }
         }
     }
 
@@ -146,9 +154,11 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
         binding.btnZakat.setOnClickListener(this)
         binding.btnProfile.setOnClickListener(this)
         binding.btnPinjamDana.setOnClickListener(this)
+        binding.btnStatus.setOnClickListener(this)
     }
     companion object {
         const val TOKEN = "token"
+        const val ID_BORROWER = "id_borrower"
     }
 
 
