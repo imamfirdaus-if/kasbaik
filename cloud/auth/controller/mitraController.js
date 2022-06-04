@@ -30,7 +30,7 @@ const profileMitra_post = async (req, res, next) => {
         }
         let id_user = req.id;
         
-        let changeName1 = req.files[0].originalname.replace("", `data${id_user}` )
+        let changeName1 = req.files[0].originalname.replace("", `mitra_prof${id_user}` )
         let changeName2 = changeName1.replace(" ", '-')
         const blob = bucket.file(changeName2);  
         

@@ -12,13 +12,26 @@ module.exports = (sequelize, Sequelize) => {
         id_borrower: {
             type: Sequelize.STRING,
         },
+        id_mitra: {
+            type: Sequelize.STRING
+        },
         message: {
             type: Sequelize.STRING
         },
         has_read: {
             type: Sequelize.BOOLEAN,
             defaultValue: false,
+        },
+        link_bukti: {
+            type: Sequelize.STRING
+        },
+        nominal: {
+            type: Sequelize.INTEGER
+        },
+        isAccepted: {
+            type: Sequelize.STRING
         }
+        
         
     }, {
         freezeTableName: true,

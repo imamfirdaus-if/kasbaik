@@ -1,7 +1,7 @@
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const db = require('../model/model')
 SECRET = process.env.SECRET
 
 const Helper = { 
@@ -94,6 +94,12 @@ const Helper = {
       telatKat = 3
     }
     return telatKat;
+  },
+
+  getIdMitra (id){
+    const result = db.profileMitra.findOne({where: {id_user: id}})
+    const getIdMitra = Helper.toObject(result).id_mitra
+    return getIdMitra;
   }
 }
 
