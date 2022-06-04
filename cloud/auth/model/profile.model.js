@@ -17,7 +17,7 @@ module.exports = (sequelize, Sequelize) => {
         defaultValue: 0
       },
       phone: {
-        type: Sequelize.STRING
+        type: Sequelize.BIGINT
       },
       usia: {
         type: Sequelize.INTEGER

@@ -10,6 +10,9 @@ const dbUserPayment = db.userPayment
 const dbCredit = db.credit
 const dbMessage = db.message
 const moment = require('moment')
+const { QueryTypes } = require('sequelize');
+const Op = require('sequelize').Op;
+
 
 const homeData = async (req, res) => {
     try {
@@ -24,10 +27,14 @@ const homeData = async (req, res) => {
                 peminjaman : tableBorrowerPayment,
                 message : tableMessage
             })
+            
         } else if (req.role === 'mitra'){
             const tableUser = await dbUser.findOne({where: {id_user : req.id}})
             const tableProfile = await dbProfileMitra.findOne({where: {id_user : req.id}})
-            const tableMessage = await dbMessage.findAll({where: {id_user : req.id}},{order : [["createdAt" , "DESC"] ]})
+            // get id mitra
+            const result = await db.profileMitra.findOne({where: {id_user: req.id}})
+            const getIdMitra = Helper.toObject(result).id_mitra
+            const tableMessage = await dbMessage.findAll({where: {id_mitra : getIdMitra ,link_bukti : {[Op.not]: null} }},{order : [["createdAt" , "DESC"] ]})
             return res.status(200).send({
                 user : tableUser,
                 profile : tableProfile,
@@ -36,6 +43,7 @@ const homeData = async (req, res) => {
         }
         
     } catch (err) {
+        console.log(err);
         return res.status(403).send(err)
     }
 }
@@ -74,11 +82,11 @@ const borrowerData = async (req, res) => {
 
 const borrowerDatabyId = async (req, res) => {
     try {
-
         const hasil1 = await dbBorrower.findAll({where: {id_user : req.id , id_borrower : req.params.id_borrower}})
+        const userPayments = await dbUserPayment.findOne({where: {id_borrower: req.params.id_borrower}})
         await dbPayment.findAll({where: {id_borrower: req.params.id_borrower}, order : [["createdAt" , "ASC"] ]})
             .then(data => {
-            return res.status(200).send({pinjaman : hasil1, "payment history" : data})
+            return res.status(200).send({pinjaman : hasil1, "payment history" : data, description : userPayments })
             })
     } catch (err) {
         console.log(err);
@@ -111,6 +119,20 @@ const mitraData = async (req, res) => {
        
     } catch (err) {
         return res.status(403).send(err)
+    }
+}
+
+const mitraDataById = async (req, res) => {
+    try {
+        const result = await dbProfileMitra.findOne({where: {id_user: req.id}})
+        const getIdMitra = Helper.toObject(result).id_mitra
+        const pinjaman = await dbMitra.findAll({where: {id_mitra: getIdMitra, id_borrower : req.params.id_borrower}})
+        const allPayments = await dbPayment.findAll({where: {id_borrower: req.params.id_borrower}, order : [["createdAt" , "ASC"] ]})
+        const userPayments = await dbUserPayment.findOne({where: {id_borrower: req.params.id_borrower}})
+        return res.status(200).send({pinjaman : pinjaman , "payment history" : allPayments, description : userPayments})
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send({status : err})
     }
 }
 
@@ -164,11 +186,22 @@ const paymentDataById = async (req, res) => {
     }
 }
 
-const userPaymentData = async (req, res) => {
-    try {   
-        await dbUserPayment.findOne({where: {id_user: req.id}})
+const buktiBayarMessage = async (req, res) => {
+    try {
+        const AllMess = await db.message.findAll({where : {id_user: req.id , link_bukti : {[Op.not]: null} } ,order : [["createdAt", "DESC"]]})
+            return res.status(200).send({message : AllMess})
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send({message: err})
+    }
+}
+
+const creditDataById = async (req, res) => {
+    try {
+        console.log(req.params.id_borrower);
+        await dbCredit.findOne({where: {id_borrower: req.params.id_borrower}})
         .then(data => {
-            return res.status(200).send({user_payment : data})
+            return res.status(200).send({data})
         })
     } catch (err) {
         console.log(err);
@@ -176,10 +209,10 @@ const userPaymentData = async (req, res) => {
     }
 }
 
-const creditData = async (req, res) => {
+const creditData= async (req, res) => {
     try {
         console.log(req.params.id_borrower);
-        await dbCredit.findOne({where: {id_borrower: req.params.id_borrower}})
+        await dbCredit.findAll()
         .then(data => {
             return res.status(200).send({data})
         })
@@ -201,6 +234,17 @@ const messageData = async (req, res) => {
     }
 }
 
+// const userPaymentData = async (req, res) => {
+//     try {   
+//         await dbUserPayment.findOne({where: {id_user: req.id}})
+//         .then(data => {
+//             return res.status(200).send({user_payment : data})
+//         })
+//     } catch (err) {
+//         console.log(err);
+//         return res.status(400).send(err)
+//     }
+// }
 module.exports = {
     homeData,
     profileData,
@@ -208,9 +252,12 @@ module.exports = {
     borrowerDatabyId,
     mitraProfileData,
     mitraData,
+    mitraDataById,
     paymentData,
     paymentDataById,
-    userPaymentData,
+    buktiBayarMessage,
+    // userPaymentData,
     creditData,
+    creditDataById,
     messageData
 }
