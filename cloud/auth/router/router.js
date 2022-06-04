@@ -7,6 +7,7 @@ const borrowerController = require('../controller/borrowerController')
 const mitraController = require('../controller/mitraController')
 const showController = require('../controller/showController')
 const messageController = require('../controller/messageController')
+const adminController = require('../controller/adminController')
 
 
 // digunakan untuk melakukan signup / register 
@@ -74,6 +75,14 @@ router.get("/buktibayar/", Auth.verifyTokenUser, showController.buktiBayarMessag
 // digunakan untuk memberikan bukti bayar ke mitra sebagai message
 router.post("/buktibayar", Auth.verifyTokenUser, messageController.createMessagetoMitra) // post untuk memberikan bukti bayar
 
+//role admin
+router.get("/listAkunUser", Auth.verifyTokenAdmin, adminController.listAkunUser)
+router.get("/listAkunMitra", Auth.verifyTokenAdmin, adminController.listAkunMitra)
+router.get("/listAkunUser/:id_user", Auth.verifyTokenAdmin, adminController.listDetailUser)
+router.get("/listBorrowerPending", Auth.verifyTokenAdmin, adminController.listBorrowerPending)
+router.get("/listBorrowerAcc", Auth.verifyTokenAdmin, adminController.listBorrowerAcc)
+router.get("/listBorrowerHistory", Auth.verifyTokenAdmin, adminController.listBorrowerHistory)
+router.get("/listBorrower/:id_borrower", Auth.verifyTokenAdmin, adminController.listDetailBorrower)
 
 //get ALL message in user where has_read = false
 // router.get('/profile/message', Auth.verifyTokenUser , showController.messageData)
