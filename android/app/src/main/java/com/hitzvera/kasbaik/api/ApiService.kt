@@ -54,7 +54,8 @@ interface ApiService {
         @Field("monthly_income") monthlyIncome: Int,
         @Field("payment_method") paymentMethod: String,
         @Field("tenor") tenor: Int,
-        @Field("dependents_amount") dependentsAmount: Int
+        @Field("dependents_amount") dependentsAmount: Int,
+        @Field("donasi") donasi: Int
     ): Call<PostBorrowerResponse>
 
     @GET("updatestatus")
@@ -91,11 +92,18 @@ interface ApiService {
         @Query("id_borrower") idBorrower: String
     ): Call<PaymentResponse>
 
+    @GET("payment/{id_borrower}")
+    fun getPaymentById(
+        @Header("Cookie") auth: String,
+        @Path("id_borrower") idBorrower: String
+    ): Call<GetPaymentResponseUser>
+
     @GET("payment")
     fun getPaymentFromUser(
         @Header("Cookie") auth: String,
         @Query("id_borrower") idBorrower: String
     ): Call<GetPaymentResponseUser>
+
     @FormUrlEncoded
     @POST("payment")
     fun postPayment(
@@ -108,5 +116,17 @@ interface ApiService {
     @GET("borrower")
     fun getRequestBorrowing(
         @Header("Cookie") auth: String
+    ): Call<List<Borrower>>
+
+    @GET("borrower")
+    fun getRiwayat(
+        @Header("Cookie") auth: String,
+        @Query("status") status: String
+    ) : Call<List<Borrower>>
+
+    @GET("borrower")
+    fun getBorrowing(
+        @Header("Cookie") auth: String,
+        @Query("pinjaman_ke") pinjamanKe: String
     ): Call<List<Borrower>>
 }

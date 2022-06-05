@@ -1,6 +1,7 @@
 package com.hitzvera.kasbaik.ui.beranda.login.mitra.home.editprofile
 
 import android.content.Intent
+import android.icu.lang.UCharacter.IndicPositionalCategory.NA
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,7 +17,7 @@ class MitraProfileActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var viewModel: MitraProfileViewModel
     private lateinit var token: String
     private lateinit var binding: ActivityMitraProfileBinding
-
+    private var photo: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMitraProfileBinding.inflate(layoutInflater)
@@ -40,6 +41,7 @@ class MitraProfileActivity : AppCompatActivity(), View.OnClickListener {
                     Glide.with(this@MitraProfileActivity)
                         .load(it.fotoProfile)
                         .into(ivAvatar)
+                    photo = it.fotoProfile
 
                 }
             }
@@ -50,6 +52,10 @@ class MitraProfileActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_edit -> {
                 Intent(this, EditProfileActivity::class.java).also {
                     it.putExtra(TOKEN, token)
+                    it.putExtra(NAMA, binding.tvName.text.toString())
+                    it.putExtra(NOMOR, binding.tvNomor.text.toString())
+                    it.putExtra(LOCATION, binding.tvLocation.text.toString())
+                    it.putExtra(PHOTO, photo)
                     startActivity(it)
                     finish()
                 }
@@ -58,5 +64,13 @@ class MitraProfileActivity : AppCompatActivity(), View.OnClickListener {
                 finish()
             }
         }
+    }
+
+    companion object {
+        const val TOKEN = "token"
+        const val NAMA = "nama"
+        const val NOMOR = "nomor"
+        const val LOCATION = "location"
+        const val PHOTO = "photo"
     }
 }

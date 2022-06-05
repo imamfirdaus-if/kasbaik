@@ -28,6 +28,14 @@
     <string name="greet_user">Selamat datang <font fgcolor="#FFE8750C">%1$s</font></string>
     <string name="regis_as">Daftar menjadi <font fgcolor="#FFE8750C">%1$s</font></string>
     <string name="user">user</string>
+    <string name="dashboard_text_1">KasBaik menghubungkan donatur dengan pedagang kecil yang butuh bantuan pinjaman modal yang mudah didapat dan bebas riba.</string>
+    <string name="dashboard_text_2">Kenapa Pilih Kas Baik</string>
+    <string name="dashboard_text_3">Bantuan produktif, digunakan untuk memberdayakan sesama.</string>
+    <string name="dashboard_text_4">Durasi penggunaan dan pengembalian dana di sesuaikan dengan kemampuan penerima bantuan</string>
+    <string name="dashboard_text_5">Bebas riba, bunga 0%</string>
+    <string name="daftar_menjadi_penerima_kos">Daftar Menjadi Penerima Kos</string>
+    <string name="masuk_ke_akun_anda">Masuk ke akun anda</string>
+    <string name="atau_daftar_akun">Atau, Daftar akun</string>
 
     <string-array name="status">
         <item>pending</item>
@@ -39,5 +47,16 @@
     <string-array name="method">
         <item>cash</item>
         <item>cicil</item>
+    </string-array>
+
+    <string-array name="pekerjaan">
+        <item>buruh</item>
+        <item>pengajar</item>
+        <item>pedangan</item>
+        <item>pekerja lepas</item>
+        <item>wirausaha</item>
+        <item>pns</item>
+        <item>tni/polri</item>
+        <item>wiraswasta</item>
     </string-array>
 </resources>

@@ -21,6 +21,7 @@ class PinjamDanaActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var viewModel: PinjamDanaViewModel
     private lateinit var token: String
     private var jumlahPinjaman = 0
+    private var tenor = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,38 +33,55 @@ class PinjamDanaActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.apply {
             tvJumlahPinjaman.text = jumlahPinjaman.toString()
+            tvTenor.text = tenor.toString()
             btnAdd.setOnClickListener(this@PinjamDanaActivity)
             btnMinus.setOnClickListener(this@PinjamDanaActivity)
             btnAjukanPinjaman.setOnClickListener(this@PinjamDanaActivity)
+            btnAddTenor.setOnClickListener(this@PinjamDanaActivity)
+            btnMinusTenor.setOnClickListener(this@PinjamDanaActivity)
         }
     }
 
     override fun onClick(view: View) {
         when(view.id){
             R.id.btn_add -> {
-                checkJumlahPinjaman()
-                jumlahPinjaman+=500_000
+                if(binding.tvJumlahPinjaman.text.toString().toInt() < 3_000_000){
+                    jumlahPinjaman+=500_000
+                }
                 binding.tvJumlahPinjaman.text = jumlahPinjaman.toString()
             }
             R.id.btn_minus -> {
-                checkJumlahPinjaman()
-                jumlahPinjaman-=500_000
+                if(binding.tvJumlahPinjaman.text.toString().toInt() > 0){
+                    jumlahPinjaman-=500_000
+                }
                 binding.tvJumlahPinjaman.text = jumlahPinjaman.toString()
+            }
+            R.id.btn_minus_tenor -> {
+                if(binding.tvTenor.text.toString().toInt() > 2){
+                    tenor-=1
+                }
+                binding.tvTenor.text = tenor.toString()
+            }
+            R.id.btn_add_tenor -> {
+                if(binding.tvTenor.text.toString().toInt() < 20){
+                    tenor+=1
+                }
+                binding.tvTenor.text = tenor.toString()
             }
             R.id.btn_ajukan_pinjaman -> {
                 val jumlahPinjaman = jumlahPinjaman
-                val tenor = Integer.parseInt(binding.tvTenor.text.toString().trim())
                 val monthlyIncome = Integer.parseInt(binding.tvPemasukan.text.toString().trim())
                 val dependentsAmount = Integer.parseInt(binding.tvTanggungan.text.toString().trim())
                 val reason = binding.tvReason.text.toString().trim()
                 var paymentMethod = "cicil"
-                if(binding.radioCash.isChecked){
-                    paymentMethod = "cash"
+                var donasi = 0
+                if(binding.tvDonasi.text.toString().isNotBlank()){
+                    donasi = binding.tvDonasi.text.toString().toInt()
                 }
                 if(validateForm()){
                     Log.e("CHECK", "$jumlahPinjaman $reason $monthlyIncome $paymentMethod, $tenor $dependentsAmount")
                     viewModel.apply {
-                        postBorrower(token, jumlahPinjaman, reason, monthlyIncome, paymentMethod, tenor, dependentsAmount, this@PinjamDanaActivity)
+                        postBorrower(token, jumlahPinjaman, reason, monthlyIncome, paymentMethod, tenor, dependentsAmount, donasi,this@PinjamDanaActivity)
                         isLoading.observe(this@PinjamDanaActivity){
                             showLoading(it)
                         }
@@ -129,16 +147,4 @@ class PinjamDanaActivity : AppCompatActivity(), View.OnClickListener {
         )
     }
 
-    private fun checkJumlahPinjaman(){
-        if(jumlahPinjaman == 2_500_000){
-            binding.btnAdd.isEnabled = false
-            binding.btnMinus.isEnabled = true
-        } else if(jumlahPinjaman == 500_000){
-            binding.btnMinus.isEnabled = false
-            binding.btnAdd.isEnabled = true
-        } else {
-            binding.btnAdd.isEnabled = true
-            binding.btnMinus.isEnabled = true
-        }
-    }
 }

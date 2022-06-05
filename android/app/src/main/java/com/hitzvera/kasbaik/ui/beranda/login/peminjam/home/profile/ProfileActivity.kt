@@ -29,7 +29,6 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
-fun Boolean.toInt() = if (this) 1 else 0
 class ProfileActivity: AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityProfileBinding
@@ -41,6 +40,13 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
     private var linkImage2: String? = null
     private var linkImage3: String? = null
     private var fileChosen: Int? = null
+
+    override fun onResume() {
+        super.onResume()
+        val pekerjaan = resources.getStringArray(R.array.pekerjaan)
+        val arrayAdapter = ArrayAdapter(this, R.layout.drop_down_item, pekerjaan)
+        binding.pekerjaanItemContainer.setAdapter(arrayAdapter)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,16 +62,17 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
                 binding.apply {
                     tvName.setText(it.namaLengkap)
                     tvWhatsapp.setText(it.phone)
-                    edPekerjaan.setText(it.profesi ?: "")
                     Glide.with(this@ProfileActivity)
                         .load(it.fotoDiri)
                         .fallback(R.drawable.avatar_placeholder)
                         .error(R.drawable.avatar_placeholder)
                         .placeholder(R.drawable.avatar_placeholder)
                         .into(ivAvatar)
-                    edAlamatTinggal.setText(it.alamatTinggal ?: "isi alamat tinggal")
-                    edAlamatKtp.setText(it.alamatKtp ?: "isi alamat di ktp")
-                    edUsia.setText("${it.usia}")
+                    edAlamatTinggal.setText(it.alamatTinggal ?: "")
+                    edAlamatKtp.setText(it.alamatKtp ?: "")
+                    if(it.usia != null){
+                        edUsia.setText("${it.usia}")
+                    }
                     if(it.fotoDiri.toString().isNotBlank()){
                         linkImage1 = it.fotoDiri
                         linkImage2 = it.fotoKtp
@@ -90,6 +97,7 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
         binding.seeImage1.setOnClickListener(this)
         binding.seeImage2.setOnClickListener(this)
         binding.seeImage3.setOnClickListener(this)
+        binding.btnCancel.setOnClickListener(this)
     }
 
 
@@ -189,12 +197,14 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
                 Glide.with(this).load(linkImage3).into(ivImage)
                 dialog.show()
             }
+            R.id.btn_cancel -> {
+                finish()
+            }
         }
     }
 
     private fun validateForm(): Boolean{
         return (binding.edUsia.text.isNotEmpty()
-                && !TextUtils.isEmpty(binding.edPekerjaan.text)
                 && getFile1 != null
                 && getFile2 != null
                 && getFile3 != null
@@ -215,7 +225,7 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
             } else {
                 gender = "perempuan".toRequestBody("text/plain".toMediaType())
             }
-            val profesi = binding.edPekerjaan.text.toString().toRequestBody("text/plain".toMediaType())
+            val profesi = binding.pekerjaanItemContainer.text.toString().toRequestBody("text/plain".toMediaType())
             val alamatTinggal = binding.edAlamatTinggal.text.toString().toRequestBody("text/plain".toMediaType())
             val alamatKtp = binding.edAlamatKtp.text.toString().toRequestBody("text/plain".toMediaType())
             val requestImageFile1 = file1.asRequestBody("image/jpeg".toMediaTypeOrNull())

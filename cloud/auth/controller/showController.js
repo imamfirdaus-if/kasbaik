@@ -126,6 +126,40 @@ const paymentData = async (req, res) => {
     }
 }
 
+const paymentDataById = async (req, res) => {
+  try {
+    console.log(req.params.id_borrower);
+    console.log(req.role);
+    if (req.role === "mitra") {
+      const allPayments = await dbPayment.findAll({
+        where: { id_borrower: req.params.id_borrower },
+      });
+      await dbUserPayment
+        .findOne({ where: { id_borrower: req.params.id_borrower } })
+        .then((data) => {
+          return res
+            .status(200)
+            .send({
+              payment: allPayments,
+              "total payment": Helper.toObject(data).total_payment,
+            });
+        });
+    } else if (req.role === "user") {
+      // const result1 = await dbBorrower.findOne({where: {id_user : req.id}})
+      // console.log(Helper.toObject(result1));
+      // getIdBorrower = Helper.toObject(result1).id_borrower
+      await dbPayment
+        .findAll({ where: { id_borrower: req.params.id_borrower } })
+        .then((data) => {
+          return res.status(200).send({ payment: data });
+        });
+    }
+  } catch (err) {
+    console.log(err);
+    return res.status(400).send({ message: err });
+  }
+};
+
 const userPaymentData = async (req, res) => {
     try {   
         await dbUserPayment.findOne({where: {id_user: req.id}})
@@ -158,6 +192,7 @@ module.exports = {
     mitraProfileData,
     mitraData,
     paymentData,
+    paymentDataById,
     userPaymentData,
     creditData
 }

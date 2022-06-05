@@ -1,28 +1,30 @@
-package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.status
+package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.riwayat.detailriwayat
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.hitzvera.kasbaik.databinding.RvItemPaymentBinding
+import com.hitzvera.kasbaik.databinding.RvItemRiwayatPembayaranBinding
+import com.hitzvera.kasbaik.response.Borrower
 import com.hitzvera.kasbaik.response.PaymentItem
+import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.historypayment.PaymentDiffUtil
+import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.status.StatusDiffUtil
 
-
-class StatusAdapter(private val onClickListener: OnClickListener): RecyclerView.Adapter<StatusAdapter.ViewHolder>() {
+class DetailHistoryAdapter(private val onClickListener: OnClickListener, private val count: String): RecyclerView.Adapter<DetailHistoryAdapter.ViewHolder>() {
 
     private var oldBorrowerItem = emptyList<PaymentItem>()
 
-    inner class ViewHolder(private val binding: RvItemPaymentBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(listBorrower: PaymentItem){
-            binding.tanggalPayment.text = listBorrower.createdAt
-            binding.status.text = listBorrower.paymentMethod
-            binding.jumlahPayment.text = listBorrower.amountPayment.toString()
+    inner class ViewHolder(private val binding: RvItemRiwayatPembayaranBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(detail: PaymentItem){
+            val amount = detail.amountPayment.toString()
+            binding.monthCount.text = detail.createdAt
+            binding.loanAmount.text = "Rp. $amount"
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(RvItemPaymentBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        ViewHolder(RvItemRiwayatPembayaranBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(oldBorrowerItem[position])

@@ -55,7 +55,7 @@ router.get("/updatestatus", Auth.verifyTokenMitra, showController.mitraData);
 // digunakan untuk menambahkan payment request oleh mitra
 router.post("/payment", Auth.verifyTokenMitra, mitraController.createPayment)
 router.get("/payment", Auth.verifyToken, showController.paymentData)
-
+router.get("/payment/:id_borrower", Auth.verifyToken, showController.paymentDataById)
 router.get("/userpayment", Auth.verifyToken, showController.userPaymentData)
 
 //see credit

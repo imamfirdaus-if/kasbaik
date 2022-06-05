@@ -2,6 +2,7 @@ package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.status
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -44,15 +45,25 @@ class StatusActivity : AppCompatActivity() {
         viewModel.listBorrowing.observe(this){
             if(it!=null){
                 currentBorrowing = it.last()
-                viewModel.getListPayment(token, this, currentBorrowing.idBorrower)
-                viewModel.listPayment.observe(this){ item ->
-                    if(item!=null){
-                        adapter.setData(item)
+                if(currentBorrowing.status == "done"){
+                    setVisibility(false)
+                } else if(currentBorrowing.status == "payment"){
+                    setVisibility(true)
+                    binding.tvLabelStatusHistoryTitle.visibility = View.VISIBLE
+                    viewModel.getListPayment(token, this, currentBorrowing.idBorrower)
+                    viewModel.listPayment.observe(this){ item ->
+                        if(item!=null){
+                            adapter.setData(item)
+                            Log.e("test", item.toString())
+                        }
                     }
+                    viewModel.isLoading.observe(this){ item ->
+                        showLoading(item)
+                    }
+                } else {
+                    setVisibility(true)
                 }
-                viewModel.isLoading.observe(this){ item ->
-                    showLoading(item)
-                }
+
                 binding.tvStatus.text = currentBorrowing.status
                 binding.tvDibuat.text = currentBorrowing.createdAt
                 binding.tvJumlahPinjaman.text = currentBorrowing.loanAmount.toString()
@@ -61,6 +72,26 @@ class StatusActivity : AppCompatActivity() {
 
 
 
+    }
+
+    private fun setVisibility(visible: Boolean){
+        if(visible){
+            binding.tvLabelStatus.visibility = View.VISIBLE
+            binding.tvStatus.visibility = View.VISIBLE
+            binding.tvLabelDibuat.visibility = View.VISIBLE
+            binding.tvDibuat.visibility = View.VISIBLE
+            binding.tvJumlahPinjaman.visibility = View.VISIBLE
+            binding.tvLabelJumlahPinjaman.visibility = View.VISIBLE
+            binding.tvLabelNothing.visibility = View.GONE
+        } else {
+            binding.tvLabelStatus.visibility = View.GONE
+            binding.tvStatus.visibility = View.GONE
+            binding.tvLabelDibuat.visibility = View.GONE
+            binding.tvDibuat.visibility = View.GONE
+            binding.tvJumlahPinjaman.visibility = View.GONE
+            binding.tvLabelJumlahPinjaman.visibility = View.GONE
+            binding.tvLabelNothing.visibility = View.VISIBLE
+        }
     }
 
     private fun showLoading(isLoading: Boolean){
