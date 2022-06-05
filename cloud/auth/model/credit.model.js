@@ -12,6 +12,9 @@ module.exports = (sequelize, Sequelize) => {
         usiakat: {
             type: Sequelize.INTEGER,
         },
+        genderkat: {
+            type: Sequelize.INTEGER,
+        },
         econkat : {
             type: Sequelize.INTEGER,    
         },

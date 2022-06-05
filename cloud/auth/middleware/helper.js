@@ -33,9 +33,15 @@ const Helper = {
     return JSON.parse(JSON.stringify(data));
   },
 
-  creditMaker(usia, pinjaman, tenor, pemasukan, tanggungan, pinjaman_ke, profesi, donasi) {
+  creditMaker(usia, gender, pinjaman, tenor, pemasukan, tanggungan, pinjaman_ke, profesi, donasi) {
     // check usia 
-    usia > 64 ? usiaKat =1 : usiaKat=2; 
+    usia > 64 ? usiaKat =1 : usiaKat=2;
+    
+    if (gender === 'laki-laki'){
+      genderKat = 0
+    } else{
+      genderKat = 1
+    }
 
     // check econCombineKat
     econCombine = pemasukan - ((pinjaman/(tenor/4)) + (150000 * (tanggungan +2)))
@@ -79,7 +85,7 @@ const Helper = {
       donasiKat = 0
     }
     
-    return {usiaKat, econCombineKat, pinjamanKeKat, profesiKat, donasiKat}
+    return {usiaKat, genderKat, econCombineKat, pinjamanKeKat, profesiKat, donasiKat}
   },
 
   convertTelat (telat) {
