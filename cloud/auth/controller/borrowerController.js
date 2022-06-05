@@ -50,7 +50,8 @@ const addBorrower = async (req, res, next) =>{
             
             // make credit_score
             const creds = Helper.creditMaker(
-                    objek.usia, 
+                    objek.usia,
+                    objek.gender, 
                     borrower.loan_amount,
                     borrower.tenor,
                     borrower.monthly_income,
@@ -65,6 +66,7 @@ const addBorrower = async (req, res, next) =>{
                 id_user,
                 id_mitra,
                 usiakat : creds.usiaKat,
+                genderkat : creds.genderKat,
                 econkat : creds.econCombineKat,
                 profesikat : creds.profesiKat,
                 pinjamankat : creds.pinjamanKeKat,
