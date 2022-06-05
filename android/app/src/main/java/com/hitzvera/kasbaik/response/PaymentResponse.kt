@@ -1,10 +1,10 @@
 package com.hitzvera.kasbaik.response
 
 data class PaymentResponse(
-    val tablePayment: List<TablePaymentResponse>
+    val tablePayment: List<tablePaymentResponse>
 )
 
-data class TablePaymentResponse(
+data class tablePaymentResponse(
     val id_payment: String,
     val id_mitra: String,
     val payment_method: String,

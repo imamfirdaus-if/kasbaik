@@ -2,7 +2,6 @@ package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.status
 
 import androidx.recyclerview.widget.DiffUtil
 import com.hitzvera.kasbaik.response.PaymentItem
-import com.hitzvera.kasbaik.response.TablePaymentResponse
 
 class StatusDiffUtil(
     private val oldList: List<PaymentItem>,

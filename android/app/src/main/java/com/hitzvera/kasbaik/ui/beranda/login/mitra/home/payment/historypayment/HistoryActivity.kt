@@ -2,6 +2,7 @@ package com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.historypayment
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,6 +33,7 @@ class HistoryActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[HistoryViewModel::class.java]
         viewModel.apply {
             getListPayment(token, this@HistoryActivity, idBorrower)
+            Log.e("ID", idBorrower)
             listPayment.observe(this@HistoryActivity){
                 if (it != null){
                     adapter.setData(it)

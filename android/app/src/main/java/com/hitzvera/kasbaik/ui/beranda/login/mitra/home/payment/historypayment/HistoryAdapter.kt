@@ -4,20 +4,18 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.hitzvera.kasbaik.databinding.ItemListPeminjamBinding
 import com.hitzvera.kasbaik.databinding.RvItemPaymentBinding
-import com.hitzvera.kasbaik.response.Borrower
-import com.hitzvera.kasbaik.response.TablePaymentResponse
+import com.hitzvera.kasbaik.response.PaymentItem
 
 class HistoryAdapter(private val onClickListener: OnClickListener): RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
-    private var oldBorrowerItem = emptyList<TablePaymentResponse>()
+    private var oldBorrowerItem = emptyList<PaymentItem>()
 
     inner class ViewHolder(private val binding: RvItemPaymentBinding): RecyclerView.ViewHolder(binding.root){
-        fun bind(listBorrower: TablePaymentResponse){
+        fun bind(listBorrower: PaymentItem){
             binding.tanggalPayment.text = listBorrower.createdAt
-            binding.status.text = listBorrower.payment_method
-            binding.jumlahPayment.text = listBorrower.amount_payment
+            binding.status.text = listBorrower.paymentMethod
+            binding.jumlahPayment.text = listBorrower.amountPayment.toString()
         }
     }
 
@@ -33,15 +31,15 @@ class HistoryAdapter(private val onClickListener: OnClickListener): RecyclerView
 
     override fun getItemCount(): Int = oldBorrowerItem.size
 
-    fun setData(newBorrowerList: List<TablePaymentResponse>){
+    fun setData(newBorrowerList: List<PaymentItem>){
         val diffUtil = PaymentDiffUtil(oldBorrowerItem, newBorrowerList)
         val diffResult = DiffUtil.calculateDiff(diffUtil)
         oldBorrowerItem = newBorrowerList
         diffResult.dispatchUpdatesTo(this)
     }
 
-    class OnClickListener(val clickListener: (getUpdateStatusResponseItem: TablePaymentResponse) -> Unit){
-        fun onClick(getUpdateStatusResponseItem: TablePaymentResponse) = clickListener(getUpdateStatusResponseItem)
+    class OnClickListener(val clickListener: (getUpdateStatusResponseItem: PaymentItem) -> Unit){
+        fun onClick(getUpdateStatusResponseItem: PaymentItem) = clickListener(getUpdateStatusResponseItem)
     }
 
 }

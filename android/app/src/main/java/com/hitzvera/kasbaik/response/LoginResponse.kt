@@ -14,5 +14,10 @@ data class LoginResponse(
 data class User(
 
 	@field:SerializedName("role")
-	val role: String
+	val role: String,
+
+	@field:SerializedName("username")
+	val username: String
+
+
 )

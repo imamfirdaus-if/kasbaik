@@ -42,10 +42,9 @@ class DetailPaymentActivity : AppCompatActivity(), View.OnClickListener {
 
         viewModel = ViewModelProvider(this)[DetailPaymentViewModel::class.java]
         binding.btnSave.setOnClickListener(this)
+        binding.btnCancel.setOnClickListener(this)
         getData()
         setData()
-
-
     }
 
     private fun getData(){
@@ -72,44 +71,20 @@ class DetailPaymentActivity : AppCompatActivity(), View.OnClickListener {
                 val amountPayment = binding.etPayment.text.toString()
                 val method = binding.methodContainer.text.toString()
                 viewModel.apply {
-                    addPayment(token, idBorrower, amountPayment.toInt(), method)
-                    isSuccessful.observe(this@DetailPaymentActivity){
-                        showCustomDialog(it)
-                    }
+                    addPayment(token, idBorrower, amountPayment.toInt(), method, this@DetailPaymentActivity)
+
                     isLoading.observe(this@DetailPaymentActivity){
                         showLoading(it)
                     }
                 }
                 Log.e("Cek", method)
             }
+            R.id.btn_cancel -> {
+                finish()
+            }
         }
     }
 
-    private fun showCustomDialog(state: String) {
-        if(state == "success"){
-            val dialog = Dialog(this)
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setCancelable(true)
-            dialog.setContentView(R.layout.register_pop_up_success)
-            val btnLogin: Button = dialog.findViewById(R.id.btn_login)
-            val tvSuccessful: TextView = dialog.findViewById(R.id.tv_successful)
-            tvSuccessful.text = "Berhasil membuat payment"
-            btnLogin.visibility = View.GONE
-            dialog.show()
-        } else if(state == "failed") {
-            val dialog = Dialog(this)
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            dialog.setCancelable(true)
-            dialog.setContentView(R.layout.register_pop_up_failed)
-            viewModel.errorMessage.observe(this){
-                val tvErrorMessage: TextView = dialog.findViewById(R.id.tv_error_message)
-                tvErrorMessage.text = it
-            }
-            val retryBtn: Button = dialog.findViewById(R.id.btn_retry)
-            retryBtn.setOnClickListener { dialog.dismiss() }
-            dialog.show()
-        }
-    }
 
     private fun showLoading(isLoading: Boolean){
         if(isLoading) {

@@ -100,6 +100,7 @@
             android:background="@drawable/rounded_corners"
             android:inputType="number"
             android:paddingStart="16dp"
+            android:hint="Usia"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_label_usia" />
 
@@ -156,20 +157,39 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ed_usia" />
 
-        <EditText
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/ed_pekerjaan"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/rounded_corners"
-            android:hint="Masukan pekerjaan anda"
-            android:paddingVertical="8dp"
-            android:paddingStart="16dp"
+
+            android:layout_marginHorizontal="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_label_pekerjaan" />
+            app:layout_constraintTop_toBottomOf="@id/tv_label_pekerjaan">
+
+            <AutoCompleteTextView
+                android:id="@+id/pekerjaan_item_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none"
+                android:text="buruh" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+<!--        <EditText-->
+<!--            android:id="@+id/ed_pekerjaan"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:background="@drawable/rounded_corners"-->
+<!--            android:hint="Masukan pekerjaan anda"-->
+<!--            android:paddingVertical="8dp"-->
+<!--            android:paddingStart="16dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/tv_label_pekerjaan" />-->
 
         <TextView
             android:id="@+id/tv_label_foto_ktp"

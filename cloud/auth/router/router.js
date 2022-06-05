@@ -55,6 +55,12 @@ router.post("/updatestatus/:id_borrower", Auth.verifyTokenMitra, mitraController
 router.get("/updatestatus/:id_borrower", Auth.verifyTokenMitra, showController.mitraDataById);
 
 // digunakan untuk menambahkan payment request oleh mitra
+// <<<<<<< HEAD
+// router.post("/payment", Auth.verifyTokenMitra, mitraController.createPayment)
+// router.get("/payment", Auth.verifyToken, showController.paymentData)
+// router.get("/payment/:id_borrower", Auth.verifyToken, showController.paymentDataById)
+// router.get("/userpayment", Auth.verifyToken, showController.userPaymentData)
+// =======
 router.get("/payment", Auth.verifyToken, showController.paymentData) // untuk melihat daftar peminjam yg sedang payment
 router.post("/payment/:id_borrower", Auth.verifyTokenMitra, mitraController.createPaymentById) //untuk menginput pembayaran dari satu peminjam
 router.get("/payment/:id_borrower", Auth.verifyToken, showController.paymentDataById); // melihat semua pembayaran peminjam

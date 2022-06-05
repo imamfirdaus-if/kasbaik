@@ -85,7 +85,8 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
                             }
                         } else {
                             Intent(this, HomeMitraActivity::class.java).also { intent ->
-                                intent.putExtra(HomePeminjamActivity.TOKEN, it.token)
+                                intent.putExtra(HomeMitraActivity.TOKEN, it.token)
+                                intent.putExtra(HomeMitraActivity.NAME, it.user.username)
                                 startActivity(intent)
                                 finish()
                             }

@@ -1,263 +1,179 @@
-const db = require('../model/model')
-const Helper = require('../middleware/helper')
-const dbUser = db.users
-const dbProfile = db.profileUser
-const dbBorrower = db.borrower
-const dbProfileMitra = db.profileMitra
-const dbMitra = db.mitra
-const dbPayment = db.payment
-const dbUserPayment = db.userPayment
-const dbCredit = db.credit
-const dbMessage = db.message
-const moment = require('moment')
-const { QueryTypes } = require('sequelize');
-const Op = require('sequelize').Op;
+const express = require("express");
+const router = express.Router();
+const userController = require("../controller/userControler");
+const Auth = require("../middleware/auth");
+const fileController = require("../controller/profileController");
+const borrowerController = require("../controller/borrowerController");
+const mitraController = require("../controller/mitraController");
+const showController = require("../controller/showController");
+const messageController = require("../controller/messageController");
+const adminController = require("../controller/adminController");
 
+// digunakan untuk melakukan signup / register
+router.post("/signup", userController.signup_post);
 
-const homeData = async (req, res) => {
-    try {
-        if(req.role === 'user'){
-            const tableUser = await dbUser.findOne({where: {id_user : req.id}})
-            const tableProfile = await dbProfile.findOne({where: {id_user : req.id}})
-            const tableBorrowerPayment = await dbBorrower.findOne({where: {id_user : req.id, status : 'payment'}})
-            const tableMessage = await dbMessage.findAll({where: {id_user : req.id},order : [["createdAt" , "DESC"] ]})
-            return res.status(200).send({ 
-                user : tableUser,
-                profile : tableProfile,
-                peminjaman : tableBorrowerPayment,
-                message : tableMessage
-            })
-            
-        } else if (req.role === 'mitra'){
-            const tableUser = await dbUser.findOne({where: {id_user : req.id}})
-            const tableProfile = await dbProfileMitra.findOne({where: {id_user : req.id}})
-            // get id mitra
-            const result = await db.profileMitra.findOne({where: {id_user: req.id}})
-            const getIdMitra = Helper.toObject(result).id_mitra
-            const tableMessage = await dbMessage.findAll({where: {id_mitra : getIdMitra ,link_bukti : {[Op.not]: null} }},{order : [["createdAt" , "DESC"] ]})
-            return res.status(200).send({
-                user : tableUser,
-                profile : tableProfile,
-                message : tableMessage
-            })
-        }
-        
-    } catch (err) {
-        console.log(err);
-        return res.status(403).send(err)
-    }
-}
+// digunakan untuk melakukan login
+router.post("/login", userController.login_post);
 
-const profileData = async (req, res) => {
-    try {
-        console.log(req.role);
-        if (req.role === 'user') {
-            const hasilProfile = await dbProfile.findOne({where: {id_user : req.id}})
-            const viewMessageNotif = await db.message.findAll ({where: {id_user : req.id , has_read : false}})
-            return res.status(200).send({profile : hasilProfile , message : viewMessageNotif})
-        } else if (req.role === 'mitra'){
-            await dbProfileMitra.findOne({where: {id_user : req.id}})
-            .then(data => {
-                return res.status(200).send(data)
-            })
-        }
-       
-    } catch (err) {
-        return res.status(403).send(err)
-    }
-}
+// digunakan untuk melakukan logout dari aplikasi sehingga menghancurkan jwt
+router.post("/logout", Auth.verifyToken, userController.logout_post);
+// digunakan untuk memberikan response mengenai profile
+router.get("/logout", Auth.verifyToken, showController.profileData);
 
+// digunakan untuk menghapus akun
+router.post("/delete", Auth.verifyToken, userController.delete_post);
+// digunakan untuk memberikan response mengenai profile yang akan dihapus
+router.get("/delete", Auth.verifyToken, showController.profileData);
 
-const borrowerData = async (req, res) => {
-    try {
-        await dbBorrower.findAll({where: {id_user : req.id}, order : [["createdAt", "DESC"]]})
-        .then(data => {
-            return res.status(200).send(data)
-        })
-    } catch (err) {
-        console.log(err);
-        return res.status(403).send(err)
-    }
-}
+//digunakan sebagai home page yang berisi respon table user, profile, peminjaman aktif dan pesan
+router.get("/home", Auth.verifyToken, showController.homeData);
 
-const borrowerDatabyId = async (req, res) => {
-    try {
-        const hasil1 = await dbBorrower.findAll({where: {id_user : req.id , id_borrower : req.params.id_borrower}})
-        const userPayments = await dbUserPayment.findOne({where: {id_borrower: req.params.id_borrower}})
-        await dbPayment.findAll({where: {id_borrower: req.params.id_borrower}, order : [["createdAt" , "ASC"] ]})
-            .then(data => {
-            return res.status(200).send({pinjaman : hasil1, "payment history" : data, description : userPayments })
-            })
-    } catch (err) {
-        console.log(err);
-        return res.status(403).send(err)
-    }
-}
+//digunakan untuk mengupdate password
+router.post("/updatepassword", Auth.verifyToken, userController.update_post);
 
-const mitraProfileData = async (req, res) => {
-    try {
-        await dbProfileMitra.findOne({where: {id_user : req.id}})
-        .then(data => {
-            return res.status(200).send(data)
-        })
-    } catch (err) {
-        return res.status(403).send(err)
-    }
-}
+//digunakan untuk melakukan update dari profile user
+router.post("/profile", Auth.verifyTokenUser, fileController.profile_post);
+// untuk mendapatkan response dari profile
+router.get("/profile", Auth.verifyTokenUser, showController.profileData);
 
-const mitraData = async (req, res) => {
-    try {
-        console.log(req.params.id_borrower);
-        const result = await dbProfileMitra.findOne({where: {id_user: req.id}})
-        
-        const getIdMitra = Helper.toObject(result).id_mitra
+// digunakan untuk membuat request peminjaman uang oleh peminjam
+router.get("/borrower", Auth.verifyTokenUser, showController.borrowerData); // melihat semua pinjama
+router.post("/borrower", Auth.verifyTokenUser, borrowerController.addBorrower); //menambah pinjaman
+router.get(
+  "/borrower/:id_borrower",
+  Auth.verifyTokenUser,
+  showController.borrowerDatabyId
+); // melihat salah satu pinjaman
+router.put(
+  "/borrower/:id_borrower",
+  Auth.verifyTokenUser,
+  borrowerController.updateBorrower
+); // mengupdate pinjaman status still pending
+router.delete(
+  "/borrower/:id_borrower",
+  Auth.verifyTokenUser,
+  borrowerController.deleteBorrower
+); //menghapus pinjaman yang masih pending
 
-        await dbMitra.findAll({where: {id_mitra: getIdMitra}, order : [["createdAt" , "DESC"] ]})
-        .then(data => {
-            return res.status(200).send(data)
-        })
-       
-    } catch (err) {
-        return res.status(403).send(err)
-    }
-}
+// digunakan untuk mengupdate profile dari mitra
+router.post(
+  "/mitraprof",
+  Auth.verifyTokenMitra,
+  mitraController.profileMitra_post
+);
+router.get(
+  "/mitraprof",
+  Auth.verifyTokenMitra,
+  showController.mitraProfileData
+);
 
-const mitraDataById = async (req, res) => {
-    try {
-        const result = await dbProfileMitra.findOne({where: {id_user: req.id}})
-        const getIdMitra = Helper.toObject(result).id_mitra
-        const pinjaman = await dbMitra.findAll({where: {id_mitra: getIdMitra, id_borrower : req.params.id_borrower}})
-        const allPayments = await dbPayment.findAll({where: {id_borrower: req.params.id_borrower}, order : [["createdAt" , "ASC"] ]})
-        const userPayments = await dbUserPayment.findOne({where: {id_borrower: req.params.id_borrower}})
-        return res.status(200).send({pinjaman : pinjaman , "payment history" : allPayments, description : userPayments})
-    } catch (err) {
-        console.log(err);
-        return res.status(400).send({status : err})
-    }
-}
+// digunakan oleh mitra untuk melihat dan mengupdate semua list request peminjaman
+router.get("/updatestatus", Auth.verifyTokenMitra, showController.mitraData);
+router.post(
+  "/updatestatus/:id_borrower",
+  Auth.verifyTokenMitra,
+  mitraController.editStatusBorrower
+);
+router.get(
+  "/updatestatus/:id_borrower",
+  Auth.verifyTokenMitra,
+  showController.mitraDataById
+);
 
-const paymentData = async (req, res) => {
-    try {
-        let getIdBorrower
-        let getIdMitra
-        //get id mitra 
-        if (req.role === 'mitra') {
-            const result = await dbProfileMitra.findOne({where: {id_user: req.id}})
-            getIdMitra = Helper.toObject(result).id_mitra
-            await dbMitra.findAll({where: {id_mitra: getIdMitra, status : 'payment'}})
-            .then(async data => {
-                return res.status(200).send(data)
-            })
-        } else if (req.role === 'user') {
-            const result1 = await dbBorrower.findAll({where: {id_user : req.id}, order : [["createdAt" , "DESC"] ]})
-            .then(data => {
-            return res.status(200).send({pinjaman : data})
-            })
-        }
-    } catch (err) {
-        console.log(err);
-        return res.status(400).send(err)
-    }
-}
+// digunakan untuk menambahkan payment request oleh mitra
+router.get("/payment", Auth.verifyToken, showController.paymentData); // untuk melihat daftar peminjam yg sedang payment
+router.post(
+  "/payment/:id_borrower",
+  Auth.verifyTokenMitra,
+  mitraController.createPaymentById
+); //untuk menginput pembayaran dari satu peminjam
+router.get(
+  "/payment/:id_borrower",
+  Auth.verifyToken,
+  showController.paymentDataById
+); // melihat semua pembayaran peminjam
 
-const paymentDataById = async (req, res) => {
-    try {
-        console.log(req.params.id_borrower);
-        console.log(req.role);
-        if (req.role === 'mitra') {
-            const allPayments = await dbPayment.findAll({where: {id_borrower: req.params.id_borrower}})
-            await dbUserPayment.findOne({where: {id_borrower: req.params.id_borrower}})
-            .then(data => {
-                return res.status(200).send({payment : allPayments, "total payment" : Helper.toObject(data).total_payment})
-            })
-            
-        } else if (req.role === 'user') {
-            // const result1 = await dbBorrower.findOne({where: {id_user : req.id}})
-            // console.log(Helper.toObject(result1));
-            // getIdBorrower = Helper.toObject(result1).id_borrower
-            await dbPayment.findAll({where: {id_borrower: req.params.id_borrower}})
-            .then(data => {
-            return res.status(200).send({payment : data})
-            })
-        }
-    } catch (err) {
-        console.log(err);
-        return res.status(400).send({message: err})
-    }
-}
+//see credit
+router.get("/credit/", Auth.verifyToken, showController.creditData);
+router.get(
+  "/credit/:id_borrower",
+  Auth.verifyToken,
+  showController.creditDataById
+);
 
-const buktiBayarMessage = async (req, res) => {
-    try {
-        const AllMess = await db.message.findAll({where : {id_user: req.id , link_bukti : {[Op.not]: null} } ,order : [["createdAt", "DESC"]]})
-            return res.status(200).send({message : AllMess})
-    } catch (err) {
-        console.log(err);
-        return res.status(400).send({message: err})
-    }
-}
+// digunakan untuk melihat message
+router.get("/messages", Auth.verifyToken, messageController.showAllMess);
+router.get(
+  "/messages/:id_message",
+  Auth.verifyToken,
+  messageController.updateMess
+); //for update mess has_read = true and see message
 
-const creditDataById = async (req, res) => {
-    try {
-        console.log(req.params.id_borrower);
-        await dbCredit.findOne({where: {id_borrower: req.params.id_borrower}})
-        .then(data => {
-            return res.status(200).send({data})
-        })
-    } catch (err) {
-        console.log(err);
-        return res.status(400).send(err)
-    }
-}
+//digunakan untuk memberikan feedback message dari peminjam ke mitra sehingga peminjam tau message bukti payment accepted atau rejected
+router.post(
+  "/messages/:id_message",
+  Auth.verifyTokenMitra,
+  messageController.handleMessagebyMitra
+);
 
-const creditData= async (req, res) => {
-    try {
-        console.log(req.params.id_borrower);
-        await dbCredit.findAll()
-        .then(data => {
-            return res.status(200).send({data})
-        })
-    } catch (err) {
-        console.log(err);
-        return res.status(400).send(err)
-    }
-}
+// digunakan untuk melihat history input bukti
+router.get(
+  "/buktibayar/",
+  Auth.verifyTokenUser,
+  showController.buktiBayarMessage
+);
+// digunakan untuk memberikan bukti bayar ke mitra sebagai message
+router.post(
+  "/buktibayar",
+  Auth.verifyTokenUser,
+  messageController.createMessagetoMitra
+); // post untuk memberikan bukti bayar
 
-const messageData = async (req, res) => {
-    try {
-        await db.message.findAll({where: {id_user : req.id, has_read : false}})
-        .then(data => {
-            return res.status(200).send(data)
-        })
-    } catch (err) {
-        console.log(err);
-        return res.status(400).send({status : err})
-    }
-}
+//role admin
+router.get(
+  "/listAkunUser",
+  Auth.verifyTokenAdmin,
+  adminController.listAkunUser
+);
+router.get(
+  "/listAkunMitra",
+  Auth.verifyTokenAdmin,
+  adminController.listAkunMitra
+);
+router.get(
+  "/listAkunUser/:id_user",
+  Auth.verifyTokenAdmin,
+  adminController.listDetailUser
+);
+router.get(
+  "/listBorrowerPending",
+  Auth.verifyTokenAdmin,
+  adminController.listBorrowerPending
+);
+router.get(
+  "/listBorrowerAcc",
+  Auth.verifyTokenAdmin,
+  adminController.listBorrowerAcc
+);
+router.get(
+  "/listBorrowerHistory",
+  Auth.verifyTokenAdmin,
+  adminController.listBorrowerHistory
+);
+router.get(
+  "/listBorrower/:id_borrower",
+  Auth.verifyTokenAdmin,
+  adminController.listDetailBorrower
+);
 
-// const userPaymentData = async (req, res) => {
-//     try {   
-//         await dbUserPayment.findOne({where: {id_user: req.id}})
-//         .then(data => {
-//             return res.status(200).send({user_payment : data})
-//         })
-//     } catch (err) {
-//         console.log(err);
-//         return res.status(400).send(err)
-//     }
-// }
-module.exports = {
-    homeData,
-    profileData,
-    borrowerData,
-    borrowerDatabyId,
-    mitraProfileData,
-    mitraData,
-    mitraDataById,
-    paymentData,
-    paymentDataById,
-    buktiBayarMessage,
-    // userPaymentData,
-    creditData,
-    creditDataById,
-    messageData
-}
+//get ALL message in user where has_read = false
+// router.get('/profile/message', Auth.verifyTokenUser , showController.messageData)
+// router.put('/profile/message/:id_message', Auth.verifyTokenUser , messageController.updateMess)
+
+// untuk melihat pembayaran aktif dan melihat total paymentnya
+// router.get("/userpayment", Auth.verifyToken, showController.userPaymentData)  // sudah ada didalam /borrower/:id_borrower"
+
+// router.get("/buktibayar/:id_message", Auth.verifyTokenMitra, messageController.updateMess) // ini digantikan oleh /message/:id_message
+
+// router.get("/buktibayar", Auth.verifyTokenMitra, messageController.showAllMess) // ini digantikan oleh /message
+module.exports = router;

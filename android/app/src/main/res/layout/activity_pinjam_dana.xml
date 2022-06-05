@@ -89,7 +89,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="16dp"
             android:layout_marginStart="16dp"
-            android:text="Tenor"
+            android:text="Tenor perminggu"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textSize="12sp"
@@ -98,7 +98,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_jumlah_pinjaman" />
 
-        <EditText
+        <TextView
             android:id="@+id/tv_tenor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -109,10 +109,33 @@
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textSize="12sp"
-            android:inputType="number"
             android:padding="12dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_add_tenor"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_tenor" />
+
+        <ImageButton
+            android:id="@+id/btn_add_tenor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="Add per 500 rupiah"
+            android:padding="12dp"
+            android:src="@drawable/add"
+            app:layout_constraintStart_toEndOf="@id/tv_jumlah_pinjaman"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_tenor" />
+
+        <ImageButton
+            android:id="@+id/btn_minus_tenor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="decrease per 500 rupiah"
+            android:padding="12dp"
+            android:src="@drawable/subtract"
+            app:layout_constraintStart_toEndOf="@id/btn_add"
             app:layout_constraintTop_toBottomOf="@id/tv_label_tenor" />
 
         <TextView
@@ -121,7 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="16dp"
             android:layout_marginStart="16dp"
-            android:text="Pemasukan"
+            android:text="Pemasukan perbulan"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textSize="12sp"
@@ -153,7 +176,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="16dp"
             android:layout_marginStart="16dp"
-            android:text="Tanggungan"
+            android:text="Berapa Orang Tanggungan"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textSize="12sp"
@@ -211,108 +234,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_label_reason" />
 
-        <TextView
-            android:id="@+id/tv_label_payment_method"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="16dp"
-            android:layout_marginStart="16dp"
-            android:text="Metode pembayaran"
-            android:textAllCaps="false"
-            android:fontFamily="@font/poppins_semibold"
-            android:textSize="12sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_reason" />
 
-        <RadioGroup
-            android:id="@+id/radio_group_payment_method"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@+id/tv_label_payment_method"
-            app:layout_constraintTop_toBottomOf="@+id/tv_label_payment_method">
 
-            <RadioButton
-                android:id="@+id/radio_cicil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="cicil"
-                android:textAllCaps="false"
-                android:fontFamily="@font/poppins_semibold"
-                android:textSize="12sp"
-                android:textColor="@color/white"
-                />
 
-            <RadioButton
-                android:id="@+id/radio_cash"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:text="cash"
-                android:textAllCaps="false"
-                android:fontFamily="@font/poppins_semibold"
-                android:textSize="12sp"
-                android:textColor="@color/white"
-                />
-        </RadioGroup>
-
-        <TextView
-            android:id="@+id/tv_label_telat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="16dp"
-            android:layout_marginStart="16dp"
-            android:text="Telat"
-            android:textAllCaps="false"
-            android:fontFamily="@font/poppins_semibold"
-            android:textSize="12sp"
-            android:textColor="@color/white"
-
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@id/tv_label_donasi"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/radio_group_payment_method" />
 
         <TextView
             android:id="@+id/tv_label_donasi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="16dp"
-            android:layout_marginStart="16dp"
             android:text="Donasi"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textSize="12sp"
             android:textColor="@color/white"
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_label_telat"
-            app:layout_constraintTop_toBottomOf="@id/radio_group_payment_method" />
+            app:layout_constraintStart_toStartOf="@+id/tv_reason"
+            app:layout_constraintTop_toBottomOf="@id/tv_reason" />
 
-        <TextView
-            android:id="@+id/tv_telat"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/rounded_corners"
-            android:hint="optional"
-            android:textAllCaps="false"
-            android:fontFamily="@font/poppins_semibold"
-            android:textSize="12sp"
-            android:padding="12dp"
-            app:layout_constraintEnd_toEndOf="@id/tv_label_telat"
-            app:layout_constraintStart_toStartOf="@id/tv_label_telat"
-            app:layout_constraintTop_toBottomOf="@id/tv_label_telat" />
 
-        <TextView
+        <EditText
             android:id="@+id/tv_donasi"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:background="@drawable/rounded_corners"
             android:hint="optional"
@@ -320,13 +264,14 @@
             android:fontFamily="@font/poppins_semibold"
             android:textSize="12sp"
             android:padding="12dp"
-            app:layout_constraintEnd_toEndOf="@id/tv_label_donasi"
-            app:layout_constraintStart_toStartOf="@id/tv_label_donasi"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="@id/tv_reason"
+            app:layout_constraintStart_toStartOf="@id/tv_reason"
             app:layout_constraintTop_toBottomOf="@id/tv_label_donasi" />
 
         <Button
             android:id="@+id/btn_ajukan_pinjaman"
-            android:layout_width="0dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:backgroundTint="@color/white"
@@ -336,7 +281,7 @@
             android:textSize="12sp"
             android:textColor="@color/orange"
             app:layout_constraintEnd_toEndOf="@+id/tv_donasi"
-            app:layout_constraintStart_toStartOf="@id/tv_telat"
+            app:layout_constraintStart_toStartOf="@id/tv_donasi"
             app:layout_constraintTop_toBottomOf="@+id/tv_donasi" />
 
         <ProgressBar

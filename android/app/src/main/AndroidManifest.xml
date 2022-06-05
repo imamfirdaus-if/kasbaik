@@ -13,6 +13,27 @@
         android:theme="@style/Theme.KasBaik"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.splashscreen.SplashScreenActivity"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ui.dashboard.login.DashboardLoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.dashboard.daftar.DashboardDaftarActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".ui.beranda.login.peminjam.home.riwayat.HistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.beranda.login.peminjam.home.riwayat.detailriwayat.DetailHistoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.beranda.login.peminjam.home.status.StatusActivity"
             android:exported="false" />
         <activity
@@ -49,10 +70,7 @@
         <activity
             android:name=".ui.beranda.login.peminjam.home.pinjamdana.PinjamDanaActivity"
             android:exported="false" />
-        <activity
-            android:name=".ui.pengguna.donasi.DonasiActivity"
-            android:exported="false"
-            android:label="@string/title_activity_donasi" />
+
         <activity
             android:name=".ui.beranda.login.mitra.LoginAsMitraActivity"
             android:exported="false" />
@@ -74,13 +92,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.beranda.BerandaActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />

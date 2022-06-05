@@ -1,5 +1,7 @@
 package com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.detailpayment
 
+import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,7 +23,7 @@ class DetailPaymentViewModel : ViewModel(){
     private var _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    fun addPayment(token: String, id: String, payment: Int, method: String){
+    fun addPayment(token: String, id: String, payment: Int, method: String, context: Context){
         _isLoading.value = true
         _isSuccessful.value = "pending"
         ApiConfig.getApiService().postPayment("jwt=$token", id, method, payment)
@@ -33,18 +35,21 @@ class DetailPaymentViewModel : ViewModel(){
                     if (response.isSuccessful){
                         _isLoading.value = false
                         _isSuccessful.value = "success"
+                        Toast.makeText(context, "Berhasil melakukan pembayaran", Toast.LENGTH_LONG).show()
                     } else {
                         _isLoading.value = false
                         _isSuccessful.value = "failed"
                         val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
                         val mErrorMessage = jsonObj.getString("message")
                         _errorMessage.value = mErrorMessage
+                        Toast.makeText(context, "Berhasil melakukan pembayaran", Toast.LENGTH_LONG).show()
                     }
                 }
 
                 override fun onFailure(call: Call<PaymentResponse>, t: Throwable) {
                     _isLoading.value = false
                     _isSuccessful.value = "failed"
+                    Toast.makeText(context, "Berhasil melakukan pembayaran", Toast.LENGTH_LONG).show()
                 }
             })
     }

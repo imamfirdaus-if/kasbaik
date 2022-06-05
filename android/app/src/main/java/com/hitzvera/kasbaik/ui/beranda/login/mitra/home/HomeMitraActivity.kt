@@ -14,7 +14,6 @@ class HomeMitraActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityHomeMitraBinding
     private lateinit var token: String
-    private lateinit var viewModel: HomeMitraViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +21,8 @@ class HomeMitraActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         token = intent.getStringExtra(TOKEN)!!
+        val name = intent.getStringExtra(NAME)
+        binding.tvGreeting.text = getString(R.string.greet_user, name)
         binding.btnListPeminjam.setOnClickListener(this)
         binding.btnEditProfile.setOnClickListener(this)
         binding.btnPayment.setOnClickListener(this)
@@ -30,6 +31,7 @@ class HomeMitraActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         const val TOKEN = "token"
+        const val NAME = "name"
     }
 
     override fun onClick(view: View) {

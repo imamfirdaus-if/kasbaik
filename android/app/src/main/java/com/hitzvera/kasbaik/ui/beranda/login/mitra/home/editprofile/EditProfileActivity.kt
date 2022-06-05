@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.bumptech.glide.Glide
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityEditProfileBinding
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.HomeMitraActivity.Companion.TOKEN
@@ -47,9 +48,9 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
         token = intent.getStringExtra(TOKEN).toString()
         viewModel = ViewModelProvider(this)[EditProfileViewModel::class.java]
 
-        binding.btnSave.setOnClickListener(this)
-        binding.btnCancel.setOnClickListener(this)
-        binding.tvChangePhoto.setOnClickListener(this)
+
+        bindingData()
+
     }
 
 
@@ -104,6 +105,20 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
                 && getFile != null)
     }
 
+    private fun bindingData(){
+        val name = intent.getStringExtra(MitraProfileActivity.NAMA)
+        val nomor = intent.getStringExtra(MitraProfileActivity.NOMOR)
+        val location = intent.getStringExtra(MitraProfileActivity.LOCATION)
+        val photo = intent.getStringExtra(MitraProfileActivity.PHOTO)
+        Glide.with(this).load(photo ?: "").into(binding.ivAvatar)
+        binding.tvNama.setText(name)
+        binding.tvNomor.setText(nomor)
+        binding.tvLocation.setText(location)
+        binding.btnSave.setOnClickListener(this)
+        binding.btnCancel.setOnClickListener(this)
+        binding.tvChangePhoto.setOnClickListener(this)
+    }
+
     override fun onClick(view: View) {
         when(view.id){
             R.id.btn_save -> {
@@ -132,6 +147,9 @@ class EditProfileActivity : AppCompatActivity(), View.OnClickListener {
             R.id.tv_change_photo -> {
                 startGallery()
                 Log.e("test", "masuk")
+            }
+            R.id.btn_cancel -> {
+                finish()
             }
         }
     }
