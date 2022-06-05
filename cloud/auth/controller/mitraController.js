@@ -30,7 +30,10 @@ const profileMitra_post = async (req, res, next) => {
         }
         let id_user = req.id;
         
-        const blob = bucket.file(req.files[0].originalname.replace("", `data ${id_user}` ));  
+        let changeName1 = req.files[0].originalname.replace("", `mitra_prof${id_user}` )
+        let changeName2 = changeName1.replace(" ", '-')
+        const blob = bucket.file(changeName2);  
+        
         const blobStream = blob.createWriteStream({
             resumable: false,
         });
@@ -95,36 +98,42 @@ const editStatusBorrower = async (req, res) => {
 
         await dbMitra.findAll({where: {id_mitra: getIdMitra}})
         .then(async data => {
+            let message = req.body.message
             
-            const getIdBorrower = req.body.id_borrower || Helper.toObject(data[0]).id_borrower // INI DIPILIH OLEH MITRA DARI DROPDOWN
             //mendapatkan informasi tabel mitra berdasarkan id borrower
-            const hasilMitra = await dbMitra.findOne({where: {id_borrower: getIdBorrower}})
+            const hasilMitra = await dbMitra.findOne({where: {id_borrower: req.params.id_borrower}})
             const objek = Helper.toObject(hasilMitra)
             const data1 = {
                 status : req.body.status
             }
             // mengupdate status pada table mitras
-            dbMitra.update(data1,{where: {id_borrower: getIdBorrower}})
+            dbMitra.update(data1,{where: {id_borrower: req.params.id_borrower}})
             .then(async data2 => {
                 // mengupdate status pada table borrower
-                let updateBorrower = await dbBorrower.update(data1,{where: {id_borrower: getIdBorrower}})
+                let updateBorrower = await dbBorrower.update(data1,{where: {id_borrower: req.params.id_borrower}})
                 console.log(data2);
                 //membuat table user_payments if status updated to 'payment'
                 let total_payment;
                 let createUserPay;
                 let target_lunas = moment().add(objek.tenor, 'weeks').format('YYYY-MM-DD');
+                console.log(req.body.message);
+                if (message === undefined) {
+                    message =""
+                }
                 let dataCreateUserPay = {
                     id_borrower : objek.id_borrower,
                     id_mitra : objek.id_mitra,
                     id_user : objek.id_user,
                     loan_amount : objek.loan_amount,
                     total_payment,
-                    target_lunas
+                    target_lunas,
+                    message : `your status is changed to ${data1.status}. ` + message
                 }
                 if (data1.status === 'payment'){
                     createUserPay = await db.userPayment.create(dataCreateUserPay)
                 }
-                return res.status(200).send({tabelmitra: data2, tabelborrower: updateBorrower, user_payment : createUserPay});
+                let createMessage = await db.message.create(dataCreateUserPay)
+                return res.status(200).send({tabelmitra: data2, tabelborrower: updateBorrower, user_payment : createUserPay, message : createMessage});
             })
 
             
@@ -137,38 +146,46 @@ const editStatusBorrower = async (req, res) => {
     }
 }
 
-const createPayment = async (req, res) => {
+const createPaymentById = async (req, res) => {
     try {
+        let isLunas = "belum lunas;"
+        let payment_ke ;
+        
         const result = await dbProfileMitra.findOne({where: {id_user: req.id}})
         const getIdMitra = Helper.toObject(result).id_mitra
         await dbMitra.findAll({where: {id_mitra: getIdMitra, status: 'payment'}})
         .then(async data => {
             console.log(Helper.toObject(data));
-            // const objek = Helper.toObject(data[1]) // INI DIPILIH OLEH MITRA
+            const seeDbPayment = await dbPayment.findAll ({where: {id_borrower: req.params.id_borrower}})
+            .then(data => {
+                payment_ke = Helper.toObject(data).length + 1
+            })
+            
             dataPayment = {
                 id_mitra: getIdMitra,
                 payment_method: req.body.payment_method,
                 amount_payment : req.body.amount_payment,
-                id_borrower : req.body.id_borrower || objek.id_borrower// ini nanti dipilih oleh mitra dari hasil click
+                payment_ke : payment_ke,
+                id_borrower : req.params.id_borrower// ini nanti dipilih oleh mitra dari hasil click
             }
             if (data[0] === undefined){
                 throw "data tidak ditemukan"
             }
             
             const lookUserPay = await dbUserPayment.findOne({where: {id_borrower: dataPayment.id_borrower}})
+            const hasilPayment = await dbPayment.create(dataPayment).catch(err => {return res.send({error: err})} )
+            //create message to user peminjam
             
-            await dbPayment.create(dataPayment)
-            .then(async data1 => {
-                let tempTotalPay = lookUserPay.dataValues.total_payment + data1.amount_payment
-                let objekxx = {
-                    total_payment: tempTotalPay
-                }
-                const updateUserPay = await dbUserPayment.update(objekxx,{where: {id_borrower: data1.id_borrower}})
-                console.log(updateUserPay);
-                console.log(tempTotalPay);
-                
-                res.status(200).send({tablePayment: data1})
-            })
+
+            let tempTotalPay = lookUserPay.dataValues.total_payment + hasilPayment.amount_payment
+            let objekxx = {
+                total_payment: tempTotalPay
+            }
+            const updateUserPay = await dbUserPayment.update(objekxx,{where: {id_borrower: hasilPayment.id_borrower}})
+            console.log(updateUserPay);
+            console.log(tempTotalPay);
+            let message =`Your ${payment_ke}th payment has been verified.` ;
+            //untuk melihat apakah sudah lunas atau bel um
             const lookUserPay1 = await dbUserPayment.findOne({where: {id_borrower: dataPayment.id_borrower}})
             if (lookUserPay1.dataValues.total_payment >= lookUserPay1.dataValues.loan_amount){
                 let status1 = {
@@ -180,15 +197,22 @@ const createPayment = async (req, res) => {
                 let p = {
                     telatkat : dif
                 }
-                
                 const c1= await dbMitra.update(status1, {where : {id_borrower : dataPayment.id_borrower}})
                 const c2 =await dbBorrower.update(status1, {where : {id_borrower : dataPayment.id_borrower}})
                 const c3 = await dbCredit.update(p, {where : {id_borrower : dataPayment.id_borrower}})
                 
                 console.log(diff, c1, c2, c3);
                 console.log('lunas');
+                isLunas = "Sudah Lunas"
+                message = message + " Peminjaman kamu telah lunas, Selamat! "
             }
-            return 
+            let dataMessage = {
+                id_user : Helper.toObject(lookUserPay.id_user),
+                id_borrower : dataPayment.id_borrower,
+                message : message
+            }
+            let createMessage = await db.message.create(dataMessage)
+            return res.status(200).send({tablePayment: hasilPayment , status: isLunas, message: createMessage})
         })
         
         // await dbPayment.create(dataPayment)
@@ -202,5 +226,5 @@ module.exports = {
     profileMitra_post,
     seeAllBorrowers,
     editStatusBorrower,
-    createPayment,
+    createPaymentById,
 }

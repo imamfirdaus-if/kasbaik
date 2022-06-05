@@ -42,13 +42,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         donasi: {
             type: Sequelize.INTEGER
-        },
-        updatedAt: {
-          type: Sequelize.DATEONLY
-        },
-        createdAt : {
-          type: Sequelize.DATEONLY
-        },
+        }
     }, {
         freezeTableName: true,
       });

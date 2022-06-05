@@ -19,8 +19,7 @@ db.sequelize.sync().then(
 
 app.get('/', async (req, res) => {
   try {
-    console.log(req.query.name);
-    res.send(`Welcome to API Page for Kasbaik Backend for Users ${req.query.name}`);
+    res.send(`Welcome to API Page for Kasbaik Backend for Users`);
   } catch (error) {
     console.log(error);;
   }

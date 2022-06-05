@@ -49,13 +49,7 @@ module.exports = (sequelize, Sequelize) => {
         },
         donasi: {
             type: Sequelize.INTEGER
-        },
-        updatedAt: {
-          type: Sequelize.DATEONLY
-        },
-        createdAt : {
-          type: Sequelize.DATEONLY
-        },
+        }
     });
     Mitra.removeAttribute('id');
     return Mitra;
