@@ -65,11 +65,18 @@ const addBorrower = async (req, res, next) =>{
                 id_borrower: borrower.id_borrower,
                 id_user,
                 id_mitra,
+                usiastr: creds.usiastr,
                 usiakat : creds.usiaKat,
                 genderkat : creds.genderKat,
                 econkat : creds.econCombineKat,
+                profesistr: creds.profesistrindex,
                 profesikat : creds.profesiKat,
-                pinjamankat : creds.pinjamanKeKat,
+                pinjamanstr : creds.pinjamanstr,
+                pinjamankekat : creds.pinjamanKeKat,
+                tenorstr : creds.tenorstr,
+                pemasukanstr : creds.pemasukanstr,
+                tanggunganstr : creds.tanggunganstr,
+                donasistr : creds.donasistr,
                 donasikat : creds.donasiKat
             }
             console.log(p);

@@ -9,6 +9,9 @@ module.exports = (sequelize, Sequelize) => {
         id_mitra: {
             type: Sequelize.UUID
         },
+        usiastr: {
+            type: Sequelize.FLOAT,
+        },
         usiakat: {
             type: Sequelize.INTEGER,
         },
@@ -18,14 +21,32 @@ module.exports = (sequelize, Sequelize) => {
         econkat : {
             type: Sequelize.INTEGER,    
         },
+        profesistr : {
+            type: Sequelize.FLOAT,    
+        },
         profesikat: {
             type: Sequelize.INTEGER,    
         },
-        pinjamankat : {
+        pinjamanstr : {
+            type: Sequelize.FLOAT,    
+        },
+        pinjamankekat : {
             type: Sequelize.INTEGER,    
+        },
+        tenorstr : {
+            type: Sequelize.FLOAT,    
+        },
+        pemasukanstr : {
+            type: Sequelize.FLOAT,    
+        },
+        tanggunganstr : {
+            type: Sequelize.FLOAT,    
         },
         telatkat : {
             type: Sequelize.INTEGER,    
+        },
+        donasistr : {
+            type: Sequelize.FLOAT,    
         },
         donasikat : {
             type: Sequelize.INTEGER,    
