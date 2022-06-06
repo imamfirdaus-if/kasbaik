@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hitzvera.kasbaik.api.ApiConfig
 import com.hitzvera.kasbaik.response.HomeUserResponse
+import com.hitzvera.kasbaik.response.Profile
 import com.hitzvera.kasbaik.response.ProfileResponse
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,42 +24,22 @@ class HomePeminjamViewModel: ViewModel() {
     fun reqProfilePeminjam(context: Context, token: String){
         _isLoading.value = true
         ApiConfig.getApiService().getRequestProfile("jwt=$token")
-            .enqueue(object: Callback<ProfileResponse>{
+            .enqueue(object: Callback<Profile>{
                 override fun onResponse(
-                    call: Call<ProfileResponse>,
-                    response: Response<ProfileResponse>
+                    call: Call<Profile>,
+                    response: Response<Profile>
                 ) {
                     if(response.isSuccessful){
-                        _profileResponse.postValue(response.body())
+                        _profileResponse.postValue(response.body()?.profile)
                         _isLoading.value = false
                     }
                 }
 
-                override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
+                override fun onFailure(call: Call<Profile>, t: Throwable) {
                     Toast.makeText(context, "profile response failed to fetch", Toast.LENGTH_SHORT).show()
                 }
 
             })
     }
 
-//    fun reqHomePeminjam(context: Context, token: String){
-//        _isLoading.value = true
-//        ApiConfig.getApiService().requestHomePeminjam("jwt=$token")
-//            .enqueue(object: Callback<HomeUserResponse> {
-//                override fun onResponse(
-//                    call: Call<HomeUserResponse>,
-//                    response: Response<HomeUserResponse>
-//                ) {
-//                    if(response.isSuccessful){
-//                        _homeUserResponse.postValue(response.body())
-//                    }
-//                    _isLoading.value = false
-//                }
-//
-//                override fun onFailure(call: Call<HomeUserResponse>, t: Throwable) {
-//                    Toast.makeText(context, "home response failed to fetch", Toast.LENGTH_SHORT).show()
-//                }
-//
-//            })
-//    }
 }

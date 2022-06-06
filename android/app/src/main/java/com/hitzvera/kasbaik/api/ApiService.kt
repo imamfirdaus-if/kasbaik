@@ -29,7 +29,7 @@ interface ApiService {
     @GET("profile")
     fun getRequestProfile(
         @Header("Cookie") auth: String,
-    ): Call<ProfileResponse>
+    ): Call<Profile>
 
     @Multipart
     @POST("profile")
@@ -43,7 +43,7 @@ interface ApiService {
         @Part("alamat_tinggal") alamatTinggal: RequestBody,
         @Part("alamat_ktp") alamatKtp: RequestBody,
         @Part("profesi") profesi: RequestBody,
-    ): Call<ProfileResponse>
+    ): Call<Profile>
 
     @FormUrlEncoded
     @POST("borrower")
