@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hitzvera.kasbaik.api.ApiConfig
+import com.hitzvera.kasbaik.response.Profile
 import com.hitzvera.kasbaik.response.ProfileResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -26,19 +27,19 @@ class ProfileViewModel: ViewModel() {
     fun getProfile(context: Context, token: String){
         _isLoading.value = true
         ApiConfig.getApiService().getRequestProfile("jwt=$token")
-            .enqueue(object: Callback<ProfileResponse>{
+            .enqueue(object: Callback<Profile>{
                 override fun onResponse(
-                    call: Call<ProfileResponse>,
-                    response: Response<ProfileResponse>
+                    call: Call<Profile>,
+                    response: Response<Profile>
                 ) {
                     if(response.isSuccessful){
-                        _profileResponse.postValue(response.body())
+                        _profileResponse.postValue(response.body()?.profile)
                         _isLoading.value = false
                     }
 
                 }
 
-                override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
+                override fun onFailure(call: Call<Profile>, t: Throwable) {
                     Toast.makeText(context, "Failed fetch the data", Toast.LENGTH_SHORT).show()
                 }
 
@@ -60,10 +61,10 @@ class ProfileViewModel: ViewModel() {
         _isSuccessful.value = "pending"
         _isLoading.value = true
         ApiConfig.getApiService().postRequestProfile("jwt=$token", file1, file2, file3, usia, gender, alamatTinggal, alamatKtp, profesi)
-            .enqueue(object : Callback<ProfileResponse>{
+            .enqueue(object : Callback<Profile>{
                 override fun onResponse(
-                    call: Call<ProfileResponse>,
-                    response: Response<ProfileResponse>
+                    call: Call<Profile>,
+                    response: Response<Profile>
                 ) {
                     if(response.isSuccessful){
                         _isLoading.value = false
@@ -76,7 +77,7 @@ class ProfileViewModel: ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<ProfileResponse>, t: Throwable) {
+                override fun onFailure(call: Call<Profile>, t: Throwable) {
                     _isLoading.value = false
                     _isSuccessful.value = "failed"
                     Toast.makeText(context, "Failed update data", Toast.LENGTH_SHORT).show()
