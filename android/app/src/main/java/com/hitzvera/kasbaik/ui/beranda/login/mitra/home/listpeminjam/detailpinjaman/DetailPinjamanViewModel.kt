@@ -36,8 +36,14 @@ class DetailPinjamanViewModel: ViewModel() {
                     } else {
                         _isLoading.value = false
                         _isSuccessful.value = "failed"
-                        val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
-                        val mErrorMessage = jsonObj.getString("message")
+                        var mErrorMessage = ""
+                        try {
+                            val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
+                            mErrorMessage = jsonObj.getString("message")
+                        } catch (e: Throwable){
+                            mErrorMessage = e.toString()
+                        }
+
                         _errorMessage.value = mErrorMessage
                     }
                 }

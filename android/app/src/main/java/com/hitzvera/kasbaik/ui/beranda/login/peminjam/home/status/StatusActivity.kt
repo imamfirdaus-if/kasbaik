@@ -43,7 +43,7 @@ class StatusActivity : AppCompatActivity() {
 
         viewModel.getListBorrowing(token, this)
         viewModel.listBorrowing.observe(this){
-            if(it!=null){
+            if(!it.isNullOrEmpty()){
                 currentBorrowing = it.last()
                 if(currentBorrowing.status == "done"){
                     setVisibility(false)
@@ -63,10 +63,11 @@ class StatusActivity : AppCompatActivity() {
                 } else {
                     setVisibility(true)
                 }
-
                 binding.tvStatus.text = currentBorrowing.status
                 binding.tvDibuat.text = currentBorrowing.createdAt
                 binding.tvJumlahPinjaman.text = currentBorrowing.loanAmount.toString()
+            } else {
+                setVisibility(false)
             }
         }
 

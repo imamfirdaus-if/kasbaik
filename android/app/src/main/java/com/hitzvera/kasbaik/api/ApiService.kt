@@ -64,11 +64,11 @@ interface ApiService {
     ): Call<List<GetUpdateStatusResponseItem>>
 
     @FormUrlEncoded
-    @POST("updatestatus")
+    @POST("updatestatus/{id_borrower}")
     fun postRequestUpdateStatus(
         @Header("Cookie") auth: String,
         @Field("status") status: String,
-        @Field("id_borrower") idBorrower: String,
+        @Path("id_borrower") idBorrower: String,
     ): Call<PostUpdataStatusResponse>
 
     @GET("mitraprof")
