@@ -36,24 +36,34 @@ const Helper = {
   creditMaker(usia, gender, pinjaman, tenor, pemasukan, tanggungan, pinjaman_ke, profesi, donasi) {
     // check usia 
     usia > 64 ? usiaKat =1 : usiaKat=2;
+
+    usiastr = (usia-20)/80;
     
     if (gender === 'laki-laki'){
-      genderKat = 0
-    } else{
       genderKat = 1
+    } else{
+      genderKat = 0
     }
+
+    pinjamanstr = (pinjaman-500000)/2500000;
+
+    tenorstr = (tenor-3)/17;
+
+    pemasukanstr = (pemasukan-1200000)/3800000
+
+    tanggunganstr = (tanggungan/5);
 
     // check econCombineKat
     econCombine = pemasukan - ((pinjaman/(tenor/4)) + (150000 * (tanggungan +2)))
     if (econCombine >= 2000000) {
       econCombineKat = 5
-    }else if (econCombine >= 1500000) {
+    }else if (econCombine >= 1500000 && econCombine < 1999999) {
       econCombineKat = 4
-    }else if (econCombine >=1000000){
+    }else if (econCombine >=1000000 && econCombine < 14999999){
       econCombineKat = 3
-    }else if (econCombine >= 500000){
+    }else if (econCombine >= 500000 && econCombine < 999999){
       econCombineKat = 2
-    }else if (econCombine >=10000){
+    }else if (econCombine >=10000 && econCombine < 499999){
       econCombineKat = 1
     }else {
       econCombineKat = 0
@@ -71,21 +81,36 @@ const Helper = {
       pinjamanKeKat =3
     }
 
+    if (profesi === 'buruh'){
+      profesistr = 0
+    } else if(profesi === 'pengajar') {
+      profesistr = 1
+    } else if(profesi === 'pedagang') {
+      profesistr = 2
+    } else if(profesi === 'pekerja lepas') {
+      profesistr = 3
+    } else {
+      profesistr = 4
+    }
+    profesistrindex = (profesistr/4)
+
     //check profesiKat
-    profesi === 'buruh' ||'pengajar' || 'pns' || 'tni/polri', 'wiraswasta' ? profesiKat = 1 : profesiKat =2; 
+    profesi === 'buruh' ||'pengajar' || 'pns' || 'tni/polri', 'wiraswasta' ? profesiKat = 2 : profesiKat =1; 
+
+    donasistr = (donasi/8)
 
     //check donasi
-    if (donasi >= 100000){
-      donasiKat= 3
-    } else if (donasi >= 50000){
-      donasiKat =2
-    } else if (donasi >=1000){
+    if (donasi === 0){
+      donasiKat= 0
+    } else if (donasi <= 3){
       donasiKat =1
+    } else if (donasi > 3 && donasi <= 5){
+      donasiKat =2
     } else {
-      donasiKat = 0
+      donasiKat = 3
     }
     
-    return {usiaKat, genderKat, econCombineKat, pinjamanKeKat, profesiKat, donasiKat}
+    return {usiaKat, usiastr, genderKat, pinjamanstr, tenorstr, pemasukanstr, tanggunganstr, econCombineKat, pinjamanKeKat, profesistrindex, profesiKat, donasistr, donasiKat}
   },
 
   convertTelat (telat) {
