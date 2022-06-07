@@ -35,6 +35,7 @@ const addBorrower = async (req, res, next) =>{
             pinjaman_ke ,
             telat : req.body.telat,
             donasi : req.body.donasi,
+            credit_approval : req.body.credit_approval,
         }
 
         //check peminjaman aktif
@@ -101,6 +102,7 @@ const addBorrower = async (req, res, next) =>{
                     telat : borrower.telat,
                     donasi : borrower.donasi,
                     tenor :borrower.tenor,
+                    credit_approval : borrower.credit_approval,
                 }
                 
                 const hasilcreds = await dbCredit.create(p)
