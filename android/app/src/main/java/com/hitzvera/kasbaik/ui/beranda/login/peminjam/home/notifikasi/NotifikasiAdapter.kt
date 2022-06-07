@@ -11,7 +11,7 @@ import com.hitzvera.kasbaik.response.MessageItem
 import com.hitzvera.kasbaik.response.PaymentItem
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.status.StatusDiffUtil
 
-class NotifikasiAdapter: RecyclerView.Adapter<NotifikasiAdapter.ViewHolder>() {
+class NotifikasiAdapter(private val onClickListener: OnClickListener): RecyclerView.Adapter<NotifikasiAdapter.ViewHolder>() {
     private var oldMessages = emptyList<MessageItem>()
 
     inner class ViewHolder(private val binding: RvItemNotifikasiBinding): RecyclerView.ViewHolder(binding.root){
@@ -28,9 +28,9 @@ class NotifikasiAdapter: RecyclerView.Adapter<NotifikasiAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(oldMessages[position])
-//        holder.itemView.setOnClickListener {
-//            onClickListener.onClick(oldBorrowerItem[position])
-//        }
+        holder.itemView.setOnClickListener {
+            onClickListener.onClick(oldMessages[position])
+        }
     }
 
     override fun getItemCount(): Int = oldMessages.size
@@ -42,8 +42,8 @@ class NotifikasiAdapter: RecyclerView.Adapter<NotifikasiAdapter.ViewHolder>() {
         diffResult.dispatchUpdatesTo(this)
     }
 
-    class OnClickListener(val clickListener: (getUpdateStatusResponseItem: PaymentItem) -> Unit){
-        fun onClick(getUpdateStatusResponseItem: PaymentItem) = clickListener(getUpdateStatusResponseItem)
+    class OnClickListener(val clickListener: (messageItem: MessageItem) -> Unit){
+        fun onClick(messageItem: MessageItem) = clickListener(messageItem)
     }
 
 }
