@@ -42,6 +42,9 @@ module.exports = (sequelize, Sequelize) => {
         },
         donasi: {
             type: Sequelize.INTEGER
+        },
+        credit_approval: {
+            type: Sequelize.INTEGER
         }
     }, {
         freezeTableName: true,
