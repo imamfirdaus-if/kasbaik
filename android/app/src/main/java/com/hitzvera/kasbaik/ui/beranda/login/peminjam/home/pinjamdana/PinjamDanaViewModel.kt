@@ -1,11 +1,13 @@
 package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.pinjamdana
 
 import android.content.Context
+import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hitzvera.kasbaik.api.ApiConfig
+import com.hitzvera.kasbaik.response.CrediteApprovalResponse
 import com.hitzvera.kasbaik.response.PostBorrowerResponse
 import org.json.JSONObject
 import retrofit2.Call
@@ -77,6 +79,36 @@ class PinjamDanaViewModel: ViewModel(){
                 }
 
             })
+    }
+    fun getCreditScore(
+        gender: Int,
+        usia: Int,
+        pinjaman: Int,
+        tenor: Int,
+        pemasukan: Int,
+        tanggungan: Int,
+        pekerjaan: Int,
+        donasi: Int,
+    ) {
+        _isLoading.value = true
+        ApiConfig.getApiService2().getCreditApproval(
+            gender, usia, pinjaman, tenor, pemasukan, tanggungan, pekerjaan, donasi
+        ).enqueue(object : Callback<CrediteApprovalResponse>{
+            override fun onResponse(
+                call: Call<CrediteApprovalResponse>,
+                response: Response<CrediteApprovalResponse>
+            ) {
+                if(response.isSuccessful){
+                    _isLoading.value = false
+                    Log.e("CHECK", response.body().toString())
+                }
+            }
+
+            override fun onFailure(call: Call<CrediteApprovalResponse>, t: Throwable) {
+                _isLoading.value = true
+            }
+
+        })
     }
 
 }

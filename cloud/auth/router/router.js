@@ -60,7 +60,7 @@ router.post("/payment/:id_borrower", Auth.verifyTokenMitra, mitraController.crea
 router.get("/payment/:id_borrower", Auth.verifyToken, showController.paymentDataById); // melihat semua pembayaran peminjam
 
 //see credit
-router.get("/credit/", Auth.verifyToken, showController.creditData )
+router.get("/credit", Auth.verifyToken, showController.creditData )
 router.get("/credit/:id_borrower", Auth.verifyToken, showController.creditDataById )
 
 // digunakan untuk melihat message
@@ -71,7 +71,7 @@ router.get('/messages/:id_message', Auth.verifyToken , messageController.updateM
 router.post('/messages/:id_message', Auth.verifyTokenMitra , messageController.handleMessagebyMitra)
 
 // digunakan untuk melihat history input bukti
-router.get("/buktibayar/", Auth.verifyTokenUser, showController.buktiBayarMessage)
+router.get("/buktibayar", Auth.verifyTokenUser, showController.buktiBayarMessage)
 // digunakan untuk memberikan bukti bayar ke mitra sebagai message
 router.post("/buktibayar", Auth.verifyTokenUser, messageController.createMessagetoMitra) // post untuk memberikan bukti bayar
 

@@ -147,7 +147,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/btn_about"/>
 
     <ImageButton
-        android:id="@+id/btn_donasi"
+        android:id="@+id/btn_notifikasi"
         android:layout_width="0dp"
         android:layout_height="100dp"
         app:layout_constraintWidth_percent="0.25"
@@ -161,15 +161,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Donasi"
+        android:text="Notifikasi"
         android:textAllCaps="false"
         android:fontFamily="@font/poppins_semibold"
         android:textColor="@color/orange"
         android:textStyle="bold"
         android:layout_marginBottom="8dp"
-        app:layout_constraintStart_toStartOf="@+id/btn_donasi"
-        app:layout_constraintEnd_toEndOf="@+id/btn_donasi"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_donasi"/>
+        app:layout_constraintStart_toStartOf="@+id/btn_notifikasi"
+        app:layout_constraintEnd_toEndOf="@+id/btn_notifikasi"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_notifikasi"/>
 
     <ImageButton
         android:id="@+id/btn_zakat"
@@ -185,7 +185,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Zakat"
+        android:text="Bukti Bayar"
         android:textAllCaps="false"
         android:fontFamily="@font/poppins_semibold"
         android:textColor="@color/orange"

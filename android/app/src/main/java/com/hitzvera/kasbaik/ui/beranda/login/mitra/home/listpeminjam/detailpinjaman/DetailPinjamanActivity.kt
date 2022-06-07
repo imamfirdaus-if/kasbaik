@@ -10,6 +10,7 @@ import android.view.Window
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityDetailPinjamanBinding
@@ -76,21 +77,29 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View) {
         when(view.id){
             R.id.btn_save -> {
-                val status = binding.statusContainer.text.toString()
-                viewModel.apply {
-                    updateStatusRequest(token, status, idBorrower)
-                    isSuccessful.observe(this@DetailPinjamanActivity){
-                        showCustomDialog(it)
+                if(validateForm()){
+                    val status = binding.statusContainer.text.toString()
+                    val message = binding.edMessage.text.toString()
+                    viewModel.apply {
+                        updateStatusRequest(token, status, message, idBorrower)
+                        isSuccessful.observe(this@DetailPinjamanActivity){
+                            showCustomDialog(it)
+                        }
+                        isLoading.observe(this@DetailPinjamanActivity){
+                            showLoading(it)
+                        }
                     }
-                    isLoading.observe(this@DetailPinjamanActivity){
-                        showLoading(it)
-                    }
+//                    Log.e("CEK", status.toString())
+                } else {
+                    Toast.makeText(this, "Please fill all the form", Toast.LENGTH_SHORT).show()
                 }
-                Log.e("CEK", status.toString())
+
             }
         }
     }
-
+    private fun validateForm(): Boolean{
+        return !binding.edMessage.text.isNullOrBlank()
+    }
     private fun showCustomDialog(state: String){
         if(state == "success"){
             val dialog = Dialog(this)

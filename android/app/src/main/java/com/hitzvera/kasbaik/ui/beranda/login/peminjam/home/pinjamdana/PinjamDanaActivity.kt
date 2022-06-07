@@ -20,6 +20,9 @@ class PinjamDanaActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityPinjamDanaBinding
     private lateinit var viewModel: PinjamDanaViewModel
     private lateinit var token: String
+    private lateinit var gender: String
+    private lateinit var pekerjaan: String
+    private var usia: Int = 0
     private var jumlahPinjaman = 0
     private var tenor = 2
 
@@ -29,6 +32,8 @@ class PinjamDanaActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         token = intent.getStringExtra(HomePeminjamActivity.TOKEN).toString()
+        gender = intent.getStringExtra(HomePeminjamActivity.GENDER).toString()
+        pekerjaan = intent.getStringExtra(HomePeminjamActivity.PEKERJAAN).toString()
         viewModel = ViewModelProvider(this)[PinjamDanaViewModel::class.java]
 
         binding.apply {
@@ -89,6 +94,11 @@ class PinjamDanaActivity : AppCompatActivity(), View.OnClickListener {
                             showCustomDialog(it)
                         }
                     }
+//                    var gender2 = 1
+//                    if(gender == "perempuan"){
+//                        gender2 = 0
+//                    }
+//                    viewModel.getCreditScore(gender2, usia, jumlahPinjaman, tenor, monthlyIncome, dependentsAmount, 0,donasi)
                 } else {
                     Toast.makeText(this, "Masukan data yang benar", Toast.LENGTH_SHORT).show()
                 }

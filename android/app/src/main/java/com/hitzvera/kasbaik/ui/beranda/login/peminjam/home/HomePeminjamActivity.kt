@@ -15,6 +15,7 @@ import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityHomePeminjamBinding
+import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.notifikasi.NotifikasiActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.pinjamdana.PinjamDanaActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.profile.ProfileActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.riwayat.HistoryActivity
@@ -27,6 +28,9 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var viewModel: HomePeminjamViewModel
     private lateinit var binding: ActivityHomePeminjamBinding
     private lateinit var token: String
+    private var gender: String? = null
+    private var usia: Int? = null
+    private var pekerjaan: String? = null
     private var hasStopped = 0;
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,6 +39,9 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         token = intent.getStringExtra(TOKEN).toString()
+        gender = intent.getStringExtra(GENDER)
+        usia = intent.getIntExtra(USIA, 0)
+        pekerjaan = intent.getStringExtra(PEKERJAAN)
         viewModel = ViewModelProvider(this)[HomePeminjamViewModel::class.java]
         hasStopped = 0
         profileResponse(token)
@@ -71,7 +78,6 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
                goToProfile()
             }
             R.id.btn_pinjam_dana -> {
-//                viewModel.reqProfilePeminjam(this, token!!)
                 viewModel.profileResponse.observe(this){
                     if(it!=null && it.alamatTinggal.isNullOrBlank()){
                         val dialog = Dialog(this)
@@ -96,6 +102,9 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         Intent(this, PinjamDanaActivity::class.java).also { intent ->
                             intent.putExtra(TOKEN, token)
+                            intent.putExtra(USIA, usia)
+                            intent.putExtra(GENDER, gender)
+                            intent.putExtra(PEKERJAAN,pekerjaan)
                             startActivity(intent)
                         }
                     }
@@ -109,6 +118,12 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn_riwayat -> {
                 Intent(this, HistoryActivity::class.java).also {
+                    it.putExtra(TOKEN, token)
+                    startActivity(it)
+                }
+            }
+            R.id.btn_notifikasi -> {
+                Intent(this, NotifikasiActivity::class.java).also {
                     it.putExtra(TOKEN, token)
                     startActivity(it)
                 }
@@ -147,6 +162,9 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
         viewModel.profileResponse.observe(this){
             if(it!=null){
                 binding.welcomeTitle.text = getString(R.string.greet_user, it.namaLengkap)
+                if(!it.alamatTinggal.isNullOrBlank()){
+
+                }
             }
         }
         viewModel.isLoading.observe(this){
@@ -162,9 +180,13 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
         binding.btnPinjamDana.setOnClickListener(this)
         binding.btnStatus.setOnClickListener(this)
         binding.btnRiwayat.setOnClickListener(this)
+        binding.btnNotifikasi.setOnClickListener(this)
     }
     companion object {
         const val TOKEN = "token"
+        const val USIA = "usia"
+        const val PEKERJAAN = "pekerjaan"
+        const val GENDER = "gender"
     }
 
 
