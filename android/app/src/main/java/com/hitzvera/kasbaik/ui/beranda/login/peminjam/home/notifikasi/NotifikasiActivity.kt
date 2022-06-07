@@ -1,5 +1,6 @@
 package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.notifikasi
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
@@ -8,6 +9,7 @@ import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityNotifikasiBinding
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.historypayment.HistoryAdapter
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.HomePeminjamActivity
+import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.notifikasi.detail.NotifikasiDetailActivity
 
 class NotifikasiActivity : AppCompatActivity() {
 
@@ -15,12 +17,15 @@ class NotifikasiActivity : AppCompatActivity() {
     private lateinit var viewModel: NotifikasiViewModel
     private lateinit var token: String
 
-    private val adapter: NotifikasiAdapter by lazy {NotifikasiAdapter()}
-//    {
-//        NotifikasiAdapter(NotifikasiAdapter.OnClickListener{ item ->
-//            //Do Nothing
-//        })
-//    }
+    private val adapter: NotifikasiAdapter by lazy {NotifikasiAdapter(NotifikasiAdapter.OnClickListener{ item ->
+        Intent(this, NotifikasiDetailActivity::class.java).also {
+            it.putExtra(TOKEN, token)
+            it.putExtra(MESSAGE, item.message)
+            it.putExtra(IDMESSAGE, item.idMessage)
+            it.putExtra(DIBUAT, item.createdAt)
+            startActivity(it)
+        }
+    })}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,5 +43,12 @@ class NotifikasiActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    companion object {
+        const val TOKEN = "token"
+        const val MESSAGE = "message"
+        const val DIBUAT = "dibuat"
+        const val IDMESSAGE = "idmessage"
     }
 }
