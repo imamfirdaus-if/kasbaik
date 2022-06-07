@@ -21,10 +21,10 @@ class DetailPinjamanViewModel: ViewModel() {
     private var _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
-    fun updateStatusRequest(token: String, status: String, idBorrower: String){
+    fun updateStatusRequest(token: String, status: String, message: String, idBorrower: String){
         _isLoading.value = true
         _isSuccessful.value = "pending"
-        ApiConfig.getApiService().postRequestUpdateStatus("jwt=$token", status, idBorrower)
+        ApiConfig.getApiService().postRequestUpdateStatus("jwt=$token", status, message ,idBorrower)
             .enqueue(object : Callback<PostUpdataStatusResponse>{
                 override fun onResponse(
                     call: Call<PostUpdataStatusResponse>,

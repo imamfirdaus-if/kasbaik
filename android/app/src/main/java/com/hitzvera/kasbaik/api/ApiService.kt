@@ -68,6 +68,7 @@ interface ApiService {
     fun postRequestUpdateStatus(
         @Header("Cookie") auth: String,
         @Field("status") status: String,
+        @Field("message") message: String,
         @Path("id_borrower") idBorrower: String,
     ): Call<PostUpdataStatusResponse>
 
@@ -129,4 +130,22 @@ interface ApiService {
         @Header("Cookie") auth: String,
         @Query("pinjaman_ke") pinjamanKe: String
     ): Call<List<Borrower>>
+
+    @GET("messages")
+    fun getAllMessages(
+        @Header("Cookie") auth: String,
+    ): Call<MessagesResponse>
+
+    @FormUrlEncoded
+    @POST(".")
+    fun getCreditApproval(
+        @Field("gender") gender: Int,
+        @Field("usia") usia: Int,
+        @Field("pinjaman") pinjaman: Int,
+        @Field("tenor") tenor: Int,
+        @Field("pemasukan") pemasukan: Int,
+        @Field("tanggungan") tanggungan: Int,
+        @Field("pekerjaan") pekerjaan: Int,
+        @Field("donasi") donasi: Int,
+    ): Call<CrediteApprovalResponse>
 }

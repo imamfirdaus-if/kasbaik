@@ -11,8 +11,6 @@
         android:id="@+id/container"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginVertical="64dp"
         android:background="@drawable/rounded_corners"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -212,17 +210,6 @@
             android:text="pending" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/tv_status"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Rp.300.000"-->
-    <!--        android:textColor="@color/orange"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        app:layout_constraintEnd_toEndOf="@id/tv_reason"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/tv_reason"/>-->
-
     <TextView
         android:id="@+id/tv_loan_amount"
         android:layout_width="wrap_content"
@@ -257,6 +244,30 @@
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/container"
         app:layout_constraintEnd_toEndOf="@+id/container" />
+
+    <TextView
+        android:id="@+id/tv_label_pesan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="pesan"
+        android:textColor="@color/orange"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/tv_label_loan_amount"
+        app:layout_constraintTop_toBottomOf="@id/tv_loan_amount" />
+
+    <EditText
+        android:id="@+id/ed_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Masukan pesan untuk peminjam"
+        android:background="@drawable/rounded_corners"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:maxLines="3"
+        app:layout_constraintStart_toStartOf="@id/tv_label_pesan"
+        app:layout_constraintEnd_toEndOf="@id/tv_loan_amount"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_pesan"/>
 
     <ProgressBar
         android:id="@+id/progressBar_detail_pinjaman"
