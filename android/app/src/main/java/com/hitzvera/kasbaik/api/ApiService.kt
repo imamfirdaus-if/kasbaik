@@ -148,9 +148,8 @@ interface ApiService {
         @Field("pekerjaan") pekerjaan: Int,
         @Field("donasi") donasi: Int,
     ): Call<CrediteApprovalResponse>
-
-    @FormUrlEncoded
-    @POST("messages/{id_messages}")
+    
+    @GET("messages/{id_message}")
     fun updateHasReadMessage(
         @Header("Cookie") auth: String,
         @Path("id_message") idMessage: String

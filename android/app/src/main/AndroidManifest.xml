@@ -12,9 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KasBaik"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".ui.beranda.login.peminjam.home.notifikasi.detail.NotifikasiDetailActivity"
-            android:exported="false" />
+        <activity android:name=".ui.beranda.login.peminjam.home.notifikasi.detail.NotifikasiDetailActivity" android:exported="false"/>
         <activity
             android:name=".ui.beranda.login.peminjam.home.notifikasi.NotifikasiActivity"
             android:exported="false" />
