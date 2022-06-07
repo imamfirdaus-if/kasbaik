@@ -27,6 +27,9 @@ module.exports = (sequelize, Sequelize) => {
         credit_score: {
             type: Sequelize.INTEGER,   
         },
+        credit_approval: {
+            type: Sequelize.INTEGER,   
+        },
         loan_amount: {
             type : Sequelize.INTEGER,
         },
