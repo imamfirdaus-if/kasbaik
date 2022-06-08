@@ -101,12 +101,13 @@ const login_post= async(req, res, next) => {
         
         console.log('berhasil login');
         const token = Helper.generateToken(data.dataValues.id_user, user.email, data.role );
+
         res.cookie('jwt', token);
         console.log({token});
-     
         return res.status(200).json({
           user : data,
-          token
+          token,
+          tokenweb : `Bearer ${token}`
         });
 
         }
