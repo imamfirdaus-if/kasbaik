@@ -55,7 +55,8 @@ interface ApiService {
         @Field("payment_method") paymentMethod: String,
         @Field("tenor") tenor: Int,
         @Field("dependents_amount") dependentsAmount: Int,
-        @Field("donasi") donasi: Int
+        @Field("donasi") donasi: Int,
+        @Field("credit_approval") creditApproval: Int,
     ): Call<PostBorrowerResponse>
 
     @GET("updatestatus")
@@ -148,9 +149,8 @@ interface ApiService {
         @Field("pekerjaan") pekerjaan: Int,
         @Field("donasi") donasi: Int,
     ): Call<CrediteApprovalResponse>
-
-    @FormUrlEncoded
-    @POST("messages/{id_messages}")
+    
+    @GET("messages/{id_message}")
     fun updateHasReadMessage(
         @Header("Cookie") auth: String,
         @Path("id_message") idMessage: String

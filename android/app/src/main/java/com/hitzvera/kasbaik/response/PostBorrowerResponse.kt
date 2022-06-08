@@ -55,6 +55,9 @@ data class Borrower(
 	@field:SerializedName("status")
 	val status: String,
 
+	@field:SerializedName("credit_approval")
+	val creditApproval: Int,
+
 	@field:SerializedName("updatedAt")
 	val updatedAt: String
 )
