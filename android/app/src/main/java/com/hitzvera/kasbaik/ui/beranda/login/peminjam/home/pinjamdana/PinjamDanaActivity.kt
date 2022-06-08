@@ -86,7 +86,7 @@ class PinjamDanaActivity : AppCompatActivity(), View.OnClickListener {
                 if(validateForm()){
                     Log.e("CHECK", "$jumlahPinjaman $reason $monthlyIncome $paymentMethod, $tenor $dependentsAmount")
                     viewModel.apply {
-                        postBorrower(token, jumlahPinjaman, reason, monthlyIncome, paymentMethod, tenor, dependentsAmount, donasi,this@PinjamDanaActivity)
+                        postBorrower(token, jumlahPinjaman, reason, monthlyIncome, paymentMethod, tenor, dependentsAmount, donasi,0,this@PinjamDanaActivity)
                         isLoading.observe(this@PinjamDanaActivity){
                             showLoading(it)
                         }

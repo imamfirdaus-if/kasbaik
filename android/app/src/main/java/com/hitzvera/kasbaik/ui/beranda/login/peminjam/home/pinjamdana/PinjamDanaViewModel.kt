@@ -37,11 +37,12 @@ class PinjamDanaViewModel: ViewModel(){
         tenor: Int,
         dependentsAmount: Int,
         donasi: Int,
+        creditApproval: Int,
         context: Context
     ){
         _isLoading.value = true
         _isSuccessful.value = "pending"
-        ApiConfig.getApiService().postRequestBorrwer("jwt=$token", loanAmount, reason, monthlyIncome, paymentMethod, tenor, dependentsAmount, donasi)
+        ApiConfig.getApiService().postRequestBorrwer("jwt=$token", loanAmount, reason, monthlyIncome, paymentMethod, tenor, dependentsAmount, donasi, creditApproval)
             .enqueue(object : Callback<PostBorrowerResponse>{
                 override fun onResponse(
                     call: Call<PostBorrowerResponse>,

@@ -16,6 +16,7 @@ class NotifikasiActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNotifikasiBinding
     private lateinit var viewModel: NotifikasiViewModel
     private lateinit var token: String
+    private var hasStopped: Boolean? = false
 
     private val adapter: NotifikasiAdapter by lazy {NotifikasiAdapter(NotifikasiAdapter.OnClickListener{ item ->
         Intent(this, NotifikasiDetailActivity::class.java).also {
@@ -27,11 +28,24 @@ class NotifikasiActivity : AppCompatActivity() {
         }
     })}
 
+    override fun onStop() {
+        super.onStop()
+        hasStopped = true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(hasStopped == true){
+            recreate()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNotifikasiBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        hasStopped = false
         token = intent.getStringExtra(HomePeminjamActivity.TOKEN).toString()
         viewModel = ViewModelProvider(this)[NotifikasiViewModel::class.java]
         binding.rvListMessage.adapter = adapter

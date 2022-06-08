@@ -19,6 +19,9 @@ data class GetUpdateStatusResponseItem(
 	@field:SerializedName("credit_score")
 	val creditScore: Int,
 
+	@field:SerializedName("credit_approval")
+	val creditApproval: Int,
+
 	@field:SerializedName("gender")
 	val gender: String,
 

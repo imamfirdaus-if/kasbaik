@@ -55,7 +55,8 @@ interface ApiService {
         @Field("payment_method") paymentMethod: String,
         @Field("tenor") tenor: Int,
         @Field("dependents_amount") dependentsAmount: Int,
-        @Field("donasi") donasi: Int
+        @Field("donasi") donasi: Int,
+        @Field("credit_approval") creditApproval: Int,
     ): Call<PostBorrowerResponse>
 
     @GET("updatestatus")
