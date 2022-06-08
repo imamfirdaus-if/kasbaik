@@ -4,7 +4,17 @@ const jwt = require('jsonwebtoken');
 SECRET = process.env.SECRET
 const Auth = {
     verifyToken(req, res, next){
-        const token = req.cookies.jwt;
+        // const token = req.cookies.jwt;
+        
+        const authHeader = req.headers["authorization"];
+        let token = authHeader && authHeader.split(" ")[1];
+        console.log(`token dari header :` + token);
+        if(token === undefined){
+          token = req.cookies.jwt
+          console.log(`token dari cookies :` + token);
+        }
+        
+        
         console.log(token);
         if (token) {
             jwt.verify(token, process.env.SECRET, (err, decodedToken) => {
@@ -22,14 +32,21 @@ const Auth = {
               }
             });
         } else {
-          res.status(403).send('Youre not authenticated, please login first')
+          res.status(403).send({message: 'Youre not authenticated, please login first'})
             console.log('Youre not authenticated');
         }
     
   }, 
 
   verifyTokenMitra(req, res, next){
-    const token = req.cookies.jwt;
+    const authHeader = req.headers["authorization"];
+    let token = authHeader && authHeader.split(" ")
+    [1];
+    console.log(`token dari header :` + token);
+    if(token === undefined){
+      token = req.cookies.jwt
+    }
+    console.log(`token dari cookies :` + token);
     if (token) {
         jwt.verify(token, process.env.SECRET, (err, decodedToken) => {
           if (err) {
@@ -47,7 +64,7 @@ const Auth = {
             else if (req.role === 'mitra'){
               next()
             } else {
-              return res.status(500).send('anda tidak dapat masuk ke daerah mitra')
+              return res.status(500).send({message :'anda tidak dapat masuk ke daerah mitra'})
             }
             
           }
@@ -60,7 +77,14 @@ const Auth = {
 }, 
 
 verifyTokenUser(req, res, next){
-  const token = req.cookies.jwt;
+  const authHeader = req.headers["authorization"];
+  let token = authHeader && authHeader.split(" ")
+  [1];
+  console.log(`token dari header :` + token);
+  if(token === undefined){
+    token = req.cookies.jwt
+  }
+  console.log(`token dari cookies :` + token);
   if (token) {
       jwt.verify(token, process.env.SECRET, (err, decodedToken) => {
         if (err) {
@@ -78,7 +102,7 @@ verifyTokenUser(req, res, next){
           else if (req.role === 'user'){
             next()
           }else {
-            return res.status(500).send('anda tidak dapat masuk ke daerah user')
+            return res.status(500).send({ message:'anda tidak dapat masuk ke daerah user'})
           }
           
         }
