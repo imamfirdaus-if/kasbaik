@@ -13,6 +13,9 @@
         android:theme="@style/Theme.KasBaik"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ListPaymentActivity"
+            android:exported="false" />
+        <activity
             android:name=".ListPeminjamActivity"
             android:exported="false" />
         <activity
