@@ -11,107 +11,121 @@
         android:id="@+id/iv_preview"
         android:layout_width="0dp"
         android:layout_height="250dp"
-        android:background="@color/white"
         android:layout_margin="16dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_label_nominal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Masukan Nominal"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="@color/orange"
         android:layout_marginTop="16dp"
+        android:text="Masukan Nominal"
+        android:textColor="@color/orange"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/iv_preview"
-        app:layout_constraintTop_toBottomOf="@id/btn_galeri"/>
+        app:layout_constraintTop_toBottomOf="@id/btn_galeri" />
 
     <Button
         android:id="@+id/btn_galeri"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="galeri"
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/orange"
+        android:text="galeri"
+        app:layout_constraintEnd_toStartOf="@+id/btn_camera"
         app:layout_constraintStart_toStartOf="@id/iv_preview"
-        app:layout_constraintTop_toBottomOf="@id/iv_preview"
-        app:layout_constraintEnd_toStartOf="@+id/btn_camera"/>
+        app:layout_constraintTop_toBottomOf="@id/iv_preview" />
 
     <Button
         android:id="@+id/btn_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Camera"
         android:layout_marginTop="8dp"
         android:backgroundTint="@color/orange"
-        app:layout_constraintStart_toEndOf="@id/btn_galeri"
+        android:text="Camera"
         app:layout_constraintEnd_toEndOf="@id/iv_preview"
-        app:layout_constraintTop_toBottomOf="@id/iv_preview"/>
+        app:layout_constraintStart_toEndOf="@id/btn_galeri"
+        app:layout_constraintTop_toBottomOf="@id/iv_preview" />
 
 
     <EditText
         android:id="@+id/ed_nominal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:hint="enter the amount of payment"
         android:layout_marginTop="8dp"
         android:background="@drawable/rounded_corners"
-        app:layout_constraintStart_toStartOf="@id/iv_preview"
+        android:hint="enter the amount of payment"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="@id/iv_preview"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_nominal"/>
+        app:layout_constraintStart_toStartOf="@id/iv_preview"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_nominal" />
 
     <TextView
         android:id="@+id/tv_label_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Masukan Pesan"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="@color/orange"
         android:layout_marginTop="16dp"
+        android:text="Masukan Pesan"
+        android:textColor="@color/orange"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/iv_preview"
-        app:layout_constraintTop_toBottomOf="@id/ed_nominal"/>
+        app:layout_constraintTop_toBottomOf="@id/ed_nominal" />
 
     <EditText
         android:id="@+id/ed_pesan"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:padding="10dp"
-        android:hint="enter the amount of payment"
         android:layout_marginTop="8dp"
-        android:gravity="top"
         android:background="@drawable/rounded_corners"
-        app:layout_constraintStart_toStartOf="@id/iv_preview"
+        android:gravity="top"
+        android:hint="enter the amount of payment"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_send"
         app:layout_constraintEnd_toEndOf="@id/iv_preview"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_message"
-        app:layout_constraintBottom_toTopOf="@id/btn_save"/>
+        app:layout_constraintStart_toStartOf="@id/iv_preview"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_message" />
 
     <Button
         android:id="@+id/btn_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="galeri"
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/orange"
         android:layout_marginBottom="8dp"
-        app:layout_constraintStart_toStartOf="@id/iv_preview"
+        android:backgroundTint="@color/white"
+        android:text="galeri"
+        android:textColor="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_camera"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="@id/iv_preview" />
 
     <Button
-        android:id="@+id/btn_save"
+        android:id="@+id/btn_send"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Camera"
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/orange"
         android:layout_marginBottom="8dp"
-        app:layout_constraintStart_toEndOf="@id/btn_galeri"
+        android:backgroundTint="@color/white"
+        android:text="Kirim"
+        android:textColor="@color/orange"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/iv_preview"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toEndOf="@id/btn_galeri" />
+
+    <ProgressBar
+        android:id="@+id/progressBar_upload_bukti"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

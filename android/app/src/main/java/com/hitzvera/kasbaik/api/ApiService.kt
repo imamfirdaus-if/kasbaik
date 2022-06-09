@@ -155,4 +155,13 @@ interface ApiService {
         @Header("Cookie") auth: String,
         @Path("id_message") idMessage: String
     ): Call<UpdateHasUpdateResponse>
+
+    @Multipart
+    @POST("buktibayar")
+    fun postBuktiBayar(
+        @Header("Cookie") auth: String,
+        @Part file: MultipartBody.Part,
+        @Part("nominal") nominal: RequestBody,
+        @Part("message") message: RequestBody,
+    ): Call<UpdateHasUpdateResponse>
 }

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.KasBaik"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.beranda.login.peminjam.home.buktibayar.CameraActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.beranda.login.peminjam.home.buktibayar.UploadBuktiBayarActivity"
             android:exported="false" />
         <activity
