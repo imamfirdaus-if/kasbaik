@@ -15,6 +15,7 @@ import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityHomePeminjamBinding
+import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.buktibayar.UploadBuktiBayarActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.notifikasi.NotifikasiActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.pinjamdana.PinjamDanaActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.profile.ProfileActivity
@@ -66,11 +67,6 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
         when(view.id){
             R.id.btn_about -> {
                 Intent(this, AboutActivity::class.java).also {
-                    startActivity(it)
-                }
-            }
-            R.id.btn_zakat -> {
-                Intent(this, ZakatActivity::class.java).also {
                     startActivity(it)
                 }
             }
@@ -128,6 +124,13 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
                     startActivity(it)
                 }
             }
+            R.id.btn_bukti_bayar -> {
+                Intent(this, UploadBuktiBayarActivity::class.java).also {
+                    it.putExtra(TOKEN, token)
+                    startActivity(it)
+                }
+            }
+
         }
     }
 
@@ -175,7 +178,7 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
     }
     private fun clickListener(){
         binding.btnAbout.setOnClickListener(this)
-        binding.btnZakat.setOnClickListener(this)
+        binding.btnBuktiBayar.setOnClickListener(this)
         binding.btnProfile.setOnClickListener(this)
         binding.btnPinjamDana.setOnClickListener(this)
         binding.btnStatus.setOnClickListener(this)
