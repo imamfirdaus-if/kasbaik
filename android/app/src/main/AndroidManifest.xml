@@ -13,6 +13,15 @@
         android:theme="@style/Theme.KasBaik"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ListPeminjamActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListPenggunaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListMitraActivity"
+            android:exported="false" />
+        <activity
             android:name=".EditProfileAdminActivity"
             android:exported="false" />
         <activity
