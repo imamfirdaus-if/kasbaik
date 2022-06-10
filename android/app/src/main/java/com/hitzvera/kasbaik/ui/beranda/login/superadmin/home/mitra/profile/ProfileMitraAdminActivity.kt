@@ -3,6 +3,7 @@ package com.hitzvera.kasbaik.ui.beranda.login.superadmin.home.mitra.profile
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.hitzvera.kasbaik.R
+import com.hitzvera.kasbaik.response.GetListMitraResponseItem
 
 class ProfileMitraAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
