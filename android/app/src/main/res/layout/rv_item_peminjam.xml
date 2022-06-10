@@ -34,6 +34,8 @@
             android:textSize="16sp"
             android:textColor="@color/orange"
             android:padding="5dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/tv_with_border"
