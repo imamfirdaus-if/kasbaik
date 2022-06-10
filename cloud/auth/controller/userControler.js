@@ -162,6 +162,12 @@ const update_post = async(req, res, next) => {
 
 const logout_post = async(req, res, next) => {
   try {
+    if(req.role === 'admin'){
+      const token = null
+      res.cookie('jwt', token)
+      console.log('berhasil logout');
+      return res.status(200).send('berhasil logout dari aplikasi')
+    }
     const token = null
     res.cookie('jwt', token)
     console.log('berhasil logout');

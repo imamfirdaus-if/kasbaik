@@ -40,8 +40,36 @@ const homeData = async (req, res) => {
                 profile : tableProfile,
                 message : tableMessage
             })
+        } else if (req.role === 'admin'){
+            const tableUser = await dbUser.findOne({where: {id_user : req.id}})
+            const tableProfile = await dbProfileMitra.findOne({where: {id_user : req.id}})
+            return res.status(200).send({
+                user : tableUser,
+                profile : tableProfile,
+                
+            })
         }
         
+    } catch (err) {
+        console.log(err);
+        return res.status(403).send(err)
+    }
+}
+
+const homeAdmin = async (req, res) => {
+    try {
+        
+        const tableUser = await dbUser.findOne({where: {id_user : req.params.id_user}})
+        const tableProfile = await dbProfile.findOne({where: {id_user : req.params.id_user}})
+        const tableBorrowerPayment = await dbBorrower.findAll({where: {id_user : req.params.id_user}})
+        const tableMessage = await dbMessage.findAll({where: {id_user : req.params.id_user},order : [["createdAt" , "DESC"] ]})
+        return res.status(200).send({ 
+            user : tableUser,
+            profile : tableProfile,
+            peminjaman : tableBorrowerPayment,
+            message : tableMessage
+        })
+  
     } catch (err) {
         console.log(err);
         return res.status(403).send(err)
@@ -247,6 +275,7 @@ const messageData = async (req, res) => {
 // }
 module.exports = {
     homeData,
+    homeAdmin,
     profileData,
     borrowerData,
     borrowerDatabyId,
