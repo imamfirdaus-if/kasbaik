@@ -30,21 +30,21 @@
             tools:layout_editor_absoluteX="33dp" />
 
         <TextView
-            android:id="@+id/detail"
+            android:id="@+id/phone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Detail"
-            android:textSize="16sp"
-            android:textColor="@color/orange"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingStart="30dp"
-            android:paddingEnd="30dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/tv_with_border"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            android:paddingStart="30dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="5dp"
+            android:text="082128085535"
+            android:textColor="@color/orange"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

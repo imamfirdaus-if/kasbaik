@@ -2,6 +2,7 @@ package com.hitzvera.kasbaik.ui.beranda.login.superadmin.home.profile.edit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.hitzvera.kasbaik.R
 
 class EditProfileAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
