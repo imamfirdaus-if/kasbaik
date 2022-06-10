@@ -21,6 +21,7 @@ class DetailHistoryBuktiBayarActivity : AppCompatActivity() {
         setContentView(binding.root)
         getData()
         bindData()
+        binding.btnOkay.setOnClickListener { finish() }
     }
 
     private fun getData(){

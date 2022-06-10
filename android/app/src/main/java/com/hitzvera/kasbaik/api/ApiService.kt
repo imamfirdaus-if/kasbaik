@@ -107,10 +107,10 @@ interface ApiService {
     ): Call<GetPaymentResponseUser>
 
     @FormUrlEncoded
-    @POST("payment")
+    @POST("payment/{id_borrower}")
     fun postPayment(
         @Header("Cookie") auth: String,
-        @Field("id_borrower") idBorrower: String,
+        @Path("id_borrower") idBorrower: String,
         @Field("payment_method") paymentMethod: String,
         @Field("amount_payment") amountPayment: Int
     ): Call<PaymentResponse>

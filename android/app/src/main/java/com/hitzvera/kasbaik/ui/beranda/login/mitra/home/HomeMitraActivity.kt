@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityHomeMitraBinding
+import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.buktibayar.BuktiBayarActivity
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.editprofile.MitraProfileActivity
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.listpeminjam.ListPeminjamActivity
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.PaymentActivity
@@ -26,6 +27,7 @@ class HomeMitraActivity : AppCompatActivity(), View.OnClickListener {
         binding.btnListPeminjam.setOnClickListener(this)
         binding.btnEditProfile.setOnClickListener(this)
         binding.btnPayment.setOnClickListener(this)
+        binding.btnListBukti.setOnClickListener(this)
 
     }
 
@@ -50,7 +52,13 @@ class HomeMitraActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btn_payment -> {
                 Intent(this, PaymentActivity::class.java).also {
-                    it.putExtra(PaymentActivity.TOKEN, token)
+                    it.putExtra(TOKEN, token)
+                    startActivity(it)
+                }
+            }
+            R.id.btn_list_bukti -> {
+                Intent(this, BuktiBayarActivity::class.java).also {
+                    it.putExtra(TOKEN, token)
                     startActivity(it)
                 }
             }
