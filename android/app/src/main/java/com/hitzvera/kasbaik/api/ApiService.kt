@@ -164,4 +164,9 @@ interface ApiService {
         @Part("nominal") nominal: RequestBody,
         @Part("message") message: RequestBody,
     ): Call<UpdateHasUpdateResponse>
+
+    @GET("buktibayar")
+    fun getBuktiBayar(
+        @Header("Cookie") auth: String
+    ): Call<MessagesResponse>
 }
