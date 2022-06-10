@@ -19,10 +19,9 @@ class HistoryBuktiBayarActivity : AppCompatActivity() {
     private lateinit var viewModel: HistoryBuktiBayarViewModel
     private val adapter: HistoryBuktiBayarAdapter by lazy {
         HistoryBuktiBayarAdapter(HistoryBuktiBayarAdapter.OnClickListener{ item ->
-        Intent(this, NotifikasiDetailActivity::class.java).also {
+        Intent(this, DetailHistoryBuktiBayarActivity::class.java).also {
             it.putExtra(NotifikasiActivity.TOKEN, token)
             it.putExtra(NotifikasiActivity.MESSAGE, item.message)
-            it.putExtra(NotifikasiActivity.IDMESSAGE, item.idMessage)
             it.putExtra(NotifikasiActivity.DIBUAT, item.createdAt)
             it.putExtra(UploadBuktiBayarActivity.LINKBUKTI, item.linkBukti)
             startActivity(it)
@@ -43,6 +42,5 @@ class HistoryBuktiBayarActivity : AppCompatActivity() {
         viewModel.buktiBayarResponse.observe(this){
             adapter.setData(it.filter { item -> !item.linkBukti.isNullOrBlank() })
         }
-
     }
 }
