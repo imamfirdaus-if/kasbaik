@@ -190,6 +190,7 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
         const val USIA = "usia"
         const val PEKERJAAN = "pekerjaan"
         const val GENDER = "gender"
+        const val IDMESSAGE = "idmessage"
     }
 
 
