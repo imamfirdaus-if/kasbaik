@@ -8,23 +8,18 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
-import android.view.View
-import android.view.Window
+import android.view.*
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.FileProvider
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityUploadBuktiBayarBinding
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.LoginAsPeminjamActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.HomePeminjamActivity
-import com.hitzvera.kasbaik.utils.createTempFile
+import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.buktibayar.history.HistoryBuktiBayarActivity
 import com.hitzvera.kasbaik.utils.reduceFileImage
 import com.hitzvera.kasbaik.utils.rotateBitmap
 import com.hitzvera.kasbaik.utils.uriToFile
@@ -53,6 +48,25 @@ class UploadBuktiBayarActivity : AppCompatActivity(), View.OnClickListener {
         binding.btnGaleri.setOnClickListener(this)
         binding.btnCancel.setOnClickListener(this)
         binding.btnSend.setOnClickListener(this)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.icon_history -> {
+                Intent(this, HistoryBuktiBayarActivity::class.java).also {
+                    it.putExtra(TOKEN, token)
+                    startActivity(it)
+                }
+                true
+            }
+            else -> false
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -207,6 +221,8 @@ class UploadBuktiBayarActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         const val CAMERA_X_RESULT = 200
+        const val TOKEN = "token"
+        const val LINKBUKTI = "linkbukti"
 
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
         private const val REQUEST_CODE_PERMISSIONS = 10

@@ -52,7 +52,7 @@
             android:name=".ui.beranda.login.peminjam.home.buktibayar.UploadBuktiBayarActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.beranda.login.peminjam.home.buktibayar.HistoryBuktiBayarActivity"
+            android:name=".ui.beranda.login.peminjam.home.buktibayar.history.HistoryBuktiBayarActivity"
             android:exported="false" />
         <activity
             android:name=".ui.beranda.login.peminjam.home.notifikasi.detail.NotifikasiDetailActivity"
