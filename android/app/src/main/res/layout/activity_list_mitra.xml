@@ -28,14 +28,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title_list_mitra"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/rv_mitra_admin"/>
 
     <ProgressBar
         android:id="@+id/progressBar_list_mitra"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/rv_list_peminjam"
-        app:layout_constraintStart_toStartOf="@+id/rv_list_peminjam"
-        app:layout_constraintTop_toTopOf="@+id/rv_list_peminjam" />
+        app:layout_constraintEnd_toEndOf="@+id/rv_list_mitra"
+        app:layout_constraintStart_toStartOf="@+id/rv_list_mitra"
+        app:layout_constraintTop_toTopOf="@+id/rv_list_mitra" />
 </androidx.constraintlayout.widget.ConstraintLayout>
