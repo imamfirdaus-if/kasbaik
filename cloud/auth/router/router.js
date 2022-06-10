@@ -17,9 +17,9 @@ router.post('/signup', userController.signup_post)
 router.post('/login', userController.login_post)
 
 // digunakan untuk melakukan logout dari aplikasi sehingga menghancurkan jwt
-router.post('/logout', Auth.verifyToken, userController.logout_post)
+router.get('/logout', Auth.verifyToken, userController.logout_post)
 // digunakan untuk memberikan response mengenai profile
-router.get('/logout', Auth.verifyToken, showController.profileData)
+// router.get('/logout', Auth.verifyToken, showController.profileData)
 
 // digunakan untuk menghapus akun
 router.post('/delete', Auth.verifyToken, userController.delete_post)
@@ -28,6 +28,7 @@ router.get('/delete', Auth.verifyToken, showController.profileData)
 
 //digunakan sebagai home page yang berisi respon table user, profile, peminjaman aktif dan pesan
 router.get('/home', Auth.verifyToken, showController.homeData)
+router.get('/useradmin/:id_user', Auth.verifyToken, showController.homeAdmin)
 
 //digunakan untuk mengupdate password
 router.post('/updatepassword', Auth.verifyToken, userController.update_post)
