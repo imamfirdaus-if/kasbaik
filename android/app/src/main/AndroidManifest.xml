@@ -13,6 +13,39 @@
         android:theme="@style/Theme.KasBaik"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".DetailPinjamanAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileUserAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileMitraAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HIstoryPaymentAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListPaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListPeminjamActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListPenggunaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListMitraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfileAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HomeAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.beranda.login.peminjam.home.buktibayar.CameraActivity"
             android:exported="false" />
         <activity

@@ -40,7 +40,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/tv_with_border"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/bt_add_payment"
+            app:layout_constraintBottom_toTopOf="@+id/bt_history_payment"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
@@ -54,26 +54,16 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintTop_toBottomOf="@+id/nama_peminjam"
-            app:layout_constraintBottom_toBottomOf="@id/bt_add_payment"
+            app:layout_constraintBottom_toBottomOf="@id/bt_history_payment"
             app:layout_constraintStart_toStartOf="@+id/nama_peminjam"/>
-
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/bt_add_payment"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:layout_constraintEnd_toEndOf="@id/status"
-            app:layout_constraintTop_toBottomOf="@id/status"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/ic_baseline_add_box_24"
-            />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/bt_history_payment"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            app:layout_constraintEnd_toStartOf="@+id/bt_add_payment"
-            app:layout_constraintTop_toTopOf="@+id/bt_add_payment"
-            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toEndOf="@id/status"
+            app:layout_constraintTop_toBottomOf="@id/status"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:background="@drawable/ic_baseline_history_24"
             />
 

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_ijo"
-    tools:context=".ui.beranda.login.mitra.home.editprofile.EditProfileActivity">
+    tools:context=".ui.beranda.login.superadmin.home.profile.edit.EditProfileAdminActivity">
+
 
     <TextView
         android:id="@+id/tv_label_nama_mitra"
@@ -87,7 +88,6 @@
         android:id="@+id/tv_label_photo_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:text="Photo Profile"
         android:textColor="@color/white"
@@ -124,27 +124,26 @@
         android:id="@+id/btn_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/rounded_button"
         android:text="Cancel"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_avatar" />
+        app:layout_constraintStart_toStartOf="@id/iv_avatar"
+        app:layout_constraintTop_toBottomOf="@id/iv_avatar"
+        app:layout_constraintEnd_toEndOf="@id/guideline"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
         android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/rounded_corners"
         android:text="save"
         android:textColor="@color/background_ijo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/btn_cancel"
+        app:layout_constraintStart_toStartOf="@id/guideline"
+        app:layout_constraintEnd_toEndOf="@id/tv_nomor"
         app:layout_constraintTop_toBottomOf="@id/iv_avatar" />
 
     <ProgressBar
@@ -159,4 +158,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.5"
+        android:orientation="vertical"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
