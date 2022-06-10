@@ -46,6 +46,7 @@
             android:name=".ui.beranda.login.superadmin.home.profile.ProfileAdminActivity"
             android:exported="false" />
         <activity
+                  
             android:name=".ui.beranda.login.superadmin.home.HomeAdminActivity"
             android:exported="false" />
         <activity

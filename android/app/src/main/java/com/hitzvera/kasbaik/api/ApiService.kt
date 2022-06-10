@@ -169,4 +169,9 @@ interface ApiService {
     fun getBuktiBayar(
         @Header("Cookie") auth: String
     ): Call<MessagesResponse>
+
+    @GET("listakunmitra")
+    fun getListMitra(
+        @Header("Cookie") auth: String
+    ): Call<List<GetListMitraResponseItem>>
 }
