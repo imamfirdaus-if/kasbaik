@@ -23,6 +23,7 @@
         android:id="@+id/tv_registrasi_sebagai"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
         android:text="@string/regis_as"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -44,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/user"
+            android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:checked="true"/>
@@ -54,6 +56,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="mitra"
+            android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/white"
             android:textSize="16sp"/>
     </RadioGroup>
@@ -66,6 +69,7 @@
         android:background="@drawable/rounded_corners"
         android:hint="Username"
         android:paddingStart="16dp"
+        android:fontFamily="@font/poppins_semibold"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,6 +82,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/rounded_corners"
         android:hint="Email"
+        android:fontFamily="@font/poppins_semibold"
         android:paddingStart="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,6 +96,7 @@
         android:background="@drawable/rounded_corners"
         android:hint="Nomor Handphone"
         android:paddingStart="16dp"
+        android:fontFamily="@font/poppins_semibold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_email" />
@@ -104,6 +110,7 @@
         android:hint="Masukan Password"
         android:inputType="textPassword"
         android:paddingStart="16dp"
+        android:fontFamily="@font/poppins_semibold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_phone_number" />
@@ -116,6 +123,7 @@
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/white"
         android:text="Register"
+        android:fontFamily="@font/poppins_semibold"
         android:textColor="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
