@@ -39,6 +39,9 @@ module.exports = (sequelize, Sequelize) => {
         dependents_amount: {
             type: Sequelize.INTEGER
         },
+        monthly_income: {
+            type: Sequelize.INTEGER
+        },
         status: {
             type: Sequelize.ENUM("pending", "accepted", "rejected", "payment", "done"),
         },
