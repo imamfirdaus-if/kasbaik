@@ -7,10 +7,10 @@ module.exports = (sequelize, Sequelize) => {
             primaryKey: true
         },
         id_user: {
-            type: Sequelize.STRING
+            type: Sequelize.UUID
         },
         id_mitra: {
-            type: Sequelize.STRING
+            type: Sequelize.UUID
         },
         loan_amount: {
             type: Sequelize.INTEGER

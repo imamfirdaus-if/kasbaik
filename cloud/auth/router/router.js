@@ -90,6 +90,8 @@ router.get("/listPayment", Auth.verifyTokenAdmin, adminController.listPayment)
 router.get("/listPayment/:id_borrower", Auth.verifyTokenAdmin, adminController.listPaymentbyId)
 router.get("/summary", Auth.verifyTokenAdmin, adminController.summarry)
 
+router.get("/jumlahtotal", Auth.verifyTokenAdmin, adminController.jumlahTotal)
+
 //get ALL message in user where has_read = false
 // router.get('/profile/message', Auth.verifyTokenUser , showController.messageData)
 // router.put('/profile/message/:id_message', Auth.verifyTokenUser , messageController.updateMess)

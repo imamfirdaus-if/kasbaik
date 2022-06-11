@@ -1,5 +1,7 @@
 const db = require("../model/model");
 const Helper = require("../middleware/helper");
+const { where } = require("sequelize");
+const { get } = require("../router/router");
 const dbBorrower = db.borrower;
 const dbMitra = db.mitra;
 const dbProfile = db.profileUser;
@@ -12,11 +14,12 @@ const Op = require('sequelize').Op;
 
 const listAkunUser = async (req, res) => {
     try {
-        const query= `SELECT * FROM users where role = 'user'`; 
+        const query= `SELECT * FROM users FULL OUTER JOIN profiles ON users.id_user = profiles.id_user WHERE role = 'user'`; 
         console.log(query);
-        const User = await db.sequelize.query(query)
-        console.log(Helper.toObject(User[0]));
-        return res.status(200).send(Helper.toObject(User)[0])
+        const User1 = await db.sequelize.query(query)
+        const user = Helper.toObject(User1[0])
+        console.log(user);
+        return res.status(200).send(user)
         
     } catch (err) {
         console.log(err);
@@ -206,6 +209,27 @@ const summarry = async (req, res) => {
     }
 }
 
+const jumlahTotal = async (req, res) => {
+    try {
+        let totalPayment = 0
+        const getUser = await db.users.findAll({where : {role : 'user'}})
+        const getMitra = await db.users.findAll({where : {role : 'mitra'}})
+        const getBorrower = await db.borrower.findAll()
+        const query= `SELECT * FROM mitras FULL OUTER JOIN payments ON payments.id_borrower = mitras.id_borrower FULL OUTER JOIN profile_mitras ON mitras.id_mitra = profile_mitras.id_mitra WHERE status = 'payment'`; 
+        const getPayment = await db.sequelize.query(query)
+        const getPayment1 = Helper.toObject(getPayment[0])
+        // const getPayment = await db.payment.findAll()
+        getPayment1.forEach(element => {
+            totalPayment = totalPayment + element.amount_payment
+        });
+        return res.status(200).send({totaluser : getUser ,totalmitra : getMitra, totalborrower : getBorrower, totalpayment :totalPayment, payment :getPayment1})
+        
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send({status : err})
+    }
+}
+
 module.exports = {
     listAkunUser,
     listAkunMitra,
@@ -219,4 +243,5 @@ module.exports = {
     listPayment,
     listPaymentbyId,
     summarry,
+    jumlahTotal,
 }
