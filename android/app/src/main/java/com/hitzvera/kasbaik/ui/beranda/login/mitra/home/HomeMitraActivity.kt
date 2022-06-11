@@ -34,6 +34,7 @@ class HomeMitraActivity : AppCompatActivity(), View.OnClickListener {
     companion object {
         const val TOKEN = "token"
         const val NAME = "name"
+        const val LINKIMAGE = "linkimage"
     }
 
     override fun onClick(view: View) {

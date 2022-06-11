@@ -100,10 +100,10 @@ interface ApiService {
         @Path("id_borrower") idBorrower: String
     ): Call<GetPaymentResponseUser>
 
-    @GET("payment")
+    @GET("payment/{id_borrower}")
     fun getPaymentFromUser(
         @Header("Cookie") auth: String,
-        @Query("id_borrower") idBorrower: String
+        @Path("id_borrower") idBorrower: String
     ): Call<GetPaymentResponseUser>
 
     @FormUrlEncoded
@@ -156,6 +156,14 @@ interface ApiService {
         @Path("id_message") idMessage: String
     ): Call<UpdateHasUpdateResponse>
 
+    @FormUrlEncoded
+    @POST("messages/{id_message}")
+    fun updateBuktiBayar(
+        @Header("Cookie") auth: String,
+        @Path("id_message") idMessage: String,
+        @Field("isAccepted") isAccepted: String,
+    ): Call<MessagesResponse>
+
     @Multipart
     @POST("buktibayar")
     fun postBuktiBayar(
@@ -174,4 +182,5 @@ interface ApiService {
     fun getListMitra(
         @Header("Cookie") auth: String
     ): Call<List<GetListMitraResponseItem>>
+
 }

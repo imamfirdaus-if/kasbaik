@@ -25,10 +25,11 @@ class BuktiBayarActivity : AppCompatActivity() {
     private lateinit var viewModel: NotifikasiViewModel
     private val adapter: HistoryBuktiBayarAdapter by lazy {
         HistoryBuktiBayarAdapter(HistoryBuktiBayarAdapter.OnClickListener{ item ->
-            Intent(this, DetailHistoryBuktiBayarActivity::class.java).also {
+            Intent(this, DetailMitraBuktiBayarActivity::class.java).also {
                 it.putExtra(NotifikasiActivity.TOKEN, token)
                 it.putExtra(NotifikasiActivity.MESSAGE, item.message)
                 it.putExtra(NotifikasiActivity.DIBUAT, item.createdAt)
+                it.putExtra(NotifikasiActivity.IDMESSAGE, item.idMessage)
                 it.putExtra(UploadBuktiBayarActivity.LINKBUKTI, item.linkBukti)
                 startActivity(it)
             }

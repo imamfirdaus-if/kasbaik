@@ -35,7 +35,7 @@ data class MessageItem(
 	val nominal: Int? = null,
 
 	@field:SerializedName("isAccepted")
-	val isAccepted: Boolean? = null,
+	val isAccepted: String? = null,
 
 	@field:SerializedName("createdAt")
 	val createdAt: String,

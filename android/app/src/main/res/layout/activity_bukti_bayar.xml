@@ -15,6 +15,7 @@
         android:layout_marginTop="32dp"
         android:text="Bukti Pembayaran"
         android:textColor="@color/white"
+        android:fontFamily="@font/poppins_semibold"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
