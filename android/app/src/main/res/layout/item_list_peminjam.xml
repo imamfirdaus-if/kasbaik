@@ -4,6 +4,8 @@
     android:layout_height="100dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/rounded_corners"
+    app:cardElevation="20dp"
+    app:cardCornerRadius="10dp"
     android:layout_marginHorizontal="16dp"
     android:layout_marginVertical="16dp">
 
@@ -19,6 +21,7 @@
             android:textColor="@color/orange"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:fontFamily="@font/poppins_semibold"
             android:layout_marginStart="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -32,6 +35,7 @@
             android:textSize="16sp"
             android:textColor="@color/orange"
             android:padding="5dp"
+            android:fontFamily="@font/poppins_semibold"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/tv_with_border"
@@ -48,6 +52,7 @@
             android:textSize="18sp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:fontFamily="@font/poppins_semibold"
             app:layout_constraintTop_toBottomOf="@+id/status"
             app:layout_constraintEnd_toEndOf="parent"/>
 
