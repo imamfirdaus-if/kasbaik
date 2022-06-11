@@ -22,6 +22,7 @@ class BuktiBayarActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBuktiBayarBinding
     private lateinit var token: String
+    private var hasStoped = false
     private lateinit var viewModel: NotifikasiViewModel
     private val adapter: HistoryBuktiBayarAdapter by lazy {
         HistoryBuktiBayarAdapter(HistoryBuktiBayarAdapter.OnClickListener{ item ->
@@ -36,11 +37,23 @@ class BuktiBayarActivity : AppCompatActivity() {
         })
     }
 
+    override fun onStop() {
+        super.onStop()
+        hasStoped = true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(hasStoped){
+            recreate()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityBuktiBayarBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        hasStoped = false
         token = intent.getStringExtra(HomeMitraActivity.TOKEN).toString()
         viewModel = ViewModelProvider(this)[NotifikasiViewModel::class.java]
         binding.rvBuktiBayar.adapter = adapter

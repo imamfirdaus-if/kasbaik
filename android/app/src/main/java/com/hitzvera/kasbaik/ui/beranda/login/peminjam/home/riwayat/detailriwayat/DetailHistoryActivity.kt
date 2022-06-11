@@ -26,8 +26,8 @@ class DetailHistoryActivity : AppCompatActivity() {
     private lateinit var viewModel: DetailHistoryViewModel
     private lateinit var currentBorrowing: Borrower
 
-    private val adapter: HistoryAdapter by lazy {
-        HistoryAdapter(HistoryAdapter.OnClickListener{ item ->
+    private val adapter: DetailHistoryAdapter by lazy {
+        DetailHistoryAdapter(DetailHistoryAdapter.OnClickListener{ item ->
             //Do Nothing
         })
     }

@@ -70,6 +70,8 @@
      android:textAllCaps="false"
      android:fontFamily="@font/poppins_semibold"
      android:textColor="@color/white"
+     android:clickable="true"
+     android:focusable="true"
      app:layout_constraintStart_toStartOf="@id/ed_password_login_peminjam"
      app:layout_constraintTop_toBottomOf="@+id/ed_password_login_peminjam" />
 

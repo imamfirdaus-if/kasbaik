@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityLoginAsPeminjamBinding
+import com.hitzvera.kasbaik.ui.beranda.daftar.RegisterActivity
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.HomeMitraActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.HomePeminjamActivity
 import com.hitzvera.kasbaik.ui.beranda.login.superadmin.home.HomeAdminActivity
@@ -30,6 +31,7 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
 
         viewModel = ViewModelProvider(this)[LoginAsPeminjamViewModel::class.java]
         binding.btnLoginPeminjam.setOnClickListener(this)
+        binding.dontHaveAccount.setOnClickListener(this)
     }
 
     override fun onClick(view: View) {
@@ -43,6 +45,11 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
                 }
                 viewModel.isLoading.observe(this){
                     showLoading(it)
+                }
+            }
+            R.id.dont_have_account -> {
+                Intent(this, RegisterActivity::class.java).also {
+                    startActivity(it)
                 }
             }
         }

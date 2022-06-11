@@ -24,6 +24,7 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var idBorrower: String
     private lateinit var creditScore: String
     private lateinit var namaPeminjam: String
+    private var monthlyIncome: Int = 0
     private var pinjamanKe: Int = 0
     private var loanAmount: Int = 0
     private lateinit var reason: String
@@ -53,6 +54,7 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
         loanAmount = intent.getIntExtra(LOAN_AMOUNT, 0)
         reason = intent.getStringExtra(REASON).toString()
         idBorrower = intent.getStringExtra(ID_BORROWER).toString()
+        monthlyIncome = intent.getIntExtra(MONTLY_INCOME, 0)
     }
     private fun setData(){
         binding.apply {
@@ -61,6 +63,7 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
             tvPinjamanKe.text = pinjamanKe.toString()
             tvLoanAmount.text = loanAmount.toString()
             tvReason.text = reason
+            tvPemasukan.text = monthlyIncome.toString()
         }
     }
 
@@ -72,6 +75,7 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
         const val LOAN_AMOUNT = "loan_amount"
         const val REASON = "reason"
         const val NAMA_PEMINJAM = "nama_peminjam"
+        const val MONTLY_INCOME = "monthly_income"
     }
 
     override fun onClick(view: View) {

@@ -1,13 +1,13 @@
 module.exports = (sequelize, Sequelize) => {
     const Mitra = sequelize.define("mitras", {
         id_user: {
-            type: Sequelize.STRING
+            type: Sequelize.UUID
         },
         id_mitra: {
-            type: Sequelize.STRING
+            type: Sequelize.UUID
         },
         id_borrower: {
-            type: Sequelize.STRING
+            type: Sequelize.UUID
         },
         nama_lengkap: {
             type: Sequelize.STRING
@@ -37,6 +37,9 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING
         },
         dependents_amount: {
+            type: Sequelize.INTEGER
+        },
+        monthly_income: {
             type: Sequelize.INTEGER
         },
         status: {

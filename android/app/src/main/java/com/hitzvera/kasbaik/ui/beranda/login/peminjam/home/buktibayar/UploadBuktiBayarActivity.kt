@@ -188,13 +188,10 @@ class UploadBuktiBayarActivity : AppCompatActivity(), View.OnClickListener {
             dialog.setCancelable(true)
             dialog.setContentView(R.layout.register_pop_up_success)
             val btnLogin: Button = dialog.findViewById(R.id.btn_login)
-            btnLogin.setOnClickListener {
-                dialog.dismiss()
-                Intent(this, LoginAsPeminjamActivity::class.java).also {
-                    startActivity(it)
-                    finish()
-                }
-            }
+            val tvMessage: TextView = dialog.findViewById(R.id.tv_successful)
+            tvMessage.text = "Bukti berhasil dikirim"
+            btnLogin.visibility = View.GONE
+            dialog.setOnDismissListener { finish() }
             dialog.show()
         } else if(state == "failed") {
             val dialog = Dialog(this)
