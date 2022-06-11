@@ -118,8 +118,8 @@ const handleMessagebyMitra = async (req, res) => {
             nominal : objek.nominal,
             isAccepted : objek.isAccepted
         }
-        const createMessage = await db.message.create(data1)
-        return res.status(201).send({"hasil update" : hasilUpdate, "message" : createMessage })
+        // const createMessage = await db.message.create(data1)
+        return res.status(201).send({"hasil update" : hasilUpdate, "message" : objek })
     } catch (err) {
         console.log(err);
         return res.status(400).send({status : err})

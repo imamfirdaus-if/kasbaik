@@ -61,15 +61,19 @@ const listDetailUser = async (req, res) => {
 
 const listDetailMitra = async (req, res) => {
     try {
+        const user = await dbUser.findOne({where : {id_user : req.params.id_user}});
         const profile = await dbProfileMitra.findOne({where: {id_user : req.params.id_user}});
         const objek = Helper.toObject(profile);
         console.log(objek);
-        await dbMitra.findAll({where: {id_mitra : objek.id_mitra}})
-        .then(async data => {
-            return res.status(200).send({
-                profiles : objek,
-                borrower : data,
-            });
+        const mitra = await dbMitra.findAll({where: {id_mitra: objek.id_mitra}});
+        const payment = await dbPayment.findAll({where : {id_mitra: objek.id_mitra}});
+        const userPayment = await dbUserPayment.findAll({where : {id_mitra: objek.id_mitra}});
+        return res.status(200).send({ 
+            "User Mitra" : user,
+            profile : objek,
+            mitra : mitra,
+            payment : payment,
+            userPayment : userPayment,
         })
         
     } catch (err) {
