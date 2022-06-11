@@ -62,5 +62,8 @@ data class GetUpdateStatusResponseItem(
 	val status: String,
 
 	@field:SerializedName("updatedAt")
-	val updatedAt: String
+	val updatedAt: String,
+
+	@field:SerializedName("monthly_income")
+	val monthlyIncome: Int,
 )

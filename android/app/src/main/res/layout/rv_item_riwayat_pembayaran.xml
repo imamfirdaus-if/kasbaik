@@ -12,12 +12,14 @@
 
         <TextView
             android:id="@+id/month_count"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Bulan ke-1"
             android:textColor="@color/orange"
             android:textSize="15sp"
+            android:maxLines="1"
             android:textStyle="bold"
+            android:ellipsize="end"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>

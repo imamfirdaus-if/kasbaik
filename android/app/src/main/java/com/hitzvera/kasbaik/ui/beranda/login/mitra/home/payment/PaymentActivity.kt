@@ -19,17 +19,30 @@ class PaymentActivity : AppCompatActivity() {
     private lateinit var token: String
     private lateinit var binding: ActivityPaymentBinding
     private lateinit var viewModel: PaymentViewModel
+    private var hasStoped = false
     private val Adapter: ListAdapter by lazy {
         ListAdapter(ListAdapter.OnClickListener{ item ->
             Toast.makeText(this, "Untuk mengubah status, mohon gunakan menu list peminjam", Toast.LENGTH_LONG).show()
         }, this, token)
     }
 
+    override fun onStop() {
+        super.onStop()
+        hasStoped = true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(hasStoped){
+            recreate()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityPaymentBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        hasStoped = false
         token = intent.getStringExtra(HomeMitraActivity.TOKEN)!!
         binding.rvListPeminjam.layoutManager = LinearLayoutManager(this)
         binding.rvListPeminjam.adapter = Adapter

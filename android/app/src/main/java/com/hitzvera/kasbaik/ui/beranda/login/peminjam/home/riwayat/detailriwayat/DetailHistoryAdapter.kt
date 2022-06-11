@@ -11,7 +11,7 @@ import com.hitzvera.kasbaik.response.PaymentItem
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.historypayment.PaymentDiffUtil
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.status.StatusDiffUtil
 
-class DetailHistoryAdapter(private val onClickListener: OnClickListener, private val count: String): RecyclerView.Adapter<DetailHistoryAdapter.ViewHolder>() {
+class DetailHistoryAdapter(private val onClickListener: OnClickListener): RecyclerView.Adapter<DetailHistoryAdapter.ViewHolder>() {
 
     private var oldBorrowerItem = emptyList<PaymentItem>()
 

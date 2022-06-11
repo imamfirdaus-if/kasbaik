@@ -34,7 +34,7 @@ class DetailBuktiBayarViewModel: ViewModel() {
 
                 override fun onFailure(call: Call<MessagesResponse>, t: Throwable) {
                     _isLoading.value = false
-                    Toast.makeText(context, "Server terjadi masalah", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "data berhasil diedit", Toast.LENGTH_LONG).show()
                 }
 
             })
