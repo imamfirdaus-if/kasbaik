@@ -100,10 +100,10 @@ interface ApiService {
         @Path("id_borrower") idBorrower: String
     ): Call<GetPaymentResponseUser>
 
-    @GET("payment")
+    @GET("payment/{id_borrower}")
     fun getPaymentFromUser(
         @Header("Cookie") auth: String,
-        @Query("id_borrower") idBorrower: String
+        @Path("id_borrower") idBorrower: String
     ): Call<GetPaymentResponseUser>
 
     @FormUrlEncoded
