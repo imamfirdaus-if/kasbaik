@@ -25,7 +25,7 @@
             android:name=".ui.beranda.login.superadmin.home.peminjam.detail.DetailPinjamanAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.beranda.login.superadmin.home.pengguna.ProfileUserAdminActivity"
+            android:name=".ui.beranda.login.superadmin.home.pengguna.profile.ProfileUserAdminActivity"
             android:exported="false" />
         <activity
             android:name=".ui.beranda.login.superadmin.home.mitra.profile.ProfileMitraAdminActivity"
