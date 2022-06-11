@@ -178,9 +178,19 @@ interface ApiService {
         @Header("Cookie") auth: String
     ): Call<MessagesResponse>
 
+    @GET("summary")
+    fun getSummary(
+        @Header("Cookie") auth: String
+    ): Call<HomeAdminResponse>
+
     @GET("listakunmitra")
     fun getListMitra(
         @Header("Cookie") auth: String
     ): Call<List<GetListMitraResponseItem>>
+
+    @GET("listakunuser")
+    fun getListPengguna(
+        @Header("Cookie") auth: String
+    ): Call<List<ListUserAdminResponseItem>>
 
 }

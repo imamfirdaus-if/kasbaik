@@ -1,4 +1,4 @@
-package com.hitzvera.kasbaik.ui.beranda.login.superadmin.home.pengguna
+package com.hitzvera.kasbaik.ui.beranda.login.superadmin.home.pengguna.profile
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

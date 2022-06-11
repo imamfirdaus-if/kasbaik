@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityListMitraBinding
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.ListAdapter
@@ -24,7 +25,7 @@ class ListMitraActivity : AppCompatActivity() {
         binding = ActivityListMitraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        token = intent.getStringExtra("Token")!!
+        token = intent.getStringExtra("TOKEN").toString()
         vm = ViewModelProvider(this)[ListMitraViewModel::class.java]
         binding.apply {
             vm.apply {
@@ -39,6 +40,7 @@ class ListMitraActivity : AppCompatActivity() {
                 }
             }
             rvListMitra.setHasFixedSize(true)
+            rvListMitra.layoutManager = LinearLayoutManager(this@ListMitraActivity)
             rvListMitra.adapter = Adapter
         }
     }

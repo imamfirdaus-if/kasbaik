@@ -15,6 +15,7 @@ import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityLoginAsPeminjamBinding
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.HomeMitraActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.HomePeminjamActivity
+import com.hitzvera.kasbaik.ui.beranda.login.superadmin.home.HomeAdminActivity
 
 class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -83,7 +84,15 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
                                 startActivity(intent)
                                 finish()
                             }
-                        } else {
+                        } else if(it.user.role == "admin") {
+                            Intent(this, HomeAdminActivity::class.java).also { intent ->
+                                intent.putExtra(HomeAdminActivity.TOKEN, it.token)
+                                intent.putExtra(HomeAdminActivity.NAME, it.user.username)
+                                startActivity(intent)
+                                finish()
+                            }
+                        }
+                        else {
                             Intent(this, HomeMitraActivity::class.java).also { intent ->
                                 intent.putExtra(HomeMitraActivity.TOKEN, it.token)
                                 intent.putExtra(HomeMitraActivity.NAME, it.user.username)
