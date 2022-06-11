@@ -14,7 +14,8 @@
         android:layout_marginTop="32dp"
         android:text="Pinjaman Terbaru"
         android:textColor="@color/white"
-        android:textSize="32sp"
+        android:textSize="24sp"
+        android:fontFamily="@font/poppins_semibold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -28,7 +29,7 @@
         android:background="@drawable/rounded_corners"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_status_title"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_label_status_title" />
 
     <TextView
         android:id="@+id/tv_label_nothing"
@@ -54,8 +55,9 @@
         android:layout_marginTop="16dp"
         android:text="Status"
         android:textColor="@color/orange"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
+        android:fontFamily="@font/poppins_semibold"
         app:layout_constraintStart_toStartOf="@+id/container"
         app:layout_constraintTop_toTopOf="@id/container" />
 
@@ -66,7 +68,8 @@
         android:layout_marginStart="16dp"
         android:text="pending"
         android:textColor="@color/orange"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_semibold"
         app:layout_constraintStart_toEndOf="@+id/tv_label_dibuat"
         app:layout_constraintTop_toTopOf="@id/tv_label_status" />
 
@@ -78,8 +81,9 @@
         android:layout_marginTop="16dp"
         android:text="Jumlah Pinjaman"
         android:textColor="@color/orange"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
+        android:fontFamily="@font/poppins_semibold"
         app:layout_constraintStart_toStartOf="@+id/container"
         app:layout_constraintTop_toBottomOf="@id/tv_label_status" />
 
@@ -87,12 +91,13 @@
         android:id="@+id/tv_jumlah_pinjaman"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:text="1000000"
         android:textColor="@color/orange"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/poppins_semibold"
         app:layout_constraintBottom_toBottomOf="@id/tv_label_jumlah_pinjaman"
-        app:layout_constraintStart_toEndOf="@+id/tv_label_jumlah_pinjaman" />
+        app:layout_constraintStart_toEndOf="@+id/tv_label_dibuat" />
 
     <TextView
         android:id="@+id/tv_label_dibuat"
@@ -102,8 +107,9 @@
         android:layout_marginTop="16dp"
         android:text="Tanggal Pinjaman"
         android:textColor="@color/orange"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
+        android:fontFamily="@font/poppins_semibold"
         app:layout_constraintStart_toStartOf="@+id/container"
         app:layout_constraintTop_toBottomOf="@id/tv_label_jumlah_pinjaman" />
 
@@ -116,7 +122,8 @@
         android:text="21-20-2000"
         android:ellipsize="end"
         android:textColor="@color/orange"
-        android:textSize="20sp"
+        android:textSize="16sp"
+        android:fontFamily="@font/poppins_semibold"
         app:layout_constraintBottom_toBottomOf="@id/tv_label_dibuat"
         app:layout_constraintStart_toEndOf="@+id/tv_label_dibuat" />
 
@@ -127,8 +134,9 @@
         android:layout_marginTop="32dp"
         android:text="History Pembayaran"
         android:textColor="@color/white"
-        android:textSize="32sp"
+        android:textSize="24sp"
         android:visibility="gone"
+        android:fontFamily="@font/poppins_semibold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/container" />

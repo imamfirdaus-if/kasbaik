@@ -115,7 +115,13 @@ verifyTokenUser(req, res, next){
 },
 
 verifyTokenAdmin(req, res, next){
-  const token = req.cookies.jwt;
+  const authHeader = req.headers["authorization"];
+  let token = authHeader && authHeader.split(" ")
+  [1];
+  console.log(`token dari header :` + token);
+  if(token === undefined){
+    token = req.cookies.jwt
+  }
   if (token) {
       jwt.verify(token, process.env.SECRET, (err, decodedToken) => {
         if (err) {

@@ -39,10 +39,13 @@ class DetailPaymentViewModel : ViewModel(){
                     } else {
                         _isLoading.value = false
                         _isSuccessful.value = "failed"
-                        val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
-                        val mErrorMessage = jsonObj.getString("message")
-                        _errorMessage.value = mErrorMessage
-                        Toast.makeText(context, "Berhasil melakukan pembayaran", Toast.LENGTH_LONG).show()
+                        try {
+                            val jsonObj = JSONObject(response.errorBody()!!.charStream().readText())
+                            val mErrorMessage = jsonObj.getString("message")
+                            _errorMessage.value = mErrorMessage
+                        } catch (e: Exception){
+                            Toast.makeText(context, "Berhasil melakukan pembayaran", Toast.LENGTH_LONG).show()
+                        }
                     }
                 }
 

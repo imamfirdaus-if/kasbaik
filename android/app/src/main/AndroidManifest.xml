@@ -13,6 +13,12 @@
         android:theme="@style/Theme.KasBaik"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.beranda.login.mitra.home.buktibayar.DetailMitraBuktiBayarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.beranda.login.mitra.home.buktibayar.BuktiBayarActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.beranda.login.peminjam.home.buktibayar.history.DetailHistoryBuktiBayarActivity"
             android:exported="false" />
         <activity
@@ -25,7 +31,7 @@
             android:name=".ui.beranda.login.superadmin.home.mitra.profile.ProfileMitraAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.beranda.login.superadmin.home.pembayaran.history.HIstoryPaymentAdminActivity"
+            android:name=".ui.beranda.login.superadmin.home.pembayaran.history.HistoryPaymentAdminActivity"
             android:exported="false" />
         <activity
             android:name=".ui.beranda.login.superadmin.home.pembayaran.ListPaymentActivity"
@@ -46,7 +52,6 @@
             android:name=".ui.beranda.login.superadmin.home.profile.ProfileAdminActivity"
             android:exported="false" />
         <activity
-                  
             android:name=".ui.beranda.login.superadmin.home.HomeAdminActivity"
             android:exported="false" />
         <activity
