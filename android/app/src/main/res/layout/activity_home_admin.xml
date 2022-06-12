@@ -193,6 +193,7 @@
             android:textColor="@color/orange"
             android:backgroundTint="@color/white"
             android:textAllCaps="false"
+            android:textStyle="bold"
             android:text="Pengguna"
             app:layout_constraintTop_toBottomOf="@+id/btn_mitra"/>
 
@@ -205,6 +206,7 @@
             android:textColor="@color/orange"
             android:backgroundTint="@color/white"
             android:textAllCaps="false"
+            android:textStyle="bold"
             android:text="List Peminjam"
             app:layout_constraintTop_toBottomOf="@+id/btn_pengguna"/>
 
@@ -217,6 +219,7 @@
             android:textColor="@color/orange"
             android:backgroundTint="@color/white"
             android:textAllCaps="false"
+            android:textStyle="bold"
             android:text="Pembayaran"
             app:layout_constraintTop_toBottomOf="@+id/btn_list_peminjam"/>
 

@@ -80,7 +80,7 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.putString(TOKEN, token)
         editor.putString(ROLE, role)
-        editor.putString(USERNAME, token)
+        editor.putString(USERNAME, username)
         editor.putBoolean(CHECKBOX, binding.rememberMe.isChecked)
         editor.apply()
     }
