@@ -76,6 +76,9 @@ router.get("/buktibayar", Auth.verifyTokenUser, showController.buktiBayarMessage
 // digunakan untuk memberikan bukti bayar ke mitra sebagai message
 router.post("/buktibayar", Auth.verifyTokenUser, messageController.createMessagetoMitra) // post untuk memberikan bukti bayar
 
+//summary mitra
+router.get("/summaryMitra/:id_mitra", Auth.verifyTokenMitra, showController.summarryMitra)
+
 //role admin
 router.get("/listAkunUser", Auth.verifyTokenAdmin, adminController.listAkunUser)
 router.get("/listAkunMitra", Auth.verifyTokenAdmin, adminController.listAkunMitra)

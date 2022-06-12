@@ -21,7 +21,6 @@ class StatusActivity : AppCompatActivity() {
     private lateinit var idBorrower: String
     private lateinit var viewModel: StatusViewModel
     private lateinit var currentBorrowing: Borrower
-    private lateinit var viewModel2: HistoryViewModel
 
     private val adapter: StatusAdapter by lazy {
         StatusAdapter(StatusAdapter.OnClickListener{ item ->
@@ -42,7 +41,7 @@ class StatusActivity : AppCompatActivity() {
         viewModel = ViewModelProvider(this)[StatusViewModel::class.java]
 
         viewModel.getListBorrowing(token, this)
-        viewModel.listBorrowing.observe(this){
+        viewModel.listBorrowing.observe(this){ it ->
             if(!it.isNullOrEmpty()){
                 currentBorrowing = it.last()
                 if(currentBorrowing.status == "done"){
@@ -59,6 +58,24 @@ class StatusActivity : AppCompatActivity() {
                     }
                     viewModel.isLoading.observe(this){ item ->
                         showLoading(item)
+                    }
+                } else if(currentBorrowing.status == "pending"){
+                    setVisibility(true)
+                    binding.btnDelete.visibility = View.VISIBLE
+                    binding.btnEdit.visibility = View.VISIBLE
+                    binding.btnEdit.setOnClickListener {
+
+                    }
+                    binding.btnDelete.setOnClickListener {
+                        viewModel.deleteRequest(token, currentBorrowing.idBorrower, this)
+                        viewModel.isLoading.observe(this){
+                            showLoading(it)
+                        }
+                        viewModel.isSuccessful.observe(this){
+                            if(it){
+                                recreate()
+                            }
+                        }
                     }
                 } else {
                     setVisibility(true)
@@ -93,6 +110,8 @@ class StatusActivity : AppCompatActivity() {
             binding.tvLabelJumlahPinjaman.visibility = View.GONE
             binding.tvLabelNothing.visibility = View.VISIBLE
         }
+        binding.btnEdit.visibility = View.GONE
+        binding.btnDelete.visibility = View.GONE
     }
 
     private fun showLoading(isLoading: Boolean){

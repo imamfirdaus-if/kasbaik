@@ -70,6 +70,18 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
                         .into(ivAvatar)
                     edAlamatTinggal.setText(it.alamatTinggal ?: "")
                     edAlamatKtp.setText(it.alamatKtp ?: "")
+                    if(it.fotoDiri != null){
+                        tvLabelFotoDiri.text = "See preview"
+                        tvLabelFotoKtp.text = "See preview"
+                        tvLabelFotoSelfie.text = "See preview"
+                    }
+                    if(it.gender != null){
+                        if(it.gender == "laki-laki"){
+                            radioPria.isChecked = true
+                        } else {
+                            radioWanita.isChecked = true
+                        }
+                    }
                     if(it.usia != null){
                         edUsia.setText("${it.usia}")
                     }
