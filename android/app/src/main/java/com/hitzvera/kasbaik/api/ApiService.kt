@@ -59,6 +59,12 @@ interface ApiService {
         @Field("credit_approval") creditApproval: Int,
     ): Call<PostBorrowerResponse>
 
+    @DELETE("borrower/{id_borrower}")
+    fun deleteRequestBorrowing(
+        @Header("Cookie") auth: String,
+        @Path("id_borrower") idBorrower: String
+    ): Call<DeleteRequestBorrowingResponse>
+
     @GET("updatestatus")
     fun getRequestBorrower(
         @Header("Cookie") auth: String

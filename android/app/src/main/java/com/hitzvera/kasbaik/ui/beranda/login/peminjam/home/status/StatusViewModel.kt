@@ -17,6 +17,9 @@ class StatusViewModel: ViewModel() {
     private var _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private var _isSuccessful = MutableLiveData<Boolean>()
+    val isSuccessful: LiveData<Boolean> = _isSuccessful
+
     private var _listBorrowing = MutableLiveData<List<Borrower>>()
     val listBorrowing: LiveData<List<Borrower>> = _listBorrowing
 
@@ -70,6 +73,34 @@ class StatusViewModel: ViewModel() {
                     _isLoading.value = false
                     Toast.makeText(context, "failed to fetch data", Toast.LENGTH_SHORT).show()
                 }
+            })
+    }
+
+    fun deleteRequest(token: String, idBorrower: String, context: Context){
+        _isLoading.value = true
+        ApiConfig.getApiService().deleteRequestBorrowing("jwt=$token", idBorrower)
+            .enqueue(object: Callback<DeleteRequestBorrowingResponse>{
+                override fun onResponse(
+                    call: Call<DeleteRequestBorrowingResponse>,
+                    response: Response<DeleteRequestBorrowingResponse>
+                ) {
+                    _isLoading.value = false
+                    if(response.isSuccessful){
+                        Toast.makeText(context, "Data berhasil dihapus", Toast.LENGTH_LONG).show()
+                        _isSuccessful.value = true
+                    } else {
+                        Toast.makeText(context, "Data Gagal dihapus", Toast.LENGTH_LONG).show()
+                        _isSuccessful.value = false
+                    }
+
+                }
+
+                override fun onFailure(call: Call<DeleteRequestBorrowingResponse>, t: Throwable) {
+                    _isLoading.value = false
+                    _isSuccessful.value = false
+                    Toast.makeText(context, "Data berhasil dihapus", Toast.LENGTH_LONG).show()
+                }
+
             })
     }
 
