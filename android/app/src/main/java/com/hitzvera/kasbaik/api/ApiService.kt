@@ -193,4 +193,9 @@ interface ApiService {
         @Header("Cookie") auth: String
     ): Call<List<ListUserAdminResponseItem>>
 
+    @GET("listakunuser/{id_user}")
+    fun getProfileUserAdmin(
+        @Header("Cookie") auth: String,
+        @Path("id_user") idUser: String
+    ): Call<ProfileUserAdminResponse>
 }
