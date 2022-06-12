@@ -65,6 +65,18 @@ interface ApiService {
         @Path("id_borrower") idBorrower: String
     ): Call<DeleteRequestBorrowingResponse>
 
+    @FormUrlEncoded
+    @PUT("borrower/{id_borrower}")
+    fun editRequestBorrowing(
+        @Header("Cookie") auth: String,
+        @Path("id_borrower") idBorrower: String,
+        @Field("loan_amount") loanAmount: Int,
+        @Field("reason_borrower") reasonBorrower: String,
+        @Field("tenor") tenor: Int,
+        @Field("monthly_income") monthlyIncome: Int,
+        @Field("donasi") donasi: Int
+    ): Call<List<Int>>
+
     @GET("updatestatus")
     fun getRequestBorrower(
         @Header("Cookie") auth: String
