@@ -1,10 +1,15 @@
 package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.TextKeyListener.clear
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.Window
 import android.widget.Button
@@ -15,7 +20,9 @@ import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.models.SlideModel
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityHomePeminjamBinding
+import com.hitzvera.kasbaik.ui.beranda.login.peminjam.LoginAsPeminjamActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.buktibayar.UploadBuktiBayarActivity
+import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.buktibayar.history.HistoryBuktiBayarActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.notifikasi.NotifikasiActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.pinjamdana.PinjamDanaActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.profile.ProfileActivity
@@ -23,11 +30,13 @@ import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.riwayat.HistoryActivi
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.status.StatusActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.zakat.ZakatActivity
 import com.hitzvera.kasbaik.ui.beranda.tentang.AboutActivity
+import com.hitzvera.kasbaik.ui.dashboard.daftar.DashboardDaftarActivity
 
 class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var viewModel: HomePeminjamViewModel
     private lateinit var binding: ActivityHomePeminjamBinding
+    private lateinit var preferences: SharedPreferences
     private lateinit var token: String
     private var gender: String? = null
     private var usia: Int? = null
@@ -39,6 +48,8 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityHomePeminjamBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        preferences = getSharedPreferences(DashboardDaftarActivity.SHARED_PREFERENCES, Context.MODE_PRIVATE)
         token = intent.getStringExtra(TOKEN).toString()
         gender = intent.getStringExtra(GENDER)
         usia = intent.getIntExtra(USIA, 0)
@@ -61,6 +72,29 @@ class HomePeminjamActivity : AppCompatActivity(), View.OnClickListener {
     override fun onStop() {
         super.onStop()
         hasStopped = 1
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.logout_item, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_logout -> {
+                preferences.edit().apply {
+                    clear()
+                    apply()
+                }
+                Intent(this, LoginAsPeminjamActivity::class.java).also {
+                    startActivity(it)
+                    finish()
+                }
+                return true
+            }
+            else -> return true
+        }
     }
 
     override fun onClick(view: View) {
