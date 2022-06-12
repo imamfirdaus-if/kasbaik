@@ -262,6 +262,45 @@ const messageData = async (req, res) => {
     }
 }
 
+const summarryMitra = async (req, res) => {
+    try {
+        const data1 = await dbMitra.findAll({where:{id_mitra: req.params.id_mitra}});
+        const objek = Helper.toObject(data1);
+        console.log(objek);
+        let pending = 0;
+        let accepted = 0;
+        let borrower = 0;
+        let totalPayment = 0;
+        for (let i = 0; i < objek.length; i++){
+            if (objek[i].status === "pending"){
+                pending++;
+                borrower++;
+            }
+            else if (objek[i].status === "accepted" || objek[i].status === "payment"){
+                accepted++;
+                borrower++;
+            }
+        }
+        const data2 = await dbPayment.findAll({where:{id_mitra: req.params.id_mitra}});
+        const getPayment = Helper.toObject(data2)
+        getPayment.forEach(data => {
+            totalPayment = totalPayment + data.amount_payment
+        });
+        console.log(pending, accepted, borrower, totalPayment);
+        const data = {
+            pending : pending,
+            accepted : accepted,
+            borrower : borrower,
+            totalPayment : totalPayment
+        }
+        return res.status(200).send(data);
+        
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send({status : err})
+    }
+}
+
 // const userPaymentData = async (req, res) => {
 //     try {   
 //         await dbUserPayment.findOne({where: {id_user: req.id}})
@@ -288,5 +327,6 @@ module.exports = {
     // userPaymentData,
     creditData,
     creditDataById,
-    messageData
+    messageData,
+    summarryMitra,
 }
