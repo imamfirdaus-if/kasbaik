@@ -131,17 +131,19 @@ const updateBorrower = async (req, res) => {
             reason_borrower: req.body.reason_borrower,
             monthly_income : req.body.monthly_income,
             dependents_amount: req.body.dependents_amount,
-            status: req.body.status,
+            // status: req.body.status,
             telat : req.body.telat,
             donasi : req.body.donasi,
+            tenor : req.body.tenor,
         }
 
         await dbBorrower.findAll({where: {id_user: id_user , status : { [Op.or] : ["pending"]}}})
         .then(async data => {
             await dbBorrower.update(data1, {where: {id_borrower: req.params.id_borrower}})
                 .then(async data2 => {
+                    const borrower = await dbBorrower.findOne({where: {id_borrower: req.params.id_borrower}})
                     await dbMitra.update(data1,{where: {id_borrower: data[0].id_borrower}})
-                    return res.status(200).send(data2)
+                    return res.status(200).send({borrower : borrower})
             })
         })
         
