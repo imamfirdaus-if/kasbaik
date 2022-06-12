@@ -127,6 +127,31 @@
         app:layout_constraintBottom_toBottomOf="@id/tv_label_dibuat"
         app:layout_constraintStart_toEndOf="@+id/tv_label_dibuat" />
 
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:backgroundTint="@color/red"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_edit"
+        app:layout_constraintTop_toBottomOf="@id/container"
+        app:layout_constraintEnd_toEndOf="@id/container"/>
+
+
+    <Button
+        android:id="@+id/btn_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit"
+        android:backgroundTint="@color/orange"
+        android:visibility="gone"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/container"
+        app:layout_constraintEnd_toStartOf="@id/btn_delete"
+        app:layout_constraintStart_toStartOf="@id/container"/>
+
     <TextView
         android:id="@+id/tv_label_status_history_title"
         android:layout_width="wrap_content"
