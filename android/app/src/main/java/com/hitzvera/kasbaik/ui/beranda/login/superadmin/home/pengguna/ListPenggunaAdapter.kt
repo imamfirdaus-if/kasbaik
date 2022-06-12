@@ -19,11 +19,13 @@ class ListPenggunaAdapter(private val onClickListener: OnClickListener, private 
     inner class ViewHolder(private val binding: RvMitraAdminBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(listBorrower: ListUserAdminResponseItem){
             binding.apply {
+                val id = listBorrower.idUser
                 tvMitraName.text = listBorrower.username
                 phone.text = "Detail"
                 phone.setOnClickListener {
                     Intent(context, ProfileUserAdminActivity::class.java).also {
                         it.putExtra("TOKEN", token)
+                        it.putExtra("IDUSER", id)
                         context.startActivity(it)
                     }
                 }
