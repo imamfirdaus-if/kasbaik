@@ -65,9 +65,11 @@ class StatusActivity : AppCompatActivity() {
                     binding.tvLabelStatusHistoryTitle.visibility = View.VISIBLE
                     viewModel.getListPayment(token, this, currentBorrowing.idBorrower)
                     viewModel.listPayment.observe(this){ item ->
-                        if(item!=null){
+                        if(!item.isNullOrEmpty()){
                             adapter.setData(item)
                             Log.e("test", item.toString())
+                        } else {
+                            binding.containerPaymentNone.visibility = View.VISIBLE
                         }
                     }
                     viewModel.isLoading.observe(this){ item ->
@@ -136,6 +138,7 @@ class StatusActivity : AppCompatActivity() {
         }
         binding.btnEdit.visibility = View.GONE
         binding.btnDelete.visibility = View.GONE
+        binding.containerPaymentNone.visibility = View.GONE
     }
 
     private fun showLoading(isLoading: Boolean){

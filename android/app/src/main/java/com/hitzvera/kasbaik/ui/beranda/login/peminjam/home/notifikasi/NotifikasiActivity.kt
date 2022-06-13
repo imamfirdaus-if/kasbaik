@@ -3,6 +3,7 @@ package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.notifikasi
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hitzvera.kasbaik.R
@@ -53,7 +54,10 @@ class NotifikasiActivity : AppCompatActivity() {
         viewModel.getListMessage(token, this)
         viewModel.listMessage.observe(this){
             if(!it.isNullOrEmpty()){
+                binding.containerNotifikasiNone.visibility = View.GONE
                 adapter.setData(it)
+            } else {
+                binding.containerNotifikasiNone.visibility = View.VISIBLE
             }
         }
 

@@ -179,6 +179,12 @@ interface ApiService {
         @Field("telatharikat") telatharikat: Int,
         @Field("donasikat") donasikat: Int,
     ): Call<CrediteApprovalResponse>
+
+    @GET("credit/{id_borrower}")
+    fun getCreditData(
+        @Header("Cookie") auth: String,
+        @Path("id_borrower") idBorrower: String
+    ): Call<CreditKatResponse>
     
     @GET("messages/{id_message}")
     fun updateHasReadMessage(

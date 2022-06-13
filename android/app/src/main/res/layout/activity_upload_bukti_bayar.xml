@@ -64,6 +64,7 @@
         android:background="@drawable/rounded_corners"
         android:hint="enter the amount of payment"
         android:padding="8dp"
+        android:inputType="number"
         android:layout_marginHorizontal="16dp"
         android:fontFamily="@font/poppins_semibold"
         app:layout_constraintEnd_toEndOf="@id/iv_preview"
