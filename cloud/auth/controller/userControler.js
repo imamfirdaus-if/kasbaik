@@ -1,7 +1,8 @@
 const express = require('express')
 const db = require('../model/model')
 const Helper = require('../middleware/helper');
-const crypto = require('crypto')
+const crypto = require('crypto');
+const { getAllProfile } = require('./profileController');
 const dbUser = db.users;
 const dbProfile = db.profileUser;
 const dbProfileMitra = db.profileMitra
@@ -100,21 +101,59 @@ const login_post= async(req, res, next) => {
         }
         
         console.log('berhasil login');
+        const objek = Helper.toObject(data);
+        console.log(objek);
         const token = Helper.generateToken(data.dataValues.id_user, user.email, data.role );
 
         res.cookie('jwt', token);
         console.log({token});
-        return res.status(200).json({
-          user : data,
-          token,
-          tokenweb : `Bearer ${token}`
-        });
 
+        if (data.role === 'user') {
+          dbProfile.findOne({where : {id_user : objek.id_user}})
+          .then(data1 => {
+            const objek1 = Helper.toObject(data1);
+            console.log(objek1);
+            const user1 = {
+              id_user : objek.id_user,
+              username : objek.username,
+              email : objek.email,
+              password : objek.password,
+              phone : objek.phone,
+              role : objek.role,
+              id_profile : objek1.id_profile,
+            }
+            return res.status(200).json({
+              user : user1,
+              token,
+              tokenweb : `Bearer ${token}`
+            });
+          })
+        } else if (data.role === 'mitra') {
+          dbProfileMitra.findOne({where : {id_user : objek.id_user}})
+          .then(data1 => {
+            const objek1 = Helper.toObject(data1);
+            console.log(objek1);
+            const user1 = {
+              id_user : objek.id_user,
+              username : objek.username,
+              email : objek.email,
+              password : objek.password,
+              phone : objek.phone,
+              role : objek.role,
+              id_mitra : objek1.id_mitra,
+            }
+            return res.status(200).json({
+              user : user1,
+              token,
+              tokenweb : `Bearer ${token}`
+            });
+          }) 
         }
-      })
+      }
+    })
         
   } catch (err) {
-    log.error(err.message);
+    console.error(err.message);
     return res.status(500).send(err.message);
   }
   
