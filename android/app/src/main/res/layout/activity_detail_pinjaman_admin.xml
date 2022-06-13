@@ -112,64 +112,27 @@
         app:layout_constraintTop_toBottomOf="@+id/tv_label_pinjaman_ke" />
 
     <TextView
-        android:id="@+id/tv_label_pemasukan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="Pemasukan"
-        android:textColor="@color/orange"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/container"
-        app:layout_constraintTop_toBottomOf="@+id/batas_3" />
-
-    <TextView
-        android:id="@+id/tv_pemasukan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="Rp.200.000"
-        android:textColor="@color/orange"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@id/container"
-        app:layout_constraintTop_toBottomOf="@id/batas_3" />
-
-    <View
-        android:id="@+id/batas_4"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/orange"
-        app:layout_constraintEnd_toEndOf="@+id/tv_credit_score"
-        app:layout_constraintStart_toStartOf="@+id/tv_label_credit_score"
-        app:layout_constraintTop_toBottomOf="@+id/tv_label_pemasukan" />
-
-    <TextView
         android:id="@+id/tv_label_reason"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="Reason"
         android:textColor="@color/orange"
         android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="@id/batas_4"
-        app:layout_constraintTop_toBottomOf="@id/batas_4" />
+        app:layout_constraintTop_toBottomOf="@+id/batas_3"
+        app:layout_constraintStart_toStartOf="@+id/batas_3"/>
 
     <TextView
         android:id="@+id/tv_reason"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
         android:gravity="start"
         android:lines="4"
         android:maxLines="4"
         android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         android:textColor="@color/orange"
-        android:textSize="11sp"
-        app:layout_constraintEnd_toEndOf="@id/container"
-        app:layout_constraintTop_toBottomOf="@id/batas_4" />
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/batas_3"
+        app:layout_constraintTop_toBottomOf="@+id/batas_3" />
 
     <TextView
         android:id="@+id/tv_label_status"
@@ -194,23 +157,36 @@
         app:layout_constraintStart_toStartOf="@id/container"
         app:layout_constraintTop_toBottomOf="@+id/tv_status" />
 
-
-    <com.google.android.material.textfield.TextInputLayout
+    <TextView
         android:id="@+id/tv_status"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@id/tv_reason"
         app:layout_constraintStart_toStartOf="@id/tv_reason"
-        app:layout_constraintTop_toBottomOf="@id/tv_reason">
+        app:layout_constraintTop_toTopOf="@id/tv_label_status"
+        android:text="Pending"
+        android:textSize="18sp"
+        android:textColor="@color/orange"
+        android:textAlignment="textEnd"
+        />
 
-        <AutoCompleteTextView
-            android:id="@+id/status_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="none"
-            android:text="pending" />
-    </com.google.android.material.textfield.TextInputLayout>
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/tv_status"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="@id/tv_reason"-->
+<!--        app:layout_constraintStart_toStartOf="@id/tv_reason"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/tv_reason">-->
+
+<!--        <AutoCompleteTextView-->
+<!--            android:id="@+id/status_container"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:inputType="none"-->
+<!--            android:text="pending" />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
 
     <!--    <TextView-->
     <!--        android:id="@+id/tv_status"-->
@@ -228,7 +204,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
         android:text="Rp.300.000"
         android:textColor="@color/orange"
         android:textStyle="bold"

@@ -216,4 +216,26 @@ interface ApiService {
         @Header("Cookie") auth: String,
         @Path("id_user") idUser: String
     ): Call<ProfileUserAdminResponse>
+
+    @GET("listborrowerpending")
+    fun getListBorrowerPending(
+        @Header("Cookie") auth: String
+    ): Call<List<ListBorrowerPendingResponseItem>>
+
+    @GET("listborrower/{id_borrower}")
+    fun getBorrowerByID(
+        @Header("Cookie") auth: String,
+        @Path("id_borrower") idBorrower: String
+    ): Call<List<DetailPinjamanAdminResponseItem>>
+
+    @GET("listpayment")
+    fun getListPayment(
+        @Header("Cookie") auth: String
+    ): Call<List<ListPaymentAdminResponseItem>>
+
+    @GET("listpayment/{id_borrower}")
+    fun getPaymentByID(
+        @Header("Cookie") auth: String,
+        @Path("id_borrower") idBorrower: String
+    ): Call<HistoryPaymentAdminResponse>
 }
