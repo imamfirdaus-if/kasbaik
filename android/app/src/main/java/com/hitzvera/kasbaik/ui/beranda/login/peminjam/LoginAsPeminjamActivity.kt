@@ -1,6 +1,7 @@
 package com.hitzvera.kasbaik.ui.beranda.login.peminjam
 
 import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
@@ -17,6 +18,8 @@ import com.hitzvera.kasbaik.ui.beranda.daftar.RegisterActivity
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.HomeMitraActivity
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.HomePeminjamActivity
 import com.hitzvera.kasbaik.ui.beranda.login.superadmin.home.HomeAdminActivity
+import com.hitzvera.kasbaik.ui.dashboard.daftar.DashboardDaftarActivity.Companion.CHECKBOX
+import com.hitzvera.kasbaik.ui.dashboard.daftar.DashboardDaftarActivity.Companion.SHARED_PREFERENCES
 
 class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -29,6 +32,7 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityLoginAsPeminjamBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        sharedPreferences = getSharedPreferences(SHARED_PREFERENCES, Context.MODE_PRIVATE)
         viewModel = ViewModelProvider(this)[LoginAsPeminjamViewModel::class.java]
         binding.btnLoginPeminjam.setOnClickListener(this)
         binding.dontHaveAccount.setOnClickListener(this)
@@ -72,6 +76,15 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    private fun inputSession(token: String, role: String, username: String){
+        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+        editor.putString(TOKEN, token)
+        editor.putString(ROLE, role)
+        editor.putString(USERNAME, username)
+        editor.putBoolean(CHECKBOX, binding.rememberMe.isChecked)
+        editor.apply()
+    }
+
     private fun showCustomDialog(state: String){
         if(state == "success"){
             val dialog = Dialog(this)
@@ -85,6 +98,7 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
             dialog.setOnDismissListener {
                 viewModel.loginResponse.observe(this){
                     if (it!=null){
+                        inputSession(it.token, it.user.role, it.user.username)
                         if(it.user.role == "user"){
                             Intent(this, HomePeminjamActivity::class.java).also { intent ->
                                 intent.putExtra(HomePeminjamActivity.TOKEN, it.token)
@@ -133,5 +147,12 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             binding.progressBarLoginPeminjam.visibility = View.GONE
         }
+    }
+
+    companion object {
+        const val TOKEN = "token"
+        const val USERNAME = "username"
+        const val CHECKBOX = "checkbox"
+        const val ROLE = "role"
     }
 }

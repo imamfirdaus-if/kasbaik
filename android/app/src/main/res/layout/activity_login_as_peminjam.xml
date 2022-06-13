@@ -75,6 +75,18 @@
      app:layout_constraintStart_toStartOf="@id/ed_password_login_peminjam"
      app:layout_constraintTop_toBottomOf="@+id/ed_password_login_peminjam" />
 
+ <CheckBox
+     android:id="@+id/remember_me"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:checked="true"
+     android:text="Remember me"
+     android:buttonTint="@color/orange"
+     android:textColor="@color/white"
+     android:fontFamily="@font/poppins_semibold"
+     app:layout_constraintStart_toStartOf="@id/dont_have_account"
+     app:layout_constraintTop_toBottomOf="@id/dont_have_account"/>
+
  <Button
      android:id="@+id/btn_login_peminjam"
      android:layout_width="150dp"

@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityDetailPinjamanBinding
+import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.HomeMitraActivity
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.listpeminjam.ListPeminjamActivity
 
 class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
@@ -22,7 +23,7 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var viewModel: DetailPinjamanViewModel
     private lateinit var token: String
     private lateinit var idBorrower: String
-    private lateinit var creditScore: String
+//    private lateinit var creditScore: String
     private lateinit var namaPeminjam: String
     private var monthlyIncome: Int = 0
     private var pinjamanKe: Int = 0
@@ -40,16 +41,29 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityDetailPinjamanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this)[DetailPinjamanViewModel::class.java]
-        binding.btnSave.setOnClickListener(this)
         getData()
+        viewModel = ViewModelProvider(this)[DetailPinjamanViewModel::class.java]
+        viewModel.getCreditData(token, idBorrower, this)
+        viewModel.creditScoreData.observe(this){
+            if(it!=null){
+                viewModel.getCreditScore(it.usiakat,it.econkat,it.profesikat,it.pinjamankekat,it.telatkat ?: 0,it.donasikat,this)
+                viewModel.creditScore.observe(this){ creditScore ->
+                    if(creditScore!=null){
+                        binding.tvCreditScore.text = creditScore.toString()
+                    }
+                }
+            }
+        }
+
+        binding.btnSave.setOnClickListener(this)
+        binding.btnCancel.setOnClickListener(this)
         setData()
     }
 
     private fun getData(){
         token = intent.getStringExtra(TOKEN).toString()
         namaPeminjam = intent.getStringExtra(NAMA_PEMINJAM).toString()
-        creditScore = intent.getStringExtra(CREDIT_SCORE).toString()
+//        creditScore = intent.getStringExtra(CREDIT_SCORE).toString()
         pinjamanKe = intent.getIntExtra(PINJAMAN_KE, 0)
         loanAmount = intent.getIntExtra(LOAN_AMOUNT, 0)
         reason = intent.getStringExtra(REASON).toString()
@@ -59,7 +73,7 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
     private fun setData(){
         binding.apply {
             tvNamaPeminjam.text = namaPeminjam
-            tvCreditScore.text = creditScore
+//            tvCreditScore.text = creditScore
             tvPinjamanKe.text = pinjamanKe.toString()
             tvLoanAmount.text = loanAmount.toString()
             tvReason.text = reason
@@ -98,6 +112,13 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
                     Toast.makeText(this, "Please fill all the form", Toast.LENGTH_SHORT).show()
                 }
 
+            }
+            R.id.btn_cancel -> {
+                Intent(this, ListPeminjamActivity::class.java).also {
+                    it.putExtra(HomeMitraActivity.TOKEN, token)
+                    startActivity(it)
+                }
+                finish()
             }
         }
     }

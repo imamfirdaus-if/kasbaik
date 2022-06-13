@@ -17,7 +17,7 @@ class ListMitraActivity : AppCompatActivity() {
     private val Adapter: ListMitraAdapter by lazy {
         ListMitraAdapter(ListMitraAdapter.OnClickListener{ item ->
             //Do Nothing
-        }, this)
+        }, this, token)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

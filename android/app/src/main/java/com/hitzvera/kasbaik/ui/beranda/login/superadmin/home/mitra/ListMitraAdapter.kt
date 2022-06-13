@@ -11,14 +11,22 @@ import com.hitzvera.kasbaik.databinding.RvMitraAdminBinding
 import com.hitzvera.kasbaik.response.GetListMitraResponseItem
 import com.hitzvera.kasbaik.ui.beranda.login.superadmin.home.mitra.profile.ProfileMitraAdminActivity
 
-class ListMitraAdapter(private val onClickListener: ListMitraAdapter.OnClickListener, private val context: Context): RecyclerView.Adapter<ListMitraAdapter.ViewHolder>() {
+class ListMitraAdapter(private val onClickListener: ListMitraAdapter.OnClickListener, private val context: Context, private val token:String): RecyclerView.Adapter<ListMitraAdapter.ViewHolder>() {
     private var oldBorrowerItem = emptyList<GetListMitraResponseItem>()
 
     inner class ViewHolder(private val binding: RvMitraAdminBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(list: GetListMitraResponseItem){
             binding.apply {
+                val id = list.idUser
                 tvMitraName.text = list.username
                 phone.text = list.phone
+//                phone.setOnClickListener {
+//                    Intent(context, ProfileMitraAdminActivity::class.java).also {
+//                        it.putExtra("TOKEN", token)
+//                        it.putExtra("IDUSER", id)
+//                        context.startActivity(it)
+//                    }
+//                }
             }
         }
     }
