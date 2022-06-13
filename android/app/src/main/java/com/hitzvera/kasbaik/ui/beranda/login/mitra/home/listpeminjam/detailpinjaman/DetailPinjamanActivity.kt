@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityDetailPinjamanBinding
+import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.HomeMitraActivity
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.listpeminjam.ListPeminjamActivity
 
 class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
@@ -42,6 +43,7 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
 
         viewModel = ViewModelProvider(this)[DetailPinjamanViewModel::class.java]
         binding.btnSave.setOnClickListener(this)
+        binding.btnCancel.setOnClickListener(this)
         getData()
         setData()
     }
@@ -98,6 +100,13 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
                     Toast.makeText(this, "Please fill all the form", Toast.LENGTH_SHORT).show()
                 }
 
+            }
+            R.id.btn_cancel -> {
+                Intent(this, ListPeminjamActivity::class.java).also {
+                    it.putExtra(HomeMitraActivity.TOKEN, token)
+                    startActivity(it)
+                }
+                finish()
             }
         }
     }

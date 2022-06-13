@@ -112,4 +112,6 @@ class PinjamDanaViewModel: ViewModel(){
         })
     }
 
+    fun getCreditScore
+
 }

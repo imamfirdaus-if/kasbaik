@@ -26,6 +26,7 @@ class ListPeminjamActivity : AppCompatActivity() {
                 it.putExtra(DetailPinjamanActivity.TOKEN, token)
                 it.putExtra(DetailPinjamanActivity.MONTLY_INCOME, item.monthlyIncome)
                 it.putExtra(DetailPinjamanActivity.ID_BORROWER, item.idBorrower)
+                finish()
                 startActivity(it)
             }
         })

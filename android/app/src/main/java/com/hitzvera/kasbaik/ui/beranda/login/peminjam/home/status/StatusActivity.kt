@@ -20,9 +20,10 @@ class StatusActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityStatusBinding
     private lateinit var token: String
-    private lateinit var idBorrower: String
     private lateinit var viewModel: StatusViewModel
     private lateinit var currentBorrowing: Borrower
+
+    private var hasStopped = false
 
     private val adapter: StatusAdapter by lazy {
         StatusAdapter(StatusAdapter.OnClickListener{ item ->
@@ -30,13 +31,24 @@ class StatusActivity : AppCompatActivity() {
         })
     }
 
+    override fun onStop() {
+        super.onStop()
+        hasStopped = true
+    }
 
+    override fun onResume() {
+        super.onResume()
+        if(hasStopped){
+            recreate()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStatusBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        hasStopped = false
         token = intent.getStringExtra(HomePeminjamActivity.TOKEN) ?: ""
         binding.rvHistoryPayment.layoutManager = LinearLayoutManager(this)
         binding.rvHistoryPayment.adapter = adapter
