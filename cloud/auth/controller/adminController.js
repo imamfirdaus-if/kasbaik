@@ -29,12 +29,33 @@ const listAkunUser = async (req, res) => {
 
 const listAkunMitra = async (req, res) => {
     try {
-        const query= `SELECT * FROM users where role = 'mitra'`; 
-        console.log(query);
+        const query= `SELECT * FROM users FULL OUTER JOIN profile_mitras ON users.id_user = profile_mitras.id_user WHERE role = 'mitra'`; 
         const User = await db.sequelize.query(query)
-        console.log(Helper.toObject(User[0]));
-        return res.status(200).send(Helper.toObject(User)[0])
-        
+        const User1 = Helper.toObject(User[0])
+        let temp1 = []
+        let temp = []
+        let proms = new Promise((resolve, reject) => {
+            User1.forEach( async (p) => {
+                // const query0 = `SELECT DISTINCT * FROM profile_mitras FULL OUTER JOIN mitras ON profile_mitras.id_mitra = mitras.id_mitra WHERE id_mitra = '${p.id_mitra}'`
+                // const hasil = await db.sequelize.query(query0)
+                // const hasil1 = Helper.toObject(hasil[0])
+                const query0 = `SELECT * FROM mitras WHERE id_mitra = '${p.id_mitra}'`
+                const hasil = await db.sequelize.query(query0)
+                const hasil1 = Helper.toObject(hasil[0])
+                console.log('hasil di loop', hasil1);
+                temp.push(hasil1)
+            })
+            setTimeout(() => {
+                resolve()
+            },500)
+            // console.log('remp diluar' , temp);
+            
+        })
+        proms.then(() => {
+            console.log('temp di proms' , temp);
+            return res.status(200).send({mitra : User1, jumlahuser : temp})
+        }) 
+
     } catch (err) {
         console.log(err);
         return res.status(400).send({status : err})
@@ -87,15 +108,15 @@ const listDetailMitra = async (req, res) => {
 
 const listBorrower = async (req, res) => {
     try {
-        await dbMitra.findAll()
-        .then(async data => {
-            return res.status(200).send(data);
-        })
+        const query0= `SELECT * FROM user_payments FULL OUTER JOIN mitras ON mitras.id_borrower = user_payments.id_borrower FULL OUTER JOIN profiles ON mitras.id_user = profiles.id_user FULL OUTER JOIN users ON profiles.id_user = users.id_user WHERE mitras.id_borrower IS NOT NULL `; 
+        const peminjaman = await db.sequelize.query(query0)
+        const peminjaman1 = Helper.toObject(peminjaman[0])
 
+        return res.status(200).send({peminjaman : peminjaman1})
         
     } catch (err) {
         console.log(err);
-        return res.status(400).send({status : err})
+        return res.status(400).send({message: err})
     }
 }
 
@@ -142,8 +163,14 @@ const listBorrowerHistory = async (req, res) => {
 
 const listDetailBorrower = async (req, res) => {
     try {
-        const data1 = await dbBorrower.findAll({where: {id_borrower : req.params.id_borrower}});
-        return res.status(200).send(data1);
+        const query0= `SELECT * FROM user_payments FULL OUTER JOIN mitras ON mitras.id_borrower = user_payments.id_borrower FULL OUTER JOIN profiles ON mitras.id_user = profiles.id_user FULL OUTER JOIN users ON profiles.id_user = users.id_user WHERE mitras.id_borrower IS NOT NULL AND mitras.id_borrower = '${req.params.id_borrower}'`; 
+        const peminjaman = await db.sequelize.query(query0)
+        const peminjaman1 = Helper.toObject(peminjaman[0][0])
+        
+        const query1= `SELECT * FROM payments FULL OUTER JOIN mitras ON mitras.id_borrower = payments.id_borrower FULL OUTER JOIN user_payments ON mitras.id_borrower = user_payments.id_borrower WHERE payments.id_payment IS NOT NULL AND mitras.id_borrower = '${req.params.id_borrower}' `; 
+        const pembayaran = await db.sequelize.query(query1)
+        const pembayaran1 = Helper.toObject(pembayaran[0])
+        return res.status(200).send({peminjaman : peminjaman1, pembayaran: pembayaran1});
         
     } catch (err) {
         console.log(err);
@@ -254,7 +281,7 @@ const jumlahTotal = async (req, res) => {
         const getUser = await db.users.findAll({where : {role : 'user'}})
         const getMitra = await db.users.findAll({where : {role : 'mitra'}})
         const getBorrower = await db.borrower.findAll()
-        const query= `SELECT * FROM mitras FULL OUTER JOIN payments ON payments.id_borrower = mitras.id_borrower FULL OUTER JOIN profile_mitras ON mitras.id_mitra = profile_mitras.id_mitra WHERE status = 'payment'`; 
+        const query= `SELECT * FROM mitras FULL OUTER JOIN payments ON payments.id_borrower = mitras.id_borrower FULL OUTER JOIN profile_mitras ON mitras.id_mitra = profile_mitras.id_mitra WHERE id_payment IS NOT NULL ORDER BY pinjaman_ke DESC , payment_ke DESC `; 
         const getPayment = await db.sequelize.query(query)
         const getPayment1 = Helper.toObject(getPayment[0])
         // const getPayment = await db.payment.findAll()
@@ -268,6 +295,75 @@ const jumlahTotal = async (req, res) => {
         return res.status(400).send({status : err})
     }
 }
+
+const homeAdmin = async (req, res) => {
+    try {
+        
+        const tableUser = await dbUser.findOne({where: {id_user : req.params.id_user}})
+        const tableProfile = await dbProfile.findOne({where: {id_user : req.params.id_user}})
+        const query0= `SELECT * FROM user_payments FULL OUTER JOIN mitras ON mitras.id_borrower = user_payments.id_borrower WHERE mitras.id_user = '${req.params.id_user}'`; 
+        const tableBorrowerPayment = await db.sequelize.query(query0)
+        const tableBorrowerPayment1 = Helper.toObject(tableBorrowerPayment[0])
+        const tableMessage = await db.message.findAll({where: {id_user : req.params.id_user},order : [["createdAt" , "DESC"] ]})
+        const query= `SELECT * FROM mitras FULL OUTER JOIN payments ON payments.id_borrower = mitras.id_borrower WHERE id_user = '${req.params.id_user}' AND id_payment IS NOT NULL ORDER BY pinjaman_ke DESC , payment_ke DESC `; 
+        const paymentHistory = await db.sequelize.query(query)
+        const paymentHistory1 = Helper.toObject(paymentHistory[0])
+        return res.status(200).send({ 
+            user : tableUser,
+            profile : tableProfile,
+            peminjaman : tableBorrowerPayment1,
+            message : tableMessage,
+            paymenthistory : paymentHistory1
+        })
+  
+    } catch (err) {
+        console.log(err);
+        return res.status(403).send(err)
+    }
+}
+
+
+const mitraAdmin = async (req, res) => {
+    try {
+        const query0= `SELECT * FROM users FULL OUTER JOIN profile_mitras ON users.id_user = profile_mitras.id_user WHERE id_mitra = '${req.params.id_mitra}'`; 
+        const tableProfile = await db.sequelize.query(query0)
+        const tableProfile1 = Helper.toObject(tableProfile[0])
+
+        const query1= `SELECT * FROM user_payments FULL OUTER JOIN mitras ON mitras.id_borrower = user_payments.id_borrower WHERE mitras.id_mitra = '${req.params.id_mitra}'`; 
+        const tableBorrowerPayment = await db.sequelize.query(query1)
+        const tableBorrowerPayment1 = Helper.toObject(tableBorrowerPayment[0])
+
+        const tableMessage = await db.message.findAll({where: {id_mitra : req.params.id_mitra},order : [["createdAt" , "DESC"] ]})
+        const query= `SELECT * FROM mitras FULL OUTER JOIN payments ON payments.id_borrower = mitras.id_borrower WHERE mitras.id_mitra = '${req.params.id_mitra}' AND id_payment IS NOT NULL ORDER BY pinjaman_ke DESC , payment_ke DESC `; 
+        const paymentHistory = await db.sequelize.query(query)
+        const paymentHistory1 = Helper.toObject(paymentHistory[0])
+        return res.status(200).send({ 
+
+            profile : tableProfile1,
+            peminjaman : tableBorrowerPayment1,
+            message : tableMessage,
+            paymenthistory : paymentHistory1
+        })
+  
+    } catch (err) {
+        console.log(err);
+        return res.status(403).send(err)
+    }
+}
+
+const paymentAdmin = async (req, res) => {
+    try {
+        const query0= `SELECT * FROM payments FULL OUTER JOIN mitras ON payments.id_borrower = mitras.id_borrower FULL OUTER JOIN profiles ON mitras.id_user = profiles.id_user WHERE payments.id_payment IS NOT NULL  `; 
+        const tablePayment = await db.sequelize.query(query0)
+        const tablePayment1= Helper.toObject(tablePayment[0])
+
+        return res.status(200).send({payment : tablePayment1})
+    } catch (err) {
+        console.log(err);
+        return res.status(400).send({status : err})
+    }
+}
+
 
 module.exports = {
     listAkunUser,
@@ -283,4 +379,7 @@ module.exports = {
     listPaymentbyId,
     summarry,
     jumlahTotal,
+    homeAdmin,
+    mitraAdmin,
+    paymentAdmin,
 }

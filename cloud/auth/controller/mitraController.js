@@ -123,6 +123,7 @@ const editStatusBorrower = async (req, res) => {
                 let dataCreateUserPay = {
                     id_borrower : objek.id_borrower,
                     id_user : objek.id_user,
+                    id_mitra : objek.id_mitra,
                     loan_amount : objek.loan_amount,
                     total_payment,
                     target_lunas,
