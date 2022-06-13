@@ -23,7 +23,7 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var viewModel: DetailPinjamanViewModel
     private lateinit var token: String
     private lateinit var idBorrower: String
-    private lateinit var creditScore: String
+//    private lateinit var creditScore: String
     private lateinit var namaPeminjam: String
     private var monthlyIncome: Int = 0
     private var pinjamanKe: Int = 0
@@ -42,6 +42,12 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this)[DetailPinjamanViewModel::class.java]
+        viewModel.getCreditScore(2,5,1,2,1,2,this)
+        viewModel.creditScore.observe(this){
+            if(it!=null){
+                binding.tvCreditScore.text = it.toString()
+            }
+        }
         binding.btnSave.setOnClickListener(this)
         binding.btnCancel.setOnClickListener(this)
         getData()
@@ -51,7 +57,7 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
     private fun getData(){
         token = intent.getStringExtra(TOKEN).toString()
         namaPeminjam = intent.getStringExtra(NAMA_PEMINJAM).toString()
-        creditScore = intent.getStringExtra(CREDIT_SCORE).toString()
+//        creditScore = intent.getStringExtra(CREDIT_SCORE).toString()
         pinjamanKe = intent.getIntExtra(PINJAMAN_KE, 0)
         loanAmount = intent.getIntExtra(LOAN_AMOUNT, 0)
         reason = intent.getStringExtra(REASON).toString()
@@ -61,7 +67,7 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
     private fun setData(){
         binding.apply {
             tvNamaPeminjam.text = namaPeminjam
-            tvCreditScore.text = creditScore
+//            tvCreditScore.text = creditScore
             tvPinjamanKe.text = pinjamanKe.toString()
             tvLoanAmount.text = loanAmount.toString()
             tvReason.text = reason

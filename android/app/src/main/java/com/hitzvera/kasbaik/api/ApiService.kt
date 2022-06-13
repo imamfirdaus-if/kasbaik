@@ -168,6 +168,17 @@ interface ApiService {
         @Field("pekerjaan") pekerjaan: Int,
         @Field("donasi") donasi: Int,
     ): Call<CrediteApprovalResponse>
+
+    @FormUrlEncoded
+    @POST(".")
+    fun getCreditScore(
+        @Field("usiakat") usiakat: Int,
+        @Field("econkat") econkat: Int,
+        @Field("pekerjaankat") pekerjaankat: Int,
+        @Field("pinjamankekat") pinjamankekat: Int,
+        @Field("telatharikat") telatharikat: Int,
+        @Field("donasikat") donasikat: Int,
+    ): Call<CrediteApprovalResponse>
     
     @GET("messages/{id_message}")
     fun updateHasReadMessage(
