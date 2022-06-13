@@ -41,16 +41,22 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityDetailPinjamanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        getData()
         viewModel = ViewModelProvider(this)[DetailPinjamanViewModel::class.java]
-        viewModel.getCreditScore(2,5,1,2,1,2,this)
-        viewModel.creditScore.observe(this){
+        viewModel.getCreditData(token, idBorrower, this)
+        viewModel.creditScoreData.observe(this){
             if(it!=null){
-                binding.tvCreditScore.text = it.toString()
+                viewModel.getCreditScore(it.usiakat,it.econkat,it.profesikat,it.pinjamankekat,it.telatkat ?: 0,it.donasikat,this)
+                viewModel.creditScore.observe(this){ creditScore ->
+                    if(creditScore!=null){
+                        binding.tvCreditScore.text = creditScore.toString()
+                    }
+                }
             }
         }
+
         binding.btnSave.setOnClickListener(this)
         binding.btnCancel.setOnClickListener(this)
-        getData()
         setData()
     }
 

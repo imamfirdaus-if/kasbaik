@@ -160,16 +160,46 @@
         android:text="History Pembayaran"
         android:textColor="@color/white"
         android:textSize="24sp"
-        android:visibility="gone"
         android:fontFamily="@font/poppins_semibold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/container" />
 
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/container_payment_none"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        app:cardCornerRadius="10dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintTop_toBottomOf="@id/tv_label_status_history_title">
+
+        <TextView
+            android:id="@+id/tv_label_payment_none"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Tidak ada pinjaman berjalan"
+            android:textColor="@color/orange"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/container_payment_none"
+            app:layout_constraintTop_toTopOf="@id/container_payment_none"
+            app:layout_constraintEnd_toEndOf="@id/container_payment_none"
+            app:layout_constraintBottom_toBottomOf="@+id/container_payment_none"/>
+    </androidx.cardview.widget.CardView>
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_history_payment"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:visibility="gone"
         tools:listitem="@layout/rv_item_payment"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="8dp"

@@ -23,7 +23,13 @@ class HistoryBuktiBayarAdapter(private val onClickListener: OnClickListener): Re
                 .load(buktiBayar.linkBukti)
                 .into(binding.ivImageBukti)
             binding.tvNominal.text = buktiBayar.nominal.toString()
-            binding.tvIsaccepted.text = buktiBayar.isAccepted.toString()
+            val status: String = buktiBayar.isAccepted.toString()
+            if(buktiBayar.isAccepted != null){
+                binding.tvIsaccepted.text = "Status: $status"
+            } else {
+                binding.tvIsaccepted.text = "Status has not been reviewed"
+            }
+
         }
     }
 

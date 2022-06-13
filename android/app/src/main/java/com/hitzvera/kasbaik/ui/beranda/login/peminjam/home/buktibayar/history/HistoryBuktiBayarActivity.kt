@@ -3,6 +3,7 @@ package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.buktibayar.history
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hitzvera.kasbaik.R
@@ -40,7 +41,13 @@ class HistoryBuktiBayarActivity : AppCompatActivity() {
         binding.rvHistoryBuktiBayar.adapter = adapter
         viewModel.getBuktiBayar(token, this)
         viewModel.buktiBayarResponse.observe(this){
-            adapter.setData(it.filter { item -> !item.linkBukti.isNullOrBlank() })
+            if(!it.isNullOrEmpty()){
+                binding.containerHistoryNone.visibility = View.GONE
+                adapter.setData(it.filter { item -> !item.linkBukti.isNullOrBlank() })
+            } else {
+                binding.containerHistoryNone.visibility = View.VISIBLE
+            }
+
         }
     }
 }
