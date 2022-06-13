@@ -2,6 +2,7 @@ package com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.status.edit
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -75,9 +76,14 @@ class StatusEditActivity : AppCompatActivity(), View.OnClickListener {
         when(view.id){
             R.id.btn_edit -> {
                 if(validateForm()){
+                    val monthlyIncome = binding.tvPemasukan.text.toString().toInt()
+                    val dependentAmount = binding.tvTanggungan.text.toString().toInt()
+                    val reasonBorrower = binding.tvReason.text.toString()
+                    val donasi = binding.tvDonasi.text.toString().toInt()
                     viewModel.editRequestBorrowing(
-                        token, idBorrower, loanAmount, reasonBorrower, tenor, monthlyIncome, donasi, this
+                        token, idBorrower, loanAmount, reasonBorrower, tenor, monthlyIncome, donasi, dependentAmount,this
                     )
+                    Log.e("CHECK", "$loanAmount $reasonBorrower ")
                     viewModel.isLoading.observe(this){
                         showLoading(it)
                         if(it){

@@ -72,10 +72,11 @@ interface ApiService {
         @Path("id_borrower") idBorrower: String,
         @Field("loan_amount") loanAmount: Int,
         @Field("reason_borrower") reasonBorrower: String,
+        @Field("dependents_amount") dependentsAmount: Int,
         @Field("tenor") tenor: Int,
         @Field("monthly_income") monthlyIncome: Int,
-        @Field("donasi") donasi: Int
-    ): Call<List<Int>>
+        @Field("donasi") donasi: Int,
+    ): Call<EditBorrowerResponse>
 
     @GET("updatestatus")
     fun getRequestBorrower(
@@ -238,4 +239,10 @@ interface ApiService {
         @Header("Cookie") auth: String,
         @Path("id_borrower") idBorrower: String
     ): Call<HistoryPaymentAdminResponse>
+
+    @GET("summaryMitra/{id_mitra}")
+    fun getSummaryMitra(
+        @Header("Cookie") auth: String,
+        @Path("id_mitra") idMitra: String,
+    ): Call<SummaryMitraResponse>
 }
