@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,110 +7,114 @@
     android:background="@color/background_ijo"
     tools:context=".ui.beranda.login.peminjam.LoginAsPeminjamActivity">
 
- <ImageView
-     android:id="@+id/logo"
-     android:layout_width="match_parent"
-     android:layout_height="200dp"
-     android:layout_marginStart="32dp"
-     android:layout_marginTop="32dp"
-     android:layout_marginEnd="32dp"
-     android:src="@drawable/logo_kasibaik"
-     app:layout_constraintEnd_toEndOf="parent"
-     app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+     <ImageView
+         android:id="@+id/logo"
+         android:layout_width="match_parent"
+         android:layout_height="200dp"
+         android:layout_marginStart="32dp"
+         android:layout_marginTop="32dp"
+         android:layout_marginEnd="32dp"
+         android:src="@drawable/logo_kasibaik"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
 
- <TextView
-     android:id="@+id/tv_login_as_borrwer"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:textAllCaps="false"
-     android:fontFamily="@font/poppins_semibold"
-     android:text="Login Sebagai Peminjam"
-     android:textColor="@color/white"
-     android:textStyle="bold"
-     app:layout_constraintEnd_toEndOf="parent"
-     app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toBottomOf="@+id/logo" />
+     <TextView
+         android:id="@+id/tv_login_as_borrwer"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:textAllCaps="false"
+         android:fontFamily="@font/poppins_semibold"
+         android:text="Login Sebagai Peminjam"
+         android:textColor="@color/white"
+         android:textStyle="bold"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/logo" />
 
- <EditText
-     android:id="@+id/ed_email_login_peminjam"
-     android:layout_width="300dp"
-     android:layout_height="50dp"
-     android:layout_marginTop="24dp"
-     android:background="@drawable/rounded_corners"
-     android:hint="Masukan Email"
-     android:textAllCaps="false"
-     android:fontFamily="@font/poppins_semibold"
-     android:paddingStart="16dp"
-     app:layout_constraintEnd_toEndOf="parent"
-     app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toBottomOf="@+id/tv_login_as_borrwer" />
+     <EditText
+         android:id="@+id/ed_email_login_peminjam"
+         android:layout_width="300dp"
+         android:layout_height="50dp"
+         android:layout_marginTop="24dp"
+         android:background="@drawable/rounded_corners"
+         android:hint="Masukan Email"
+         android:textAllCaps="false"
+         android:fontFamily="@font/poppins_semibold"
+         android:paddingStart="16dp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/tv_login_as_borrwer" />
 
- <EditText
-     android:id="@+id/ed_password_login_peminjam"
-     android:layout_width="300dp"
-     android:layout_height="50dp"
-     android:layout_marginTop="16dp"
-     android:background="@drawable/rounded_corners"
-     android:hint="Masukan Password"
-     android:textAllCaps="false"
-     android:fontFamily="@font/poppins_semibold"
-     android:inputType="textPassword"
-     android:paddingStart="16dp"
-     app:layout_constraintEnd_toEndOf="parent"
-     app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toBottomOf="@+id/ed_email_login_peminjam" />
+     <EditText
+         android:id="@+id/ed_password_login_peminjam"
+         android:layout_width="300dp"
+         android:layout_height="50dp"
+         android:layout_marginTop="16dp"
+         android:background="@drawable/rounded_corners"
+         android:hint="Masukan Password"
+         android:textAllCaps="false"
+         android:fontFamily="@font/poppins_semibold"
+         android:inputType="textPassword"
+         android:paddingStart="16dp"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@+id/ed_email_login_peminjam" />
 
- <TextView
-     android:id="@+id/dont_have_account"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:layout_marginTop="8dp"
-     android:text="Belum Punya Akun? Daftar Akun"
-     android:textAllCaps="false"
-     android:fontFamily="@font/poppins_semibold"
-     android:textColor="@color/white"
-     android:clickable="true"
-     android:focusable="true"
-     app:layout_constraintStart_toStartOf="@id/ed_password_login_peminjam"
-     app:layout_constraintTop_toBottomOf="@+id/ed_password_login_peminjam" />
+     <TextView
+         android:id="@+id/dont_have_account"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="8dp"
+         android:text="Belum Punya Akun? Daftar Akun"
+         android:textAllCaps="false"
+         android:fontFamily="@font/poppins_semibold"
+         android:textColor="@color/white"
+         android:clickable="true"
+         android:focusable="true"
+         app:layout_constraintStart_toStartOf="@id/ed_password_login_peminjam"
+         app:layout_constraintTop_toBottomOf="@+id/ed_password_login_peminjam" />
 
- <CheckBox
-     android:id="@+id/remember_me"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:checked="true"
-     android:text="Remember me"
-     android:buttonTint="@color/orange"
-     android:textColor="@color/white"
-     android:fontFamily="@font/poppins_semibold"
-     app:layout_constraintStart_toStartOf="@id/dont_have_account"
-     app:layout_constraintTop_toBottomOf="@id/dont_have_account"/>
+     <CheckBox
+         android:id="@+id/remember_me"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:checked="true"
+         android:text="Remember me"
+         android:buttonTint="@color/orange"
+         android:textColor="@color/white"
+         android:fontFamily="@font/poppins_semibold"
+         app:layout_constraintStart_toStartOf="@id/dont_have_account"
+         app:layout_constraintTop_toBottomOf="@id/dont_have_account"/>
 
- <Button
-     android:id="@+id/btn_login_peminjam"
-     android:layout_width="150dp"
-     android:layout_height="wrap_content"
-     android:layout_marginTop="64dp"
-     android:backgroundTint="@color/white"
-     android:text="@string/login"
-     android:textAllCaps="false"
-     android:fontFamily="@font/poppins_semibold"
-     android:textColor="@color/orange"
-     app:layout_constraintEnd_toEndOf="parent"
-     app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toBottomOf="@id/dont_have_account" />
+     <Button
+         android:id="@+id/btn_login_peminjam"
+         android:layout_width="150dp"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="64dp"
+         android:backgroundTint="@color/white"
+         android:text="@string/login"
+         android:textAllCaps="false"
+         android:fontFamily="@font/poppins_semibold"
+         android:textColor="@color/orange"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toBottomOf="@id/dont_have_account" />
 
- <ProgressBar
-     android:id="@+id/progressBar_login_peminjam"
-     style="?android:attr/progressBarStyle"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"
-     android:visibility="gone"
-     app:layout_constraintBottom_toBottomOf="parent"
-     app:layout_constraintEnd_toEndOf="parent"
-     app:layout_constraintHorizontal_bias="0.5"
-     app:layout_constraintStart_toStartOf="parent"
-     app:layout_constraintTop_toTopOf="parent" />
+     <ProgressBar
+         android:id="@+id/progressBar_login_peminjam"
+         style="?android:attr/progressBarStyle"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:visibility="gone"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.5"
+         app:layout_constraintStart_toStartOf="parent"
+         app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
