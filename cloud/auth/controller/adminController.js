@@ -241,7 +241,37 @@ const listPaymentbyId = async (req, res) => {
         const query1= `SELECT * FROM payments FULL OUTER JOIN mitras ON mitras.id_borrower = payments.id_borrower FULL OUTER JOIN user_payments ON mitras.id_borrower = user_payments.id_borrower WHERE payments.id_payment = '${req.params.id_payment}' `; 
         const pembayaran = await db.sequelize.query(query1)
         const pembayaran1 = Helper.toObject(pembayaran[0])
-        return res.status(200).send( {pembayaran: pembayaran1});
+
+        const getPayment = await db.payment.findOne({where :{id_payment : req.params.id_payment ,order : [["createdAt" , "DESC"] ]}})
+        let data = []
+        let proms = new Promise( (resolve, reject) => {
+            getPayment.forEach( async (p) => {
+                totalPayment = totalPayment + p.amount_payment
+                const mitras = await db.profileMitra.findOne({where: {id_mitra : p.id_mitra}})
+                const users = await db.mitra.findOne({where: {id_borrower : p.id_borrower}})
+                let data1 = {
+                    "id_payment": p.id_payment,
+                    "id_mitra": p.id_mitra,
+                    "id_borrower": p.id_borrower,
+                    "payment_method": p.payment_method,
+                    "amount_payment": p.amount_payment,
+                    "payment_ke": p.payment_ke,
+                    "createdAt": p.createdAt,
+                    "updatedAt": p.updatedAt,
+                    user : users.nama_lengkap,
+                    mitra : mitras
+                }
+                data.push(data1)
+            });
+            setTimeout(() => {
+                resolve()
+            },500)
+        })
+        proms.then(() => {
+            return res.status(200).send({pembayaran : pembayaran1, payment : data })
+            
+        }) 
+        
         
     } catch (err) {
         console.log(err);
