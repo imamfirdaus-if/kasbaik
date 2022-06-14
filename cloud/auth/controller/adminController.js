@@ -331,7 +331,7 @@ const jumlahTotal = async (req, res) => {
         // const getPayment1 = Helper.toObject(getPayment[0])
         const getPayment = await db.payment.findAll({order : [["createdAt" , "DESC"] ]})
         let data = []
-        let proms = new Promise((resolve, reject) => {
+        let proms = new Promise( (resolve, reject) => {
             getPayment.forEach( async (p) => {
                 totalPayment = totalPayment + p.amount_payment
                 const mitras = await db.profileMitra.findOne({where: {id_mitra : p.id_mitra}})
