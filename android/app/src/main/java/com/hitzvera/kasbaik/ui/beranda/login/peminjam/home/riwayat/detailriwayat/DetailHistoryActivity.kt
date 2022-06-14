@@ -46,10 +46,10 @@ class DetailHistoryActivity : AppCompatActivity() {
         binding.rvRiwayatPembayaran.layoutManager = LinearLayoutManager(this)
         binding.rvRiwayatPembayaran.adapter = adapter
         viewModel = ViewModelProvider(this)[DetailHistoryViewModel::class.java]
-        viewModel.getListBorrowing(token, this, pinjamanKe)
+        viewModel.getListBorrowing(token, this, idBorrower)
         viewModel.listBorrowing.observe(this){
             if(it!=null){
-                currentBorrowing = it[pembayaranKe-1]
+                currentBorrowing = it[0]
                 val tenor = currentBorrowing.tenor
                 val income = currentBorrowing.monthlyIncome.toString()
                 binding.tvStatus.text = currentBorrowing.status

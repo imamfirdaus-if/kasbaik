@@ -145,11 +145,11 @@ interface ApiService {
         @Query("status") status: String
     ) : Call<List<Borrower>>
 
-    @GET("borrower")
+    @GET("borrower/{id_borrower}")
     fun getBorrowing(
         @Header("Cookie") auth: String,
-        @Query("pinjaman_ke") pinjamanKe: String
-    ): Call<List<Borrower>>
+        @Path("id_borrower") idBorrower: String
+    ): Call<GetBorrowerByIdResponse>
 
     @GET("messages")
     fun getAllMessages(
