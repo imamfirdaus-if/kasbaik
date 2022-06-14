@@ -3,6 +3,12 @@
     package="com.hitzvera.kasbaik">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KasBaik"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.beranda.login.peminjam.home.profile.TestMLActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.beranda.login.peminjam.home.status.edit.StatusEditActivity"
             android:exported="false" />
