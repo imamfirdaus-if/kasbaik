@@ -20,6 +20,7 @@ class HistoryActivity : AppCompatActivity() {
     private val Adapter: HistoryAdapter by lazy {
         HistoryAdapter(HistoryAdapter.OnClickListener{ item ->
             //Do Nothing
+
         }, this, token)
     }
 

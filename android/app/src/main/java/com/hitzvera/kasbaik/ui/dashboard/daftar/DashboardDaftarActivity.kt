@@ -22,6 +22,7 @@ class DashboardDaftarActivity : AppCompatActivity(), View.OnClickListener {
     private var token = ""
     private var role = ""
     private var username = ""
+    private var idMitra = ""
     private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +35,7 @@ class DashboardDaftarActivity : AppCompatActivity(), View.OnClickListener {
         token = sharedPreferences.getString(LoginAsPeminjamActivity.TOKEN, "").toString()
         role = sharedPreferences.getString(LoginAsPeminjamActivity.ROLE, "").toString()
         username = sharedPreferences.getString(LoginAsPeminjamActivity.USERNAME, "").toString()
+        idMitra = sharedPreferences.getString(LoginAsPeminjamActivity.ID_MITRA, "").toString()
         hasLogin(isRemembered, role, token, username)
 
         binding.btnRegister.setOnClickListener(this)
@@ -60,6 +62,7 @@ class DashboardDaftarActivity : AppCompatActivity(), View.OnClickListener {
                 Intent(this, HomeMitraActivity::class.java).also { intent ->
                     intent.putExtra(HomeMitraActivity.TOKEN, token)
                     intent.putExtra(HomeMitraActivity.NAME, username)
+                    intent.putExtra(HomeMitraActivity.ID_MITRA, idMitra)
                     startActivity(intent)
                     finish()
                 }

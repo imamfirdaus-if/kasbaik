@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import com.hitzvera.kasbaik.MainActivity
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.ui.dashboard.daftar.DashboardDaftarActivity
 
