@@ -135,8 +135,6 @@ const editStatusBorrower = async (req, res) => {
                 let createMessage = await db.message.create(dataCreateUserPay)
                 return res.status(200).send({tabelmitra: data2, tabelborrower: updateBorrower, user_payment : createUserPay, message : createMessage});
             })
-
-            
         })
 
 
