@@ -137,14 +137,14 @@ class UploadBuktiBayarActivity : AppCompatActivity(), View.OnClickListener {
         launcherIntentGallery.launch(chooser)
     }
 
-   private fun validateForm(): Boolean {
-       return if((getFile != null && binding.edNominal.text.isNotBlank() && binding.edPesan.text.isNotBlank())){
-           true
-       } else {
-           Toast.makeText(this, "Fill all the form", Toast.LENGTH_SHORT).show()
-           false
-       }
-   }
+    private fun validateForm(): Boolean {
+        return if((getFile != null && binding.edNominal.text.isNotBlank() && binding.edPesan.text.isNotBlank())){
+            true
+        } else {
+            Toast.makeText(this, "Fill all the form", Toast.LENGTH_SHORT).show()
+            false
+        }
+    }
 
 
     override fun onClick(view: View) {
