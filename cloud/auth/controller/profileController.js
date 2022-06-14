@@ -5,9 +5,9 @@ const db = require("../model/model");
 const dbProfile = db.profileUser
 
 //inisiasi storage client with credentials
-const storage = new Storage({ keyFilename: "kasbaik-credentials.json" });
+const storage = new Storage({ keyFilename: "google-key-cloud.json" });
 // const storage = new Storage();
-const bucket= storage.bucket("nyoba_project_bucket");
+const bucket= storage.bucket("kasbaik-project");
 
 
 

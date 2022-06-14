@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "civic-capsule-353312",
+  "private_key_id": "1be854ec35010e12e381efa694df9cd69fccead4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQC+C+uZEQLZYE1L\nhnEzmJLv10K/1hfzgbiVR9IDohxRtwORSm644+NA+Z35uR95Tl+1CHqhbzFX/so8\nrXOWS9SB14/PjMyarH+nXZv0uR30uCxga/k4gIwcVeTU07YOmrCClkxHr2Z2R9Eu\nf6x7niQdedmyXRmipR4s8XDkpMT48H1+++s3I7QNCpKH5yUdlXhTXZX4fR9JWwfX\nNhw4FlWtn17AQfJPYlLrc3N76h8r/YXFInFzGMI9sbcKogvcuBFL/ZoN2A/ix5FD\nH+ISQHYyotpEDTf5iuzq+YoaoF8zc9j0C3kDFWV4kDbCfF6SeLQuNRM1fMDSj83P\nGFn1C/IrAgMBAAECggEAAWvhEbktA8eIHHdUyRWBjStXfkwmzAqdgPmotPU/7/kw\nnM6+iux4FSgoydGGzjygqPUiHFX9ZlKWBvknIv8jMkC/UcaUUIMsxemEfUKV2kWM\nXhZApsReB+eOjsGcnCRaYJz+Kg/CR5fcP9RIS85lfRZIY2CgjJ+z3OiGDHe9BL2d\nwFImmXpxEoRhpw784fnSOJiMibjDb2gUEK22YW1GtzUOYz6B9/WkV7yp26Y6FB0K\nvC3GX6IBoRDUVS/W5/Khig12DcGW6z25V9lw8wwGxbnQAvt+EZP5KtIOTgyuG9+4\nmVSYS4nDYaflhLw/3Nv3MFwQFNUlqG1nyaQ42lqKqQKBgQDwCMbnE4M+uJh2znRm\nL+T43G0mbw93cZxgC0GDAD4WfBUBWeOEbyNF2pEcfwjQIw3XqOuROSRK6kD6kxeO\nmAcGpzGVwLJhDZN9XI2GGZCV7FS2LRTA9swZqC9HdhhlTI+p2+67f3bjQBWbVAbn\nutXu+h9CIvI+ATrogZF8dEMtowKBgQDKr/ggRj/PypcZ1zs92//0UpZca2oXhSG6\nSkmGFR5q/GNRqn4tN+4dfmI/JevPKW2ganZ6hMocwuFAa0PClJRpFDbwmkgPty9r\nmptXzKedNIDwOxeZtHhHDTpPH0XTfJxixaqO9mbBMlPeNpwl66iqDLJEjIvSVpCV\nXu5HIurh2QKBgQDaOjCTn4LgQDWlNhhPW1XiB41YtvopzumrzC/4aP0Jti/mtZGL\nMvuvo4HwlXIuwN/x5QqeUoQzc/w1lAuDwaYJn3IOQ04pvI0OGVo1xAJWu7Fcm2nV\n8csnvGeXob+WQWAPvvuyDbXJ79Z1DJTmk0+y4EYQ+/Ke+sFS55Gcw5rb3wKBgQCJ\nGA0Uh2+R9M3PRK1lYfD2KQZa7KyNzBbMEoM4lgBFDQGAs3k0zKfaeymo3NVrAfKM\nlnYc2MR8P7RsBiGG80iO6oVeqHwlZRpGBgUcleiphGHSG6YS6OaR6HiQG+725UpB\n5MFAgZlvA8OGghmL7KHgo0XQ59+LHdIdtmAk7ZFBwQKBgQDahp380HJqHLHwCZAj\nK098eyy8wEQHhnEl88C52RP//YIoASLyF2rBap2YCpnvI+5YHkwYdLUmwp0eMQC7\nQlSkelSESQVlN+HB4IxqEeu9hAC4Kv8hXkbkLrmGXvb6QNxFQMm8jisvXU+1LBFV\n/EUwjIf3Dwf6PX9xLMJcHh2K5A==\n-----END PRIVATE KEY-----\n",
+  "client_email": "google-cloud-storage@civic-capsule-353312.iam.gserviceaccount.com",
+  "client_id": "105516802392406647516",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/google-cloud-storage%40civic-capsule-353312.iam.gserviceaccount.com"
+}
