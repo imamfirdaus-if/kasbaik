@@ -7,9 +7,9 @@ const { Storage } = require("@google-cloud/storage");
 const { where } = require("sequelize");
 const Op = require('sequelize').Op;
 //inisiasi storage client with credentials
-const storage = new Storage({ keyFilename: "kasbaik-credentials.json" });
+const storage = new Storage({ keyFilename: "google-key-cloud.json" });
 // const storage = new Storage();
-const bucket= storage.bucket("nyoba_project_bucket");
+const bucket= storage.bucket("kasbaik-project");
 
 const updateMess = async (req, res, next) => {
     try {

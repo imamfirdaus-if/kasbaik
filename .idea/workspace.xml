@@ -5,11 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a5a11e8-7165-47a7-abd8-762ad7da9de2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/kasbaik.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kasbaik.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/auth/config/db.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/auth/config/db.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine-learning/deployment/deploy-model-creditapproval-cloudrun/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine-learning/deployment/deploy-model-creditapproval-cloudrun/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/machine-learning/deployment/deploy-model-creditscoring-cloudrun/test/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/machine-learning/deployment/deploy-model-creditscoring-cloudrun/test/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/auth/controller/messageController.js" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/auth/controller/messageController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/auth/controller/mitraController.js" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/auth/controller/mitraController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/auth/controller/profileController.js" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/auth/controller/profileController.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
