@@ -15,7 +15,6 @@ import requests
 # pinjamankekat = 1
 # telatharikat = 3
 # donasikat = 0
-
 ## Expected Output: 657.896
 usiakat = 2
 econkat = 5
