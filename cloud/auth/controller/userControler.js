@@ -148,6 +148,12 @@ const login_post= async(req, res, next) => {
               tokenweb : `Bearer ${token}`
             });
           }) 
+        } else {
+          return res.status(200).json({
+            user : data,
+            token,
+            tokenweb : `Bearer ${token}`
+          });
         }
       }
     })

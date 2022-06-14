@@ -76,11 +76,12 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun inputSession(token: String, role: String, username: String){
+    private fun inputSession(token: String, role: String, username: String, idMitra: String?){
         val editor: SharedPreferences.Editor = sharedPreferences.edit()
         editor.putString(TOKEN, token)
         editor.putString(ROLE, role)
         editor.putString(USERNAME, username)
+        editor.putString(ID_MITRA, idMitra)
         editor.putBoolean(CHECKBOX, binding.rememberMe.isChecked)
         editor.apply()
     }
@@ -98,7 +99,7 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
             dialog.setOnDismissListener {
                 viewModel.loginResponse.observe(this){
                     if (it!=null){
-                        inputSession(it.token, it.user.role, it.user.username)
+                        inputSession(it.token, it.user.role, it.user.username, it.user.idMitra ?: "")
                         if(it.user.role == "user"){
                             Intent(this, HomePeminjamActivity::class.java).also { intent ->
                                 intent.putExtra(HomePeminjamActivity.TOKEN, it.token)
@@ -117,6 +118,7 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
                             Intent(this, HomeMitraActivity::class.java).also { intent ->
                                 intent.putExtra(HomeMitraActivity.TOKEN, it.token)
                                 intent.putExtra(HomeMitraActivity.NAME, it.user.username)
+                                intent.putExtra(HomeMitraActivity.ID_MITRA, it.user.idMitra)
                                 startActivity(intent)
                                 finish()
                             }
@@ -154,5 +156,6 @@ class LoginAsPeminjamActivity : AppCompatActivity(), View.OnClickListener {
         const val USERNAME = "username"
         const val CHECKBOX = "checkbox"
         const val ROLE = "role"
+        const val ID_MITRA = "id_mitra"
     }
 }

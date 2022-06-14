@@ -42,13 +42,14 @@ class DetailHistoryActivity : AppCompatActivity() {
         token = intent.getStringExtra(HistoryActivity.TOKEN) ?: ""
         val pembayaranKe = intent.getIntExtra(LOANCOUNT, 0)
         pinjamanKe = intent.getIntExtra(LOANCOUNT, 0).toString()
+        idBorrower = intent.getStringExtra(ID).toString()
         binding.rvRiwayatPembayaran.layoutManager = LinearLayoutManager(this)
         binding.rvRiwayatPembayaran.adapter = adapter
         viewModel = ViewModelProvider(this)[DetailHistoryViewModel::class.java]
-        viewModel.getListBorrowing(token, this, pinjamanKe)
+        viewModel.getListBorrowing(token, this, idBorrower)
         viewModel.listBorrowing.observe(this){
             if(it!=null){
-                currentBorrowing = it[pembayaranKe-1]
+                currentBorrowing = it[0]
                 val tenor = currentBorrowing.tenor
                 val income = currentBorrowing.monthlyIncome.toString()
                 binding.tvStatus.text = currentBorrowing.status
@@ -57,7 +58,7 @@ class DetailHistoryActivity : AppCompatActivity() {
                 binding.tvTenorPinjaman.text = "$tenor Bulan"
                 binding.tvPemasukan.text = "Rp. $income"
                 binding.tvDeskripsi.text = currentBorrowing.reasonBorrower
-                viewModel.getListPayment(token, this, currentBorrowing.idBorrower)
+                viewModel.getListPayment(token, this, idBorrower)
                 viewModel.listPayment.observe(this){ item ->
                     if(item!=null){
                         adapter.setData(item)
