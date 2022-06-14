@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,139 +7,143 @@
     android:background="@color/background_ijo"
     tools:context=".ui.beranda.login.peminjam.home.buktibayar.UploadBuktiBayarActivity">
 
-    <ImageView
-        android:id="@+id/iv_preview"
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginHorizontal="16dp"
-        android:src="@drawable/ic_baseline_image_24"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/iv_preview"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="16dp"
+            android:src="@drawable/ic_baseline_image_24"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tv_label_nominal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Masukan Nominal"
-        android:textColor="@color/white"
-        android:fontFamily="@font/poppins_semibold"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginStart="16dp"
-        app:layout_constraintStart_toStartOf="@+id/iv_preview"
-        app:layout_constraintTop_toBottomOf="@id/btn_galeri" />
+        <TextView
+            android:id="@+id/tv_label_nominal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Masukan Nominal"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="@+id/iv_preview"
+            app:layout_constraintTop_toBottomOf="@id/btn_galeri" />
 
-    <Button
-        android:id="@+id/btn_galeri"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/orange"
-        android:text="galeri"
-        app:layout_constraintEnd_toStartOf="@+id/btn_camera"
-        app:layout_constraintStart_toStartOf="@id/iv_preview"
-        app:layout_constraintTop_toBottomOf="@id/iv_preview" />
+        <Button
+            android:id="@+id/btn_galeri"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/orange"
+            android:text="galeri"
+            app:layout_constraintEnd_toStartOf="@+id/btn_camera"
+            app:layout_constraintStart_toStartOf="@id/iv_preview"
+            app:layout_constraintTop_toBottomOf="@id/iv_preview" />
 
-    <Button
-        android:id="@+id/btn_camera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/orange"
-        android:text="Camera"
-        app:layout_constraintEnd_toEndOf="@id/iv_preview"
-        app:layout_constraintStart_toEndOf="@id/btn_galeri"
-        app:layout_constraintTop_toBottomOf="@id/iv_preview" />
+        <Button
+            android:id="@+id/btn_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/orange"
+            android:text="Camera"
+            app:layout_constraintEnd_toEndOf="@id/iv_preview"
+            app:layout_constraintStart_toEndOf="@id/btn_galeri"
+            app:layout_constraintTop_toBottomOf="@id/iv_preview" />
 
 
-    <EditText
-        android:id="@+id/ed_nominal"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/rounded_corners"
-        android:hint="enter the amount of payment"
-        android:padding="8dp"
-        android:inputType="number"
-        android:layout_marginHorizontal="16dp"
-        android:fontFamily="@font/poppins_semibold"
-        app:layout_constraintEnd_toEndOf="@id/iv_preview"
-        app:layout_constraintStart_toStartOf="@id/iv_preview"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_nominal" />
+        <EditText
+            android:id="@+id/ed_nominal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_corners"
+            android:hint="enter the amount of payment"
+            android:padding="8dp"
+            android:inputType="number"
+            android:layout_marginHorizontal="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintEnd_toEndOf="@id/iv_preview"
+            app:layout_constraintStart_toStartOf="@id/iv_preview"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_nominal" />
 
-    <TextView
-        android:id="@+id/tv_label_message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Masukan Pesan"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginStart="16dp"
-        android:fontFamily="@font/poppins_semibold"
-        app:layout_constraintStart_toStartOf="@+id/iv_preview"
-        app:layout_constraintTop_toBottomOf="@id/ed_nominal" />
+        <TextView
+            android:id="@+id/tv_label_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Masukan Pesan"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            app:layout_constraintStart_toStartOf="@+id/iv_preview"
+            app:layout_constraintTop_toBottomOf="@id/ed_nominal" />
 
-    <EditText
-        android:id="@+id/ed_pesan"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/rounded_corners"
-        android:gravity="top"
-        android:hint="enter the amount of payment"
-        android:padding="10dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:layout_marginHorizontal="16dp"
-        app:layout_constraintBottom_toTopOf="@id/btn_send"
-        app:layout_constraintEnd_toEndOf="@id/iv_preview"
-        app:layout_constraintStart_toStartOf="@id/iv_preview"
-        app:layout_constraintTop_toBottomOf="@id/tv_label_message" />
+        <EditText
+            android:id="@+id/ed_pesan"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/rounded_corners"
+            android:gravity="top"
+            android:hint="enter the amount of payment"
+            android:padding="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:layout_marginHorizontal="16dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_send"
+            app:layout_constraintEnd_toEndOf="@id/iv_preview"
+            app:layout_constraintStart_toStartOf="@id/iv_preview"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_message" />
 
-    <Button
-        android:id="@+id/btn_cancel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/white"
-        android:text="Cancel"
-        android:fontFamily="@font/poppins_semibold"
-        android:textColor="@color/orange"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_camera"
-        app:layout_constraintStart_toStartOf="@id/iv_preview" />
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/white"
+            android:text="Cancel"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/orange"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_camera"
+            app:layout_constraintStart_toStartOf="@id/iv_preview" />
 
-    <Button
-        android:id="@+id/btn_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/white"
-        android:text="Kirim"
-        android:fontFamily="@font/poppins_semibold"
-        android:textColor="@color/orange"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/iv_preview"
-        app:layout_constraintStart_toEndOf="@id/btn_galeri" />
+        <Button
+            android:id="@+id/btn_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/white"
+            android:text="Kirim"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/orange"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/iv_preview"
+            app:layout_constraintStart_toEndOf="@id/btn_galeri" />
 
-    <ProgressBar
-        android:id="@+id/progressBar_upload_bukti"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ProgressBar
+            android:id="@+id/progressBar_upload_bukti"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

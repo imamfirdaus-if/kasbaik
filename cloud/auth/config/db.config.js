@@ -4,6 +4,7 @@ module.exports = {
     USER: "postgres",
     PASSWORD: "Postgretoomuch34",
     DB: "database2",
+
     dialect: "postgresql",
     pool: {
       max: 5,
