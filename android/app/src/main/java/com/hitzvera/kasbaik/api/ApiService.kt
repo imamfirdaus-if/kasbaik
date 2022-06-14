@@ -157,7 +157,7 @@ interface ApiService {
     ): Call<MessagesResponse>
 
     @FormUrlEncoded
-    @POST(".")
+    @POST("credit_approval")
     fun getCreditApproval(
         @Field("gender") gender: Int,
         @Field("usia") usia: Int,
@@ -170,7 +170,7 @@ interface ApiService {
     ): Call<CrediteApprovalResponse>
 
     @FormUrlEncoded
-    @POST(".")
+    @POST("credit_score")
     fun getCreditScore(
         @Field("usiakat") usiakat: Int,
         @Field("econkat") econkat: Int,

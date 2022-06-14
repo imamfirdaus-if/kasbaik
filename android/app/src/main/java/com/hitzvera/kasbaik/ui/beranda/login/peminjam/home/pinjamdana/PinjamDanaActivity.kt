@@ -47,6 +47,29 @@ class PinjamDanaActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    private fun professionConversion(profession: String): Int{
+        return when (profession) {
+            "buruh" -> {
+                0
+            }
+            "pengajar" -> {
+                1
+            }
+            "pedagang" -> {
+                2
+            }
+            "pekerja lepas" -> {
+                3
+            }
+            "wirausaha" -> {
+                4
+            }
+            else -> {
+                4
+            }
+        }
+    }
+
     override fun onClick(view: View) {
         when(view.id){
             R.id.btn_add -> {
@@ -84,9 +107,16 @@ class PinjamDanaActivity : AppCompatActivity(), View.OnClickListener {
                     donasi = binding.tvDonasi.text.toString().toInt()
                 }
                 if(validateForm()){
-                    Log.e("CHECK", "$jumlahPinjaman $reason $monthlyIncome $paymentMethod, $tenor $dependentsAmount")
+                    var gender2 = 1
+                    if(gender == "perempuan"){
+                        gender2 = 0
+                    }
+                    val mPekerjaan =  professionConversion(pekerjaan)
+                    viewModel.getCreditScore(gender2, usia, jumlahPinjaman, tenor, monthlyIncome, dependentsAmount, mPekerjaan,donasi)
+                    val predictionCreditApproval  = viewModel.prediction
+                    Log.e("CHECK", "$jumlahPinjaman $reason $monthlyIncome $paymentMethod, $tenor $dependentsAmount $mPekerjaan $predictionCreditApproval")
                     viewModel.apply {
-                        postBorrower(token, jumlahPinjaman, reason, monthlyIncome, paymentMethod, tenor, dependentsAmount, donasi,0,this@PinjamDanaActivity)
+                        postBorrower(token, jumlahPinjaman, reason, monthlyIncome, paymentMethod, tenor, dependentsAmount, donasi,  predictionCreditApproval,this@PinjamDanaActivity)
                         isLoading.observe(this@PinjamDanaActivity){
                             showLoading(it)
                         }
@@ -94,11 +124,6 @@ class PinjamDanaActivity : AppCompatActivity(), View.OnClickListener {
                             showCustomDialog(it)
                         }
                     }
-//                    var gender2 = 1
-//                    if(gender == "perempuan"){
-//                        gender2 = 0
-//                    }
-//                    viewModel.getCreditScore(gender2, usia, jumlahPinjaman, tenor, monthlyIncome, dependentsAmount, 0,donasi)
 
                 } else {
                     Toast.makeText(this, "Masukan data yang benar", Toast.LENGTH_SHORT).show()

@@ -28,6 +28,9 @@ data class PaymentItem(
 	@field:SerializedName("payment_method")
 	val paymentMethod: String,
 
+	@field:SerializedName("payment_ke")
+	val paymentKe: String,
+
 	@field:SerializedName("updatedAt")
 	val updatedAt: String
 )
