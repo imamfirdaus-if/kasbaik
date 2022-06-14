@@ -25,7 +25,7 @@ class HomeMitraActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var token: String
     private lateinit var preferences: SharedPreferences
     private lateinit var viewModel: HomeMitraViewModel
-    private var idMitra = "6b7acb6c-9826-4dd6-84d5-90823220cb1a" // sementara
+    private lateinit var idMitra: String
     private var hasStopped = false
 
 
@@ -49,6 +49,7 @@ class HomeMitraActivity : AppCompatActivity(), View.OnClickListener {
         hasStopped = false
         token = intent.getStringExtra(TOKEN)!!
         val name = intent.getStringExtra(NAME)
+        idMitra = intent.getStringExtra(ID_MITRA).toString()
         preferences = getSharedPreferences(DashboardDaftarActivity.SHARED_PREFERENCES, Context.MODE_PRIVATE)
         viewModel = ViewModelProvider(this)[HomeMitraViewModel::class.java]
         viewModel.getMitraSummary(token, idMitra, this)
@@ -73,7 +74,7 @@ class HomeMitraActivity : AppCompatActivity(), View.OnClickListener {
     companion object {
         const val TOKEN = "token"
         const val NAME = "name"
-        const val LINKIMAGE = "linkimage"
+        const val ID_MITRA = "id_mitra"
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

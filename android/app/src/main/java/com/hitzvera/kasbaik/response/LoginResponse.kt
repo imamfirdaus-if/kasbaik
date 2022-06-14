@@ -8,7 +8,8 @@ data class LoginResponse(
 	val user: User,
 
 	@field:SerializedName("token")
-	val token: String
+	val token: String,
+
 )
 
 data class User(
@@ -17,7 +18,9 @@ data class User(
 	val role: String,
 
 	@field:SerializedName("username")
-	val username: String
+	val username: String,
 
+	@field:SerializedName("id_mitra")
+	val idMitra: String?=null
 
 )
