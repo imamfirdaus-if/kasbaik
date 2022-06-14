@@ -13,6 +13,9 @@
         android:theme="@style/Theme.KasBaik"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.beranda.login.peminjam.home.status.edit.StatusEditActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.beranda.login.mitra.home.buktibayar.DetailMitraBuktiBayarActivity"
             android:exported="false" />
         <activity

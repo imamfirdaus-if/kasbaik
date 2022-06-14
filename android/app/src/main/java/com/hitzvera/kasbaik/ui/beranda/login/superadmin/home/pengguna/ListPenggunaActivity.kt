@@ -7,13 +7,18 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityListPenggunaBinding
+import com.hitzvera.kasbaik.ui.beranda.login.superadmin.home.mitra.ListMitraAdapter
 
 class ListPenggunaActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListPenggunaBinding
     private lateinit var token: String
+    private lateinit var id: String
     private lateinit var vm: ListPenggunaViewModel
-    private lateinit var adapter: ListPenggunaAdapter
-
+    private val adapter: ListPenggunaAdapter by lazy {
+        ListPenggunaAdapter(ListPenggunaAdapter.OnClickListener{ item ->
+            //Do Nothing
+        }, this, token)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityListPenggunaBinding.inflate(layoutInflater)

@@ -99,6 +99,7 @@ class PinjamDanaActivity : AppCompatActivity(), View.OnClickListener {
 //                        gender2 = 0
 //                    }
 //                    viewModel.getCreditScore(gender2, usia, jumlahPinjaman, tenor, monthlyIncome, dependentsAmount, 0,donasi)
+
                 } else {
                     Toast.makeText(this, "Masukan data yang benar", Toast.LENGTH_SHORT).show()
                 }

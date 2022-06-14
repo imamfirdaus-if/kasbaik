@@ -20,6 +20,7 @@ class HistoryActivity : AppCompatActivity() {
     private val Adapter: HistoryAdapter by lazy {
         HistoryAdapter(HistoryAdapter.OnClickListener{ item ->
             //Do Nothing
+
         }, this, token)
     }
 
@@ -35,8 +36,12 @@ class HistoryActivity : AppCompatActivity() {
         viewModel.apply {
             getListPinjaman(token, this@HistoryActivity)
             listBorrower.observe(this@HistoryActivity){
-                if(it!=null){
-                    Adapter.setData(it.filter { item -> item.status == "done" })
+                val list = it.filter { item -> item.status == "done" }
+                if(!list.isNullOrEmpty()){
+                    binding.containerRiwayatNone.visibility = View.GONE
+                    Adapter.setData(list)
+                } else {
+                    binding.containerRiwayatNone.visibility = View.VISIBLE
                 }
             }
             isLoading.observe(this@HistoryActivity){

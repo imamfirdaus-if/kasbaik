@@ -59,6 +59,25 @@ interface ApiService {
         @Field("credit_approval") creditApproval: Int,
     ): Call<PostBorrowerResponse>
 
+    @DELETE("borrower/{id_borrower}")
+    fun deleteRequestBorrowing(
+        @Header("Cookie") auth: String,
+        @Path("id_borrower") idBorrower: String
+    ): Call<DeleteRequestBorrowingResponse>
+
+    @FormUrlEncoded
+    @PUT("borrower/{id_borrower}")
+    fun editRequestBorrowing(
+        @Header("Cookie") auth: String,
+        @Path("id_borrower") idBorrower: String,
+        @Field("loan_amount") loanAmount: Int,
+        @Field("reason_borrower") reasonBorrower: String,
+        @Field("dependents_amount") dependentsAmount: Int,
+        @Field("tenor") tenor: Int,
+        @Field("monthly_income") monthlyIncome: Int,
+        @Field("donasi") donasi: Int,
+    ): Call<EditBorrowerResponse>
+
     @GET("updatestatus")
     fun getRequestBorrower(
         @Header("Cookie") auth: String
@@ -126,11 +145,11 @@ interface ApiService {
         @Query("status") status: String
     ) : Call<List<Borrower>>
 
-    @GET("borrower")
+    @GET("borrower/{id_borrower}")
     fun getBorrowing(
         @Header("Cookie") auth: String,
-        @Query("pinjaman_ke") pinjamanKe: String
-    ): Call<List<Borrower>>
+        @Path("id_borrower") idBorrower: String
+    ): Call<GetBorrowerByIdResponse>
 
     @GET("messages")
     fun getAllMessages(
@@ -149,6 +168,23 @@ interface ApiService {
         @Field("pekerjaan") pekerjaan: Int,
         @Field("donasi") donasi: Int,
     ): Call<CrediteApprovalResponse>
+
+    @FormUrlEncoded
+    @POST(".")
+    fun getCreditScore(
+        @Field("usiakat") usiakat: Int,
+        @Field("econkat") econkat: Int,
+        @Field("pekerjaankat") pekerjaankat: Int,
+        @Field("pinjamankekat") pinjamankekat: Int,
+        @Field("telatharikat") telatharikat: Int,
+        @Field("donasikat") donasikat: Int,
+    ): Call<CrediteApprovalResponse>
+
+    @GET("credit/{id_borrower}")
+    fun getCreditData(
+        @Header("Cookie") auth: String,
+        @Path("id_borrower") idBorrower: String
+    ): Call<CreditKatResponse>
     
     @GET("messages/{id_message}")
     fun updateHasReadMessage(
@@ -193,4 +229,37 @@ interface ApiService {
         @Header("Cookie") auth: String
     ): Call<List<ListUserAdminResponseItem>>
 
+    @GET("listakunuser/{id_user}")
+    fun getProfileUserAdmin(
+        @Header("Cookie") auth: String,
+        @Path("id_user") idUser: String
+    ): Call<ProfileUserAdminResponse>
+
+    @GET("listborrowerpending")
+    fun getListBorrowerPending(
+        @Header("Cookie") auth: String
+    ): Call<List<ListBorrowerPendingResponseItem>>
+
+    @GET("listborrower/{id_borrower}")
+    fun getBorrowerByID(
+        @Header("Cookie") auth: String,
+        @Path("id_borrower") idBorrower: String
+    ): Call<List<DetailPinjamanAdminResponseItem>>
+
+    @GET("listpayment")
+    fun getListPayment(
+        @Header("Cookie") auth: String
+    ): Call<List<ListPaymentAdminResponseItem>>
+
+    @GET("listpayment/{id_borrower}")
+    fun getPaymentByID(
+        @Header("Cookie") auth: String,
+        @Path("id_borrower") idBorrower: String
+    ): Call<HistoryPaymentAdminResponse>
+
+    @GET("summaryMitra/{id_mitra}")
+    fun getSummaryMitra(
+        @Header("Cookie") auth: String,
+        @Path("id_mitra") idMitra: String,
+    ): Call<SummaryMitraResponse>
 }

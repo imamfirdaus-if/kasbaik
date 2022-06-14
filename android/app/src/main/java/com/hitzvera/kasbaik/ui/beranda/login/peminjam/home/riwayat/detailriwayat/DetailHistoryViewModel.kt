@@ -23,23 +23,23 @@ class DetailHistoryViewModel: ViewModel() {
     private var _listPayment = MutableLiveData<List<PaymentItem>>()
     val listPayment: LiveData<List<PaymentItem>> = _listPayment
 
-    fun getListBorrowing(token: String, context: Context, id: String){
+    fun getListBorrowing(token: String, context: Context, idBorrower: String){
         _isLoading.value = true
-        ApiConfig.getApiService().getBorrowing("jwt=$token", id)
-            .enqueue(object: Callback<List<Borrower>>{
+        ApiConfig.getApiService().getBorrowing("jwt=$token", idBorrower)
+            .enqueue(object: Callback<GetBorrowerByIdResponse>{
                 override fun onResponse(
-                    call: Call<List<Borrower>>,
-                    response: Response<List<Borrower>>
+                    call: Call<GetBorrowerByIdResponse>,
+                    response: Response<GetBorrowerByIdResponse>
                 ) {
                     _isLoading.value = false
                     if(response.isSuccessful){
-                        _listBorrowing.postValue(response.body())
+                        _listBorrowing.postValue(response.body()?.pinjaman)
                     } else {
                         Toast.makeText(context, "Failed fetch data", Toast.LENGTH_LONG).show()
                     }
                 }
 
-                override fun onFailure(call: Call<List<Borrower>>, t: Throwable) {
+                override fun onFailure(call: Call<GetBorrowerByIdResponse>, t: Throwable) {
                     _isLoading.value = false
                     Toast.makeText(context, "Failed fetch data", Toast.LENGTH_LONG).show()
                 }
