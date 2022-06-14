@@ -51,6 +51,7 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
     private var fileChosen: Int? = null
     private lateinit var type: MutableList<String>
     private lateinit var confidence: MutableList<String>
+    private lateinit var percentage: MutableList<Int>
     var imageSize = 150
 
     override fun onResume() {
@@ -67,6 +68,7 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
 
         type = mutableListOf("None", "None", "None", "None")
         confidence = mutableListOf("None", "None", "None", "None")
+        percentage = mutableListOf(0, 0)
         val token = intent.getStringExtra(HomePeminjamActivity.TOKEN)
         viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
         viewModel.getProfile(this, token!!)
@@ -276,7 +278,7 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
     private fun postProfile(
         token: String,
     ){
-        if(validateForm()){
+        if(validateForm() && percentage[0] > 80 && percentage[1] > 80){
             val file1 = reduceFileImage(getFile1 as File)
             val file2 = reduceFileImage(getFile2 as File)
             val file3 = reduceFileImage(getFile3 as File)
@@ -391,6 +393,11 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
             var s = ""
             for (i in classes.indices) {
                 s += String.format("%s: %.1f%%\n", classes[i], confidences[i] * 100)
+            }
+            if (confidences[0] > confidences[1]){
+                percentage[0] = (confidences[0] * 100).toInt()
+            } else if (confidences[1] > confidences[0]){
+                percentage[1] = (confidences[1] * 100).toInt()
             }
             confidence[number] = s
 
