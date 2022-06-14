@@ -1,330 +1,327 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_ijo"
-    tools:context=".ui.beranda.login.mitra.home.listpeminjam.detailpinjaman.DetailPinjamanActivity">
-
-    <View
-        android:id="@+id/container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="@drawable/rounded_corners"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ScrollView
+    android:layout_width="match_parent"
+    android:fillViewport="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        android:background="@color/background_ijo"
+        tools:context=".ui.beranda.login.mitra.home.listpeminjam.detailpinjaman.DetailPinjamanActivity">
+
+        <View
+            android:id="@+id/container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_corners"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_nama_peminjam"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
-            <TextView
-                android:id="@+id/tv_nama_peminjam"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Nama Peminjam"
+            android:layout_marginTop="32dp"
+            android:text="Nama Peminjam"
 
-                android:textColor="@color/orange"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:textColor="@color/orange"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintStart_toStartOf="@+id/container"
+            app:layout_constraintTop_toTopOf="@id/container" />
 
-            <View
-                android:id="@+id/batas_1"
-                android:layout_width="0dp"
-                android:layout_height="10dp"
-                android:layout_marginTop="32dp"
-                android:background="@color/orange"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_nama_peminjam" />
+        <View
+            android:id="@+id/batas_1"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_marginTop="32dp"
+            android:background="@color/orange"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@+id/tv_nama_peminjam" />
 
-            <TextView
-                android:id="@+id/tv_label_credit_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:text="Credit Score"
-                android:textColor="@color/orange"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/batas_1" />
+        <TextView
+            android:id="@+id/tv_label_credit_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Credit Score"
+            android:textColor="@color/orange"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@+id/batas_1" />
 
-            <TextView
-                android:id="@+id/tv_credit_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:text="0"
-                android:textColor="@color/orange"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/batas_1" />
+        <TextView
+            android:id="@+id/tv_credit_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:text="0"
+            android:textColor="@color/orange"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@id/batas_1" />
 
-            <View
-                android:id="@+id/batas_2"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/orange"
-                app:layout_constraintEnd_toEndOf="@+id/tv_credit_score"
-                app:layout_constraintStart_toStartOf="@+id/tv_label_credit_score"
-                app:layout_constraintTop_toBottomOf="@+id/tv_label_credit_score" />
+        <View
+            android:id="@+id/batas_2"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/orange"
+            app:layout_constraintEnd_toEndOf="@+id/tv_credit_score"
+            app:layout_constraintStart_toStartOf="@+id/tv_label_credit_score"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_credit_score" />
 
-            <TextView
-                android:id="@+id/tv_label_credit_approval"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:text="Rekomendasi Persetujuan"
-                android:textColor="@color/orange"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_label_credit_score" />
+        <TextView
+            android:id="@+id/tv_label_credit_approval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Rekomendasi Persetujuan"
+            android:textColor="@color/orange"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_credit_score" />
 
-            <TextView
-                android:id="@+id/tv_credit_approval"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:text="Good"
-                android:textColor="@color/orange"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_credit_score" />
+        <TextView
+            android:id="@+id/tv_credit_approval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:text="Good"
+            android:textColor="@color/orange"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@id/tv_credit_score" />
 
-            <View
-                android:id="@+id/batas_10"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/orange"
-                app:layout_constraintEnd_toEndOf="@+id/tv_credit_score"
-                app:layout_constraintStart_toStartOf="@+id/tv_label_credit_score"
-                app:layout_constraintTop_toBottomOf="@+id/tv_credit_approval" />
+        <View
+            android:id="@+id/batas_10"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/orange"
+            app:layout_constraintEnd_toEndOf="@+id/tv_credit_score"
+            app:layout_constraintStart_toStartOf="@+id/tv_label_credit_score"
+            app:layout_constraintTop_toBottomOf="@+id/tv_credit_approval" />
 
-            <TextView
-                android:id="@+id/tv_label_pinjaman_ke"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:text="Pinjaman Ke"
-                android:textColor="@color/orange"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_label_credit_approval" />
+        <TextView
+            android:id="@+id/tv_label_pinjaman_ke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Pinjaman Ke"
+            android:textColor="@color/orange"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_credit_approval" />
 
-            <TextView
-                android:id="@+id/tv_pinjaman_ke"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:text="1"
-                android:textColor="@color/orange"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_credit_approval" />
+        <TextView
+            android:id="@+id/tv_pinjaman_ke"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:text="1"
+            android:textColor="@color/orange"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@id/tv_credit_approval" />
 
-            <View
-                android:id="@+id/batas_3"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/orange"
-                app:layout_constraintEnd_toEndOf="@+id/tv_credit_score"
-                app:layout_constraintStart_toStartOf="@+id/tv_label_credit_score"
-                app:layout_constraintTop_toBottomOf="@+id/tv_label_pinjaman_ke" />
+        <View
+            android:id="@+id/batas_3"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/orange"
+            app:layout_constraintEnd_toEndOf="@+id/tv_credit_score"
+            app:layout_constraintStart_toStartOf="@+id/tv_label_credit_score"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_pinjaman_ke" />
 
-            <TextView
-                android:id="@+id/tv_label_pemasukan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
-                android:text="Pemasukan"
-                android:textColor="@color/orange"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/batas_3" />
+        <TextView
+            android:id="@+id/tv_label_pemasukan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="Pemasukan"
+            android:textColor="@color/orange"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@+id/batas_3" />
 
-            <TextView
-                android:id="@+id/tv_pemasukan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="32dp"
-                android:text="Rp.200.000"
-                android:textColor="@color/orange"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/batas_3" />
+        <TextView
+            android:id="@+id/tv_pemasukan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:text="Rp.200.000"
+            android:textColor="@color/orange"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@id/batas_3" />
 
-            <View
-                android:id="@+id/batas_4"
-                android:layout_width="0dp"
-                android:layout_height="2dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/orange"
-                app:layout_constraintEnd_toEndOf="@+id/tv_credit_score"
-                app:layout_constraintStart_toStartOf="@+id/tv_label_credit_score"
-                app:layout_constraintTop_toBottomOf="@+id/tv_label_pemasukan" />
+        <View
+            android:id="@+id/batas_4"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/orange"
+            app:layout_constraintEnd_toEndOf="@+id/tv_credit_score"
+            app:layout_constraintStart_toStartOf="@+id/tv_label_credit_score"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_pemasukan" />
 
-            <TextView
-                android:id="@+id/tv_label_reason"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Reason"
-                android:textColor="@color/orange"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@id/batas_4"
-                app:layout_constraintTop_toBottomOf="@id/batas_4" />
+        <TextView
+            android:id="@+id/tv_label_reason"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Reason"
+            android:textColor="@color/orange"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/batas_4"
+            app:layout_constraintTop_toBottomOf="@id/batas_4" />
 
-            <TextView
-                android:id="@+id/tv_reason"
-                android:layout_width="200dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="start"
-                android:lines="4"
-                android:maxLines="4"
-                android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                android:textColor="@color/orange"
-                android:textSize="11sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/batas_4" />
+        <TextView
+            android:id="@+id/tv_reason"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:gravity="start"
+            android:lines="4"
+            android:maxLines="4"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            android:textColor="@color/orange"
+            android:textSize="11sp"
+            app:layout_constraintEnd_toEndOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@id/batas_4" />
 
-            <TextView
-                android:id="@+id/tv_label_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="status"
-                android:textColor="@color/orange"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@id/tv_label_reason"
-                app:layout_constraintTop_toBottomOf="@id/tv_reason" />
+        <TextView
+            android:id="@+id/tv_label_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="status"
+            android:textColor="@color/orange"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/tv_label_reason"
+            app:layout_constraintTop_toBottomOf="@id/tv_reason" />
 
-            <TextView
-                android:id="@+id/tv_label_loan_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginTop="32dp"
-                android:text="Loan Amount"
-                android:textColor="@color/orange"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_status" />
+        <TextView
+            android:id="@+id/tv_label_loan_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:text="Loan Amount"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintTop_toBottomOf="@+id/tv_status" />
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tv_status"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="@id/tv_reason"
-                app:layout_constraintStart_toStartOf="@id/tv_reason"
-                app:layout_constraintTop_toBottomOf="@id/tv_reason">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tv_status"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/tv_reason"
+            app:layout_constraintStart_toStartOf="@id/tv_reason"
+            app:layout_constraintTop_toBottomOf="@id/tv_reason">
 
-                <AutoCompleteTextView
-                    android:id="@+id/status_container"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:inputType="none"
-                    android:text="pending" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <AutoCompleteTextView
+                android:id="@+id/status_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none"
+                android:text="pending" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tv_loan_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="16dp"
-                android:text="Rp.300.000"
-                android:textColor="@color/orange"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="@id/tv_status"
-                app:layout_constraintTop_toBottomOf="@id/tv_status" />
+        <TextView
+            android:id="@+id/tv_loan_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:text="Rp.300.000"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/tv_status"
+            app:layout_constraintTop_toBottomOf="@id/tv_status" />
 
-            <Button
-                android:id="@+id/btn_cancel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginBottom="32dp"
-                android:backgroundTint="@color/white"
-                android:text="Cancel"
-                android:textColor="@color/orange"
-                app:layout_constraintTop_toBottomOf="@+id/ed_message"
-                app:layout_constraintStart_toStartOf="@+id/tv_label_loan_amount" />
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/white"
+            android:text="Cancel"
+            android:textColor="@color/orange"
+            app:layout_constraintTop_toBottomOf="@+id/ed_message"
+            app:layout_constraintStart_toStartOf="@+id/tv_label_loan_amount" />
 
-            <Button
-                android:id="@+id/btn_save"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:layout_marginBottom="32dp"
-                android:backgroundTint="@color/orange"
-                android:text="Save"
-                android:textColor="@color/white"
-                app:layout_constraintTop_toTopOf="@+id/btn_cancel"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:backgroundTint="@color/orange"
+            android:text="Save"
+            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="@+id/btn_cancel"
+            app:layout_constraintEnd_toEndOf="@+id/container" />
 
-            <TextView
-                android:id="@+id/tv_label_pesan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="pesan"
-                android:textColor="@color/orange"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@id/tv_label_loan_amount"
-                app:layout_constraintTop_toBottomOf="@id/tv_loan_amount" />
+        <TextView
+            android:id="@+id/tv_label_pesan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="pesan"
+            android:textColor="@color/orange"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@id/tv_label_loan_amount"
+            app:layout_constraintTop_toBottomOf="@id/tv_loan_amount" />
 
-            <EditText
-                android:id="@+id/ed_message"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:hint="Masukan pesan untuk peminjam"
-                android:background="@drawable/rounded_corners"
-                android:padding="10dp"
-                android:layout_marginTop="20dp"
-                android:maxLines="3"
-                app:layout_constraintStart_toStartOf="@id/tv_label_pesan"
-                app:layout_constraintEnd_toEndOf="@id/tv_loan_amount"
-                app:layout_constraintTop_toBottomOf="@id/tv_label_pesan"/>
+        <EditText
+            android:id="@+id/ed_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Masukan pesan untuk peminjam"
+            android:background="@drawable/rounded_corners"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:maxLines="3"
+            app:layout_constraintStart_toStartOf="@id/tv_label_pesan"
+            app:layout_constraintEnd_toEndOf="@id/tv_loan_amount"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_pesan"/>
 
-            <ProgressBar
-                android:id="@+id/progressBar_detail_pinjaman"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <ProgressBar
+            android:id="@+id/progressBar_detail_pinjaman"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
+
