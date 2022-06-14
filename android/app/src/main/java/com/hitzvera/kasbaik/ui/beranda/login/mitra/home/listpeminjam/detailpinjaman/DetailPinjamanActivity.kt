@@ -16,6 +16,8 @@ import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityDetailPinjamanBinding
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.HomeMitraActivity
 import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.listpeminjam.ListPeminjamActivity
+import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.detailpayment.DetailPaymentActivity.Companion.CREDIT_SCORE
+import com.hitzvera.kasbaik.ui.beranda.login.mitra.home.payment.detailpayment.DetailPaymentActivity.Companion.NAMA_PEMINJAM
 
 class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -23,8 +25,8 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var viewModel: DetailPinjamanViewModel
     private lateinit var token: String
     private lateinit var idBorrower: String
-//    private lateinit var creditScore: String
     private lateinit var namaPeminjam: String
+    private var creditApproval: Int = 0
     private var monthlyIncome: Int = 0
     private var pinjamanKe: Int = 0
     private var loanAmount: Int = 0
@@ -52,6 +54,9 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
                         binding.tvCreditScore.text = creditScore.toString()
                     }
                 }
+                viewModel.isLoading.observe(this){ isLoading ->
+                    showLoading(isLoading)
+                }
             }
         }
 
@@ -63,21 +68,29 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
     private fun getData(){
         token = intent.getStringExtra(TOKEN).toString()
         namaPeminjam = intent.getStringExtra(NAMA_PEMINJAM).toString()
-//        creditScore = intent.getStringExtra(CREDIT_SCORE).toString()
         pinjamanKe = intent.getIntExtra(PINJAMAN_KE, 0)
         loanAmount = intent.getIntExtra(LOAN_AMOUNT, 0)
         reason = intent.getStringExtra(REASON).toString()
         idBorrower = intent.getStringExtra(ID_BORROWER).toString()
         monthlyIncome = intent.getIntExtra(MONTLY_INCOME, 0)
+        creditApproval = intent.getIntExtra(CREDIT_APPROVAL, 0)
     }
     private fun setData(){
         binding.apply {
             tvNamaPeminjam.text = namaPeminjam
-//            tvCreditScore.text = creditScore
             tvPinjamanKe.text = pinjamanKe.toString()
             tvLoanAmount.text = loanAmount.toString()
             tvReason.text = reason
             tvPemasukan.text = monthlyIncome.toString()
+            tvCreditApproval.text = creditApprovalConversion(creditApproval)
+        }
+    }
+
+    private fun creditApprovalConversion(number: Int): String{
+        return if(number == 1){
+            "Good"
+        } else {
+            "Bad"
         }
     }
 
@@ -88,6 +101,7 @@ class DetailPinjamanActivity : AppCompatActivity(), View.OnClickListener {
         const val PINJAMAN_KE = "pinjaman_ke"
         const val LOAN_AMOUNT = "loan_amount"
         const val REASON = "reason"
+        const val CREDIT_APPROVAL = "credit_approval"
         const val NAMA_PEMINJAM = "nama_peminjam"
         const val MONTLY_INCOME = "monthly_income"
     }

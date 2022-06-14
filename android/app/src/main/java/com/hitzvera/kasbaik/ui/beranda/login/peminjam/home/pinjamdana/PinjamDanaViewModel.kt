@@ -25,6 +25,9 @@ class PinjamDanaViewModel: ViewModel(){
     private var _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
+    private var _prediction: Int = 0
+    val prediction: Int = _prediction
+
     private var _postBorrowerResponse = MutableLiveData<PostBorrowerResponse>()
     val postBorrowerResponse: LiveData<PostBorrowerResponse> = _postBorrowerResponse
 
@@ -102,6 +105,7 @@ class PinjamDanaViewModel: ViewModel(){
                 if(response.isSuccessful){
                     _isLoading.value = false
                     Log.e("CHECK", response.body().toString())
+                    _prediction = response.body()?.prediction ?: 0
                 }
             }
 

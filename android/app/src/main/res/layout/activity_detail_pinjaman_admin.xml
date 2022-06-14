@@ -24,7 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Nama Peminjam"
+        android:text="@string/nama_peminjam"
 
         android:textColor="@color/orange"
         android:textSize="24sp"
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="Credit Score"
+        android:text="@string/credit_score"
         android:textColor="@color/orange"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/container"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="Trusted"
+        tools:text="Trusted"
         android:textColor="@color/orange"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@id/container"
@@ -83,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:text="Pinjaman Ke"
+        android:text="@string/pinjaman_ke"
         android:textColor="@color/orange"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/container"
@@ -95,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:text="1"
+        tools:text="1"
         android:textColor="@color/orange"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="@id/container"
@@ -115,7 +115,7 @@
         android:id="@+id/tv_label_reason"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reason"
+        android:text="@string/reason"
         android:textColor="@color/orange"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/batas_3"
@@ -128,7 +128,7 @@
         android:gravity="start"
         android:lines="4"
         android:maxLines="4"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
         android:textColor="@color/orange"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@id/batas_3"
@@ -139,7 +139,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="status"
+        android:text="@string/status"
         android:textColor="@color/orange"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/tv_label_reason"
@@ -151,7 +151,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="Loan Amount"
+        android:text="@string/loan_amount"
         android:textColor="@color/orange"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@id/container"
@@ -164,47 +164,19 @@
         app:layout_constraintEnd_toEndOf="@id/tv_reason"
         app:layout_constraintStart_toStartOf="@id/tv_reason"
         app:layout_constraintTop_toTopOf="@id/tv_label_status"
-        android:text="Pending"
+        android:text="@string/pending"
         android:textSize="18sp"
         android:textColor="@color/orange"
         android:textAlignment="textEnd"
         />
 
 
-<!--    <com.google.android.material.textfield.TextInputLayout-->
-<!--        android:id="@+id/tv_status"-->
-<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:layout_constraintEnd_toEndOf="@id/tv_reason"-->
-<!--        app:layout_constraintStart_toStartOf="@id/tv_reason"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/tv_reason">-->
-
-<!--        <AutoCompleteTextView-->
-<!--            android:id="@+id/status_container"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:inputType="none"-->
-<!--            android:text="pending" />-->
-<!--    </com.google.android.material.textfield.TextInputLayout>-->
-
-    <!--    <TextView-->
-    <!--        android:id="@+id/tv_status"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:text="Rp.300.000"-->
-    <!--        android:textColor="@color/orange"-->
-    <!--        android:textStyle="bold"-->
-    <!--        android:layout_marginTop="16dp"-->
-    <!--        app:layout_constraintEnd_toEndOf="@id/tv_reason"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/tv_reason"/>-->
-
     <TextView
         android:id="@+id/tv_loan_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="Rp.300.000"
+        tools:text="Rp.300.000"
         android:textColor="@color/orange"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@id/tv_status"
@@ -216,7 +188,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/white"
-        android:text="Cancel"
+        android:text="@string/cancel"
         android:textColor="@color/orange"
         app:layout_constraintBottom_toBottomOf="@id/container"
         app:layout_constraintStart_toStartOf="@+id/tv_label_loan_amount" />
@@ -228,7 +200,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/orange"
-        android:text="Save"
+        android:text="@string/save"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@id/container"
         app:layout_constraintEnd_toEndOf="@+id/container" />

@@ -57,7 +57,7 @@ class StatusActivity : AppCompatActivity() {
         viewModel.getListBorrowing(token, this)
         viewModel.listBorrowing.observe(this){ it ->
             if(!it.isNullOrEmpty()){
-                currentBorrowing = it.last()
+                currentBorrowing = it.first()
                 if(currentBorrowing.status == "done"){
                     setVisibility(false)
                 } else if(currentBorrowing.status == "payment"){
@@ -66,9 +66,11 @@ class StatusActivity : AppCompatActivity() {
                     viewModel.getListPayment(token, this, currentBorrowing.idBorrower)
                     viewModel.listPayment.observe(this){ item ->
                         if(!item.isNullOrEmpty()){
+                            binding.containerPaymentNone.visibility = View.GONE
                             adapter.setData(item)
                             Log.e("test", item.toString())
-                        } else {
+                        }
+                        else {
                             binding.containerPaymentNone.visibility = View.VISIBLE
                         }
                     }
@@ -139,6 +141,7 @@ class StatusActivity : AppCompatActivity() {
         binding.btnEdit.visibility = View.GONE
         binding.btnDelete.visibility = View.GONE
         binding.containerPaymentNone.visibility = View.GONE
+        binding.tvLabelStatusHistoryTitle.visibility = View.GONE
     }
 
     private fun showLoading(isLoading: Boolean){

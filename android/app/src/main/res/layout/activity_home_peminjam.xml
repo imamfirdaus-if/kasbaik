@@ -43,7 +43,7 @@
             android:id="@+id/btn_pinjam_dana"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Pinjam Dana"
+            android:text="@string/pinjam_dana"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -57,6 +57,7 @@
             android:id="@+id/btn_profile"
             android:layout_width="0dp"
             android:layout_height="100dp"
+            android:contentDescription="@string/profile"
             app:layout_constraintWidth_percent="0.25"
             android:background="@drawable/rounded_corners"
             android:src="@drawable/ic_baseline_person_24"
@@ -67,7 +68,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Profile"
+            android:text="@string/profile"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -81,6 +82,7 @@
             android:id="@+id/btn_status"
             android:layout_width="0dp"
             android:layout_height="100dp"
+            android:contentDescription="@string/status"
             app:layout_constraintWidth_percent="0.25"
             android:background="@drawable/rounded_corners"
             android:src="@drawable/ic_baseline_status_24"
@@ -92,7 +94,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Status"
+            android:text="@string/status"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -106,6 +108,7 @@
             android:id="@+id/btn_riwayat"
             android:layout_width="0dp"
             android:layout_height="100dp"
+            android:contentDescription="@string/riwayat"
             app:layout_constraintWidth_percent="0.25"
             android:background="@drawable/rounded_corners"
             android:src="@drawable/ic_baseline_riwayat_24"
@@ -116,7 +119,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Riwayat"
+            android:text="@string/riwayat"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -134,13 +137,14 @@
             android:background="@drawable/rounded_corners"
             android:src="@drawable/ic_baseline_about_24"
             android:layout_marginTop="16dp"
+            android:contentDescription="@string/about"
             app:layout_constraintTop_toBottomOf="@+id/btn_profile"
             app:layout_constraintStart_toStartOf="@+id/btn_pinjam_dana"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tentang"
+            android:text="@string/tentang"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -158,6 +162,7 @@
             android:background="@drawable/rounded_corners"
             android:src="@drawable/ic_baseline_notifications_24"
             android:layout_marginTop="16dp"
+            android:contentDescription="@string/notifikasi"
             app:layout_constraintTop_toBottomOf="@+id/btn_status"
             app:layout_constraintEnd_toEndOf="@+id/btn_status"
             app:layout_constraintStart_toStartOf="@id/btn_status"/>
@@ -165,7 +170,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Notifikasi"
+            android:text="@string/notifikasi"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -183,13 +188,14 @@
             android:background="@drawable/rounded_corners"
             android:src="@drawable/ic_baseline_payments_24"
             android:layout_marginTop="16dp"
+            android:contentDescription="@string/bukti_bayar"
             app:layout_constraintTop_toBottomOf="@+id/btn_riwayat"
             app:layout_constraintEnd_toEndOf="@+id/btn_riwayat"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bukti Bayar"
+            android:text="@string/bukti_bayar"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"

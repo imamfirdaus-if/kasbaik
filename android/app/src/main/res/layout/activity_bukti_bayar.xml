@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="Bukti Pembayaran"
+        android:text="@string/bukti_pembayaran"
         android:textColor="@color/white"
         android:fontFamily="@font/poppins_semibold"
         android:textSize="20sp"

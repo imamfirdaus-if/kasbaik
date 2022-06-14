@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
-        android:text="History Bukti Bayar"
+        android:text="@string/history_bukti_bayar"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="32dp"
-            android:text="Tidak ada history"
+            android:text="@string/tidak_ada_history"
             android:textColor="@color/orange"
             android:textSize="24sp"
             android:textStyle="bold" />

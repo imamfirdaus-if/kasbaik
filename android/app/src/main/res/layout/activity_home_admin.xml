@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_ijo"
+    android:fillViewport="true"
     tools:context=".ui.beranda.login.superadmin.home.HomeAdminActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <TextView
             android:id="@+id/tv_greeting"
             android:layout_width="0dp"
@@ -41,7 +42,7 @@
             android:id="@+id/title_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kasbaik dalam Angka"
+            android:text="@string/kasbaik_dalam_angka"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -57,7 +58,7 @@
             android:id="@+id/tv_label_total_pendanaan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Pendanaan"
+            android:text="@string/total_pendanaan"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -70,7 +71,7 @@
             android:id="@+id/tv_label_jumlah_peminjam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jumlah Peminjam"
+            android:text="@string/jumlah_peminjam"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -83,7 +84,7 @@
             android:id="@+id/tv_label_peminjaman_berhasil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Peminjaman Berhasil"
+            android:text="@string/peminjaman_berhasil"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -97,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="List Pending"
+            android:text="@string/list_pending"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -109,7 +110,7 @@
             android:id="@+id/tv_total_pendanaan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rp.201112012"
+            tools:text="Rp.201112012"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -123,7 +124,7 @@
             android:id="@+id/tv_jumlah_peminjam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="210 Peminjam"
+            tools:text="210 Peminjam"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -137,7 +138,7 @@
             android:id="@+id/tv_peminjaman_berhasil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="180 Peminjam"
+            tools:text="180 Peminjam"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -151,7 +152,7 @@
             android:id="@+id/tv_pending"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="31 Peminjam"
+            tools:text="31 Peminjam"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textSize="14sp"
@@ -169,7 +170,7 @@
             android:layout_marginTop="16dp"
             android:textColor="@color/orange"
             android:backgroundTint="@color/white"
-            android:text="Profile"
+            android:text="@string/profile"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             app:layout_constraintTop_toBottomOf="@+id/container"/>
@@ -182,7 +183,7 @@
             android:layout_marginTop="16dp"
             android:textColor="@color/orange"
             android:backgroundTint="@color/white"
-            android:text="Mitra"
+            android:text="@string/mitra"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             app:layout_constraintTop_toBottomOf="@+id/btn_profile"/>
@@ -197,7 +198,7 @@
             android:backgroundTint="@color/white"
             android:textAllCaps="false"
             android:textStyle="bold"
-            android:text="Pengguna"
+            android:text="@string/pengguna"
             app:layout_constraintTop_toBottomOf="@+id/btn_mitra"/>
 
         <Button
@@ -210,7 +211,7 @@
             android:backgroundTint="@color/white"
             android:textAllCaps="false"
             android:textStyle="bold"
-            android:text="List Peminjam"
+            android:text="@string/list_peminjam"
             app:layout_constraintTop_toBottomOf="@+id/btn_pengguna"/>
 
         <Button
@@ -223,7 +224,7 @@
             android:backgroundTint="@color/white"
             android:textAllCaps="false"
             android:textStyle="bold"
-            android:text="Pembayaran"
+            android:text="@string/pembayaran"
             app:layout_constraintTop_toBottomOf="@+id/btn_list_peminjam"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
