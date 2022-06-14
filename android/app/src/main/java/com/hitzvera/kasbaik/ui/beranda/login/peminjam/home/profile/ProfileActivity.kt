@@ -5,6 +5,9 @@ import android.app.Dialog
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.media.ThumbnailUtils
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -18,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.hitzvera.kasbaik.R
 import com.hitzvera.kasbaik.databinding.ActivityProfileBinding
+import com.hitzvera.kasbaik.ml.KtpSelfieModel01
 import com.hitzvera.kasbaik.ui.beranda.login.peminjam.home.HomePeminjamActivity
 import com.hitzvera.kasbaik.utils.reduceFileImage
 import com.hitzvera.kasbaik.utils.uriToFile
@@ -27,7 +31,12 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
+import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
 import java.io.File
+import java.io.IOException
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
 
 class ProfileActivity: AppCompatActivity(), View.OnClickListener {
 
@@ -40,6 +49,9 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
     private var linkImage2: String? = null
     private var linkImage3: String? = null
     private var fileChosen: Int? = null
+    private lateinit var type: MutableList<String>
+    private lateinit var confidence: MutableList<String>
+    var imageSize = 150
 
     override fun onResume() {
         super.onResume()
@@ -53,7 +65,8 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
         binding = ActivityProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        type = mutableListOf("None", "None", "None", "None")
+        confidence = mutableListOf("None", "None", "None", "None")
         val token = intent.getStringExtra(HomePeminjamActivity.TOKEN)
         viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
         viewModel.getProfile(this, token!!)
@@ -89,6 +102,7 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
                         linkImage1 = it.fotoDiri
                         linkImage2 = it.fotoKtp
                         linkImage3 = it.fotoSelfie
+
                     }
                 }
                 if(it.alamatTinggal.isNullOrBlank()){
@@ -127,6 +141,7 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
         if (result.resultCode == RESULT_OK) {
+
             val selectedImg: Uri = result.data?.data as Uri
             val myFile = uriToFile(selectedImg, this@ProfileActivity)
             when (fileChosen) {
@@ -136,14 +151,25 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
                 }
                 2 -> {
                     getFile2 = myFile
+                    classification(getFile2, 2)
                     binding.tvLabelFotoKtp.text = reduceFileImage(getFile2 as File).name
                 }
                 else -> {
                     getFile3 = myFile
+                    classification(getFile3, 3)
                     binding.tvLabelFotoSelfie.text = reduceFileImage(getFile3 as File).name
                 }
             }
         }
+    }
+
+    private fun classification(getFile: File?, number: Int){
+        var result = BitmapFactory.decodeFile(getFile?.path)
+
+        val dimension = Math.min(result!!.width, result.height)
+        result = ThumbnailUtils.extractThumbnail(result, dimension, dimension)
+        result = Bitmap.createScaledBitmap(result, imageSize, imageSize, false)
+        classifyImage(result, number)
     }
 
     override fun onRequestPermissionsResult(
@@ -188,7 +214,11 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
                 dialog.setCancelable(true)
                 dialog.setContentView(R.layout.see_image)
                 val ivImage: ImageView = dialog.findViewById(R.id.image)
+                val result: TextView = dialog.findViewById(R.id.result)
+                val confi: TextView = dialog.findViewById(R.id.confidence)
                 Glide.with(this).load(linkImage1).into(ivImage)
+                result.visibility = View.GONE
+                confi.visibility = View.GONE
                 dialog.show()
             }
             R.id.see_image_2 -> {
@@ -197,7 +227,16 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
                 dialog.setCancelable(true)
                 dialog.setContentView(R.layout.see_image)
                 val ivImage: ImageView = dialog.findViewById(R.id.image)
+                val result: TextView = dialog.findViewById(R.id.result)
+                val confi: TextView = dialog.findViewById(R.id.confidence)
                 Glide.with(this).load(linkImage2).into(ivImage)
+                if (type[2] == "None"){
+                    result.visibility = View.GONE
+                    confi.visibility = View.GONE
+                } else {
+                    result.text = type[2]
+                    confi.text = confidence[2]
+                }
                 dialog.show()
             }
             R.id.see_image_3 -> {
@@ -206,7 +245,16 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
                 dialog.setCancelable(true)
                 dialog.setContentView(R.layout.see_image)
                 val ivImage: ImageView = dialog.findViewById(R.id.image)
+                val result: TextView = dialog.findViewById(R.id.result)
+                val confi: TextView = dialog.findViewById(R.id.confidence)
                 Glide.with(this).load(linkImage3).into(ivImage)
+                if (type[3] == "None"){
+                    result.visibility = View.GONE
+                    confi.visibility = View.GONE
+                } else {
+                    result.text = type[3]
+                    confi.text = confidence[3]
+                }
                 dialog.show()
             }
             R.id.btn_cancel -> {
@@ -221,7 +269,9 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
                 && getFile2 != null
                 && getFile3 != null
                 && binding.edAlamatTinggal.text.isNotEmpty()
-                && binding.edAlamatKtp.text.isNotEmpty())
+                && binding.edAlamatKtp.text.isNotEmpty()
+                && type[2] == "ktp"
+                && type[3] == "selfie")
     }
     private fun postProfile(
         token: String,
@@ -290,6 +340,65 @@ class ProfileActivity: AppCompatActivity(), View.OnClickListener {
             viewModel.isLoading.observe(this){
                 showLoading(it)
             }
+        } else if (type[2] != "ktp" || type[3] != "selfie"){
+            Toast.makeText(this, "Gagal menyimpan, silahkan upload ktp dan selfie dengan benar ", Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this, "Data have to be valid", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    fun classifyImage(image: Bitmap?, number: Int) {
+        try {
+            val model: KtpSelfieModel01 = KtpSelfieModel01.newInstance(applicationContext)
+
+            // Creates inputs for reference.
+            val inputFeature0 =
+                TensorBuffer.createFixedSize(intArrayOf(1, 150, 150, 3), DataType.FLOAT32)
+            val byteBuffer = ByteBuffer.allocateDirect(4 * imageSize * imageSize * 3)
+            byteBuffer.order(ByteOrder.nativeOrder())
+
+            // get 1D array of 224 * 224 pixels in image
+            val intValues = IntArray(imageSize * imageSize)
+            image!!.getPixels(intValues, 0, image.width, 0, 0, image.width, image.height)
+
+            // iterate over pixels and extract R, G, and B values. Add to bytebuffer.
+            var pixel = 0
+            for (i in 0 until imageSize) {
+                for (j in 0 until imageSize) {
+                    val `val` = intValues[pixel++] // RGB
+                    byteBuffer.putFloat((`val` shr 16 and 0xFF) * (1f / 255f))
+                    byteBuffer.putFloat((`val` shr 8 and 0xFF) * (1f / 255f))
+                    byteBuffer.putFloat((`val` and 0xFF) * (1f / 255f))
+                }
+            }
+            inputFeature0.loadBuffer(byteBuffer)
+
+            // Runs model inference and gets result.
+            val outputs: KtpSelfieModel01.Outputs = model.process(inputFeature0)
+            val outputFeature0: TensorBuffer = outputs.getOutputFeature0AsTensorBuffer()
+            val confidences = outputFeature0.floatArray
+            // find the index of the class with the biggest confidence.
+            var maxPos = 0
+            var maxConfidence = 0f
+            for (i in confidences.indices) {
+                if (confidences[i] > maxConfidence) {
+                    maxConfidence = confidences[i]
+                    maxPos = i
+                }
+            }
+            val classes = arrayOf("ktp", "selfie")
+            type[number] = classes[maxPos]
+            var s = ""
+            for (i in classes.indices) {
+                s += String.format("%s: %.1f%%\n", classes[i], confidences[i] * 100)
+            }
+            confidence[number] = s
+
+
+            // Releases model resources if no longer used.
+            model.close()
+        } catch (e: IOException) {
+            // TODO Handle the exception
         }
     }
 

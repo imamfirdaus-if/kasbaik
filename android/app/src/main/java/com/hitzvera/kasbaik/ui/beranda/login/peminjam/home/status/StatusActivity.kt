@@ -76,7 +76,7 @@ class StatusActivity : AppCompatActivity() {
                         showLoading(item)
                     }
                 } else if(currentBorrowing.status == "pending"){
-                    setVisibility(true)
+                    setVisibility(false)
                     binding.btnDelete.visibility = View.VISIBLE
                     binding.btnEdit.visibility = View.VISIBLE
                     binding.btnEdit.setOnClickListener {
