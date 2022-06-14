@@ -83,13 +83,12 @@ router.get("/summaryMitra/:id_mitra", Auth.verifyTokenMitra, showController.summ
 
 router.get("/listAkunUser/:id_user", Auth.verifyTokenAdmin, adminController.listDetailUser)
 router.get("/listAkunMitra/:id_user", Auth.verifyTokenAdmin, adminController.listDetailMitra)
-
 router.get("/listBorrowerPending", Auth.verifyTokenAdmin, adminController.listBorrowerPending)
 router.get("/listBorrowerAcc", Auth.verifyTokenAdmin, adminController.listBorrowerAcc)
 router.get("/listBorrowerHistory", Auth.verifyTokenAdmin, adminController.listBorrowerHistory)
-router.get("/listBorrower/:id_borrower", Auth.verifyTokenAdmin, adminController.listDetailBorrower)
+
 router.get("/listPayment", Auth.verifyTokenAdmin, adminController.listPayment)
-router.get("/listPayment/:id_borrower", Auth.verifyTokenAdmin, adminController.listPaymentbyId)
+
 router.get("/summary", Auth.verifyTokenAdmin, adminController.summarry)
 
 router.get("/listAkunUser", Auth.verifyTokenAdmin, adminController.listAkunUser)
@@ -99,7 +98,8 @@ router.get("/jumlahtotal", Auth.verifyTokenAdmin, adminController.jumlahTotal)
 router.get('/useradmin/:id_user', Auth.verifyToken, adminController.homeAdmin)
 router.get('/mitraadmin/:id_mitra', Auth.verifyToken, adminController.mitraAdmin)
 router.get('/paymentadmin', Auth.verifyToken, adminController.paymentAdmin)
-
+router.get("/listBorrower/:id_borrower", Auth.verifyTokenAdmin, adminController.listDetailBorrower)
+router.get("/listPayment/:id_payment", Auth.verifyTokenAdmin, adminController.listPaymentbyId)
 //get ALL message in user where has_read = false
 // router.get('/profile/message', Auth.verifyTokenUser , showController.messageData)
 // router.put('/profile/message/:id_message', Auth.verifyTokenUser , messageController.updateMess)
