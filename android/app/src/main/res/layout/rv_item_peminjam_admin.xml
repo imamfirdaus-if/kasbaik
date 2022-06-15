@@ -19,7 +19,7 @@
             android:id="@+id/nama_peminjam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nama Peminjam"
+            android:text="@string/nama_peminjam"
             android:textColor="@color/orange"
             android:textSize="20sp"
             android:fontFamily="@font/poppins_semibold"
@@ -33,25 +33,24 @@
             android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="pending"
+            android:text="@string/pending"
             android:textSize="16sp"
             android:textColor="@color/orange"
             android:padding="5dp"
             android:paddingStart="20dp"
             android:paddingEnd="20dp"
             android:fontFamily="@font/poppins_semibold"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="28dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/tv_with_border"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/bt_history_payment"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:id="@+id/jumlah_pinjaman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rp. 500.000,00"
+            android:text="@string/rp_500_000_00"
             android:textColor="@color/orange"
             android:textStyle="bold"
             android:fontFamily="@font/poppins_semibold"
@@ -59,18 +58,9 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintTop_toBottomOf="@+id/nama_peminjam"
-            app:layout_constraintBottom_toBottomOf="@id/bt_history_payment"
             app:layout_constraintStart_toStartOf="@+id/nama_peminjam"/>
 
-        <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/bt_history_payment"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:layout_constraintEnd_toEndOf="@id/status"
-            app:layout_constraintTop_toBottomOf="@id/status"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:background="@drawable/ic_baseline_history_24"
-            />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

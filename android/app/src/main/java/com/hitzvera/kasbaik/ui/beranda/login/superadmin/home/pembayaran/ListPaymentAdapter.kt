@@ -21,14 +21,6 @@ class ListPaymentAdapter(private val onClickListener: ListPaymentAdapter.OnClick
                 namaPeminjam.text = "${count}."
                 status.text = "Rp. ${list.loanAmount}"
                 jumlahPinjaman.text = "Rp. ${list.totalPayment}"
-                btHistoryPayment.setOnClickListener {
-                    Intent(context, HistoryPaymentAdminActivity::class.java).also {
-                        it.putExtra("TOKEN", token)
-                        it.putExtra("IDBORROWER", list.idBorrower)
-                        it.putExtra("IDUSER", list.idUser)
-                        context.startActivity(it)
-                    }
-                }
             }
         }
     }

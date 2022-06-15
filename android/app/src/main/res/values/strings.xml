@@ -142,6 +142,7 @@
     <string name="alamat_ktp">Alamat ktp</string>
     <string name="masukan_alamat_ktp">Masukan Alamat KTP</string>
     <string name="preview_image">preview image</string>
+    <string name="rp_500_000_00">Rp. 500.000,00</string>
 
 
     <string-array name="status">
