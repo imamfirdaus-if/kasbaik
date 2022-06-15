@@ -19,8 +19,8 @@
         android:text="@string/donasi"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:textColor="@color/orange"
-        android:background="@drawable/rounded_corners"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_corner_orange"
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -35,8 +35,8 @@
         android:text="@string/zakat"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:textColor="@color/orange"
-        android:background="@drawable/rounded_corners"
+        android:textColor="@color/white"
+        android:background="@drawable/rounded_corner_orange"
         />
 
     <TextView

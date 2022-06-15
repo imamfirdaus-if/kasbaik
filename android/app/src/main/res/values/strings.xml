@@ -113,6 +113,35 @@
     <string name="masukan_pesan">Masukan Pesan</string>
     <string name="enter_the_amount_of_payment">enter the amount of payment</string>
     <string name="enter_message">enter message</string>
+    <string name="ajukan_pinjaman_dana">ajukan pinjaman dana</string>
+    <string name="optional">optional</string>
+    <string name="masukan_alasan_anda_meminjam">Masukan Alasan Anda meminjam</string>
+    <string name="alasan_meminjam">Alasan Meminjam</string>
+    <string name="masukan_tanggungan_anda">Masukan Tanggungan Anda</string>
+    <string name="berapa_orang_tanggungan">Berapa Orang Tanggungan</string>
+    <string name="decrease_per_500_rupiah">decrease per 500 rupiah</string>
+    <string name="add_per_500_rupiah">Add per 500 rupiah</string>
+    <string name="jangka_waktu_pinjaman">Jangka waktu pinjaman</string>
+    <string name="tenor_perminggu">Tenor perminggu</string>
+    <string name="title_pinjam_dana">Lengkapi Data Dibawah Untuk Peminjaman Dana</string>
+    <string name="nama">Nama</string>
+    <string name="masukan_nama_anda">Masukan Nama Anda</string>
+    <string name="your_phone_number">Your Phone Number</string>
+    <string name="usia">Usia</string>
+    <string name="gender">Gender</string>
+    <string name="wanita">wanita</string>
+    <string name="pria">pria</string>
+    <string name="pekerjaan">Pekerjaan</string>
+    <string name="buruh">buruh</string>
+    <string name="foto_ktp_jpg">foto-ktp.jpg</string>
+    <string name="choose">choose</string>
+    <string name="foto_selfie_jpg">foto-selfie.jpg</string>
+    <string name="foto_diri_jpg">foto-diri.jpg</string>
+    <string name="alamat_tinggal">Alamat tinggal</string>
+    <string name="masukan_alamat_anda">Masukan Alamat Anda</string>
+    <string name="alamat_ktp">Alamat ktp</string>
+    <string name="masukan_alamat_ktp">Masukan Alamat KTP</string>
+    <string name="preview_image">preview image</string>
 
 
     <string-array name="status">
