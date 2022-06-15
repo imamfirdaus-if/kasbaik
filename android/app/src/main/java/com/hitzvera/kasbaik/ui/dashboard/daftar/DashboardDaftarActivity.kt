@@ -39,6 +39,7 @@ class DashboardDaftarActivity : AppCompatActivity(), View.OnClickListener {
         hasLogin(isRemembered, role, token, username)
 
         binding.btnRegister.setOnClickListener(this)
+        binding.tvText7.text = getString(R.string.if_login)
         binding.tvText7.setOnClickListener(this)
     }
 
