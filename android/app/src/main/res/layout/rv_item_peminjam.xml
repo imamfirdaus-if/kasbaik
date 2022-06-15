@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="150dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/rounded_corners"
     android:layout_marginHorizontal="16dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="20dp"
-    android:layout_marginVertical="16dp"
-    >
+    android:layout_marginVertical="16dp">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +19,7 @@
             android:id="@+id/nama_peminjam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nama Peminjam"
+            android:text="@string/nama_peminjam"
             android:textColor="@color/orange"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -33,7 +33,7 @@
             android:id="@+id/status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="pending"
+            android:text="@string/pending"
             android:textSize="16sp"
             android:textColor="@color/orange"
             android:padding="5dp"
@@ -51,7 +51,7 @@
             android:id="@+id/jumlah_pinjaman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rp. 500.000,00"
+            tools:text="Rp. 500.000,00"
             android:textColor="@color/orange"
             android:textStyle="bold"
             android:textSize="20sp"

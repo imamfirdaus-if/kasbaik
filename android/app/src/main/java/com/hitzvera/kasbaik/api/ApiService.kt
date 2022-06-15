@@ -222,7 +222,7 @@ interface ApiService {
     @GET("listakunmitra")
     fun getListMitra(
         @Header("Cookie") auth: String
-    ): Call<List<GetListMitraResponseItem>>
+    ): Call<ListMitraResponse>
 
     @GET("listakunuser")
     fun getListPengguna(

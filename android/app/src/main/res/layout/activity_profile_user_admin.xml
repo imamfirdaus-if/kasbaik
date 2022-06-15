@@ -20,6 +20,7 @@
             android:layout_height="140dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
+            android:contentDescription="@string/image_profile_user"
             android:background="@drawable/rounded_corners"
             android:scaleType="centerCrop"
             android:src="@drawable/avatar_placeholder"
@@ -31,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="Nama"
+            android:text="@string/nama"
             android:textColor="@color/white"
             android:textSize="16sp"
 
@@ -45,10 +46,12 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:background="@drawable/rounded_corners"
-            android:hint="Masukan Nama Anda"
+            android:hint="@string/masukan_nama_anda"
             android:paddingVertical="8dp"
-            android:paddingStart="16dp"
+            android:paddingHorizontal="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            android:autofillHints="name"
+            android:inputType="text"
             app:layout_constraintStart_toStartOf="@id/tv_label_name"
             app:layout_constraintTop_toBottomOf="@id/tv_label_name" />
 
@@ -57,8 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:inputType="number"
-            android:text="No Handophone"
+            android:text="@string/nomor_handphone"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -71,9 +73,11 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:background="@drawable/rounded_corners"
-            android:hint="Your Phone Number"
+            android:hint="@string/your_phone_number"
             android:paddingVertical="8dp"
-            android:paddingStart="16dp"
+            android:paddingHorizontal="16dp"
+            android:autofillHints="number"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/tv_label_whatsapp"
             app:layout_constraintTop_toBottomOf="@id/tv_label_whatsapp" />
@@ -84,7 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Usia"
+            android:text="@string/usia"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -99,8 +103,9 @@
             android:layout_marginTop="4dp"
             android:background="@drawable/rounded_corners"
             android:inputType="number"
-            android:paddingStart="16dp"
-            android:hint="Usia"
+            android:paddingHorizontal="16dp"
+            android:hint="@string/usia"
+            android:autofillHints="age"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_label_usia" />
 
@@ -110,7 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:text="Gender"
+            android:text="@string/gender"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -130,7 +135,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                android:text="wanita"
+                android:text="@string/wanita"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
 
@@ -139,7 +144,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="pria"
+                android:text="@string/pria"
                 android:textColor="@color/white"
                 android:textSize="16sp" />
         </RadioGroup>
@@ -150,7 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Pekerjaan"
+            android:text="@string/pekerjaan"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -173,23 +178,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="none"
-                android:text="buruh" />
+                android:text="@string/buruh" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!--        <EditText-->
-        <!--            android:id="@+id/ed_pekerjaan"-->
-        <!--            android:layout_width="0dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="16dp"-->
-        <!--            android:layout_marginTop="5dp"-->
-        <!--            android:layout_marginEnd="16dp"-->
-        <!--            android:background="@drawable/rounded_corners"-->
-        <!--            android:hint="Masukan pekerjaan anda"-->
-        <!--            android:paddingVertical="8dp"-->
-        <!--            android:paddingStart="16dp"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/tv_label_pekerjaan" />-->
 
         <TextView
             android:id="@+id/tv_label_foto_ktp"
@@ -200,7 +191,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/rounded_corners"
             android:padding="10dp"
-            android:text="foto-ktp.jpg"
+            android:text="@string/foto_ktp_jpg"
             android:textSize="16sp"
             android:ellipsize="end"
             android:maxLines="1"
@@ -215,7 +206,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:backgroundTint="@color/white"
-            android:text="choose"
+            android:text="@string/choose"
             android:textColor="@color/orange"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_choose_1" />
@@ -229,7 +220,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/rounded_corners"
             android:padding="10dp"
-            android:text="foto-selfie.jpg"
+            android:text="@string/foto_selfie_jpg"
             android:textSize="16sp"
             android:ellipsize="end"
             android:maxLines="1"
@@ -244,7 +235,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:backgroundTint="@color/white"
-            android:text="choose"
+            android:text="@string/choose"
             android:textColor="@color/orange"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_choose_2" />
@@ -258,7 +249,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/rounded_corners"
             android:padding="10dp"
-            android:text="foto-diri.jpg"
+            android:text="@string/foto_diri_jpg"
             android:textSize="16sp"
             android:ellipsize="end"
             android:maxLines="1"
@@ -272,6 +263,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/eye_orange"
             android:layout_marginEnd="16dp"
+            android:contentDescription="@string/preview_image"
             app:layout_constraintEnd_toEndOf="@+id/tv_label_foto_diri"
             app:layout_constraintTop_toTopOf="@id/tv_label_foto_diri"/>
 
@@ -281,6 +273,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/eye_orange"
             android:layout_marginEnd="16dp"
+            android:contentDescription="@string/preview_image"
             app:layout_constraintEnd_toEndOf="@+id/tv_label_foto_ktp"
             app:layout_constraintTop_toTopOf="@id/tv_label_foto_ktp"/>
 
@@ -290,6 +283,7 @@
             android:layout_height="wrap_content"
             android:src="@drawable/eye_orange"
             android:layout_marginEnd="16dp"
+            android:contentDescription="@string/preview_image"
             app:layout_constraintEnd_toEndOf="@+id/tv_label_foto_selfie"
             app:layout_constraintTop_toTopOf="@id/tv_label_foto_selfie"/>
 
@@ -300,7 +294,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:backgroundTint="@color/white"
-            android:text="choose"
+            android:text="@string/choose"
             android:textColor="@color/orange"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/ed_pekerjaan" />
@@ -312,7 +306,7 @@
             android:layout_marginTop="32dp"
             android:layout_marginBottom="32dp"
             android:backgroundTint="@color/white"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:textColor="@color/orange"
             app:layout_constraintStart_toStartOf="@id/ed_alamat_ktp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -325,7 +319,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Alamat tinggal"
+            android:text="@string/alamat_tinggal"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -339,9 +333,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/rounded_corners"
-            android:hint="Masukan Alamat Anda"
+            android:hint="@string/masukan_alamat_anda"
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
+            android:autofillHints="address"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_label_alamat_tinggal" />
@@ -352,7 +348,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text="Alamat ktp"
+            android:text="@string/alamat_ktp"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -366,9 +362,11 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/rounded_corners"
-            android:hint="Masukan Alamat KTP"
+            android:hint="@string/masukan_alamat_ktp"
             android:paddingVertical="8dp"
-            android:paddingStart="16dp"
+            android:paddingHorizontal="16dp"
+            android:autofillHints="address"
+            android:inputType="text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_label_alamat_ktp" />

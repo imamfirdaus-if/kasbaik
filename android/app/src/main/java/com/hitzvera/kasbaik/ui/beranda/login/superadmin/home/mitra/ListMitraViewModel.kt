@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.hitzvera.kasbaik.api.ApiConfig
 import com.hitzvera.kasbaik.response.GetListMitraResponseItem
+import com.hitzvera.kasbaik.response.ListMitraResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,13 +22,13 @@ class ListMitraViewModel : ViewModel() {
     fun getListMitra(token: String, context: Context){
         _isLoading.value = true
         ApiConfig.getApiService().getListMitra("jwt=$token")
-            .enqueue(object: Callback<List<GetListMitraResponseItem>>{
+            .enqueue(object: Callback<ListMitraResponse>{
                 override fun onResponse(
-                    call: Call<List<GetListMitraResponseItem>>,
-                    response: Response<List<GetListMitraResponseItem>>
+                    call: Call<ListMitraResponse>,
+                    response: Response<ListMitraResponse>
                 ) {
                     if (response.isSuccessful){
-                        _list.postValue(response.body())
+                        _list.postValue(response.body()?.mitra)
                         _isLoading.value = false
                     } else {
                         _isLoading.value = false
@@ -35,7 +36,7 @@ class ListMitraViewModel : ViewModel() {
                     }
                 }
 
-                override fun onFailure(call: Call<List<GetListMitraResponseItem>>, t: Throwable) {
+                override fun onFailure(call: Call<ListMitraResponse>, t: Throwable) {
                     _isLoading.value = false
                     Toast.makeText(context, "failed to fetch data", Toast.LENGTH_SHORT).show()
                 }

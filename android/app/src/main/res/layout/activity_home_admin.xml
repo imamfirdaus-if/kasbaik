@@ -10,7 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        xmlns:tools="http://schemas.android.com/tools" >
         <TextView
             android:id="@+id/tv_greeting"
             android:layout_width="0dp"
@@ -110,7 +111,7 @@
             android:id="@+id/tv_total_pendanaan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Rp.201112012"
+            android:text="@string/rp_dummy"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/orange"
@@ -168,8 +169,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="@color/orange"
-            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/orange"
             android:text="@string/profile"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
@@ -181,8 +182,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="@color/orange"
-            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/orange"
             android:text="@string/mitra"
             android:textAllCaps="false"
             android:fontFamily="@font/poppins_semibold"
@@ -194,8 +195,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="@color/orange"
-            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/orange"
             android:textAllCaps="false"
             android:textStyle="bold"
             android:text="@string/pengguna"
@@ -207,11 +208,11 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="@color/orange"
-            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/orange"
             android:textAllCaps="false"
             android:textStyle="bold"
-            android:text="@string/list_peminjam"
+            android:text="@string/pending"
             app:layout_constraintTop_toBottomOf="@+id/btn_pengguna"/>
 
         <Button
@@ -220,8 +221,8 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="32dp"
             android:layout_marginTop="16dp"
-            android:textColor="@color/orange"
-            android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/orange"
             android:textAllCaps="false"
             android:textStyle="bold"
             android:text="@string/pembayaran"
