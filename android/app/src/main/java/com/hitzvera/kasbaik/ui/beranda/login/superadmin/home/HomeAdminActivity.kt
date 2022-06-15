@@ -39,6 +39,7 @@ class HomeAdminActivity : AppCompatActivity() {
                 tvJumlahPeminjam.text = it.borrower.toString()
             }
             tvGreeting.text = "Selamat Datang, $name"
+
             btnProfile.setOnClickListener {
                 Intent(this@HomeAdminActivity, ProfileAdminActivity::class.java).also {
                     it.putExtra("TOKEN", token)

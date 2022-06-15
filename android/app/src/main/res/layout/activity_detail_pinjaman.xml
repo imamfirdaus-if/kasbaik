@@ -81,7 +81,7 @@
 
         <TextView
             android:id="@+id/tv_label_credit_approval"
-            android:layout_width="140dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
@@ -91,6 +91,7 @@
             android:textColor="@color/orange"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/container"
+            app:layout_constraintEnd_toEndOf="@id/guideline"
             app:layout_constraintTop_toBottomOf="@+id/tv_label_credit_score" />
 
         <TextView
@@ -321,6 +322,14 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.6"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
