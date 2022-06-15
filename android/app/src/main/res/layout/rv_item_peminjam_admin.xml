@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/nama_peminjam"
-            android:layout_width="200dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@string/nama_peminjam"
             android:textColor="@color/orange"
@@ -29,6 +29,7 @@
             android:layout_marginStart="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/status"
+            app:layout_constraintEnd_toEndOf="@id/guideline"
             app:layout_constraintBottom_toBottomOf="@id/status"/>
 
         <TextView
@@ -46,6 +47,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/tv_with_border"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
@@ -60,8 +62,16 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintTop_toBottomOf="@+id/nama_peminjam"
-            app:layout_constraintStart_toStartOf="@+id/nama_peminjam"/>
+            app:layout_constraintStart_toStartOf="@+id/nama_peminjam"
+            app:layout_constraintEnd_toEndOf="@id/guideline"/>
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.55"
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
