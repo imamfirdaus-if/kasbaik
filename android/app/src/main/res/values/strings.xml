@@ -142,6 +142,26 @@
     <string name="alamat_ktp">Alamat ktp</string>
     <string name="masukan_alamat_ktp">Masukan Alamat KTP</string>
     <string name="preview_image">preview image</string>
+    <string name="rp_dummy">Rp.201112012</string>
+    <string name="list_payment">List Payment</string>
+    <string name="list_pinjaman">List Pinjaman</string>
+    <string name="result_none">Result : None</string>
+    <string name="not_yet_evaluated">Not yet evaluated</string>
+    <string name="not_reviewed">Not Reviewed</string>
+    <string name="lengkapi_profile_mu_terlebih_dahulu">Lengkapi profile mu terlebih dahulu</string>
+    <string name="isi">isi</string>
+    <string name="login_sebagai_peminjam">Login Sebagai Peminjam</string>
+    <string name="masukan_email">Masukan Email</string>
+    <string name="masukan_password">Masukan Password</string>
+    <string name="belum_punya_akun_daftar_akun">Belum Punya Akun? Daftar Akun</string>
+    <string name="remember_me">Remember me</string>
+    <string name="tidak_ada_notifikasi">Tidak ada Notifikasi</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="admin_kasbaik">Admin Kasbaik</string>
+    <string name="_08xxxxxxxxxx">08XXXXXXXXXX</string>
+    <string name="ex_bandung">ex: Bandung</string>
+    <string name="kembali">Kembali</string>
+    <string name="username">Username</string>
 
 
     <string-array name="status">

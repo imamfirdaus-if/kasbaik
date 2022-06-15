@@ -11,6 +11,7 @@
         android:src="@drawable/avatar_placeholder"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:contentDescription="@string/image_profile_user"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -20,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="@+id/image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Result : None"
+        android:text="@string/result_none"
         android:textSize="20sp"
         android:textColor="@color/white"
         />
@@ -32,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@+id/result"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="Not yet evaluated"
+        android:text="@string/not_yet_evaluated"
         android:textSize="20sp"
         android:textColor="@color/white"
         />

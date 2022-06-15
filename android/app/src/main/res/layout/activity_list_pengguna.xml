@@ -11,7 +11,7 @@
         android:id="@+id/title_list_pengguna"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pengguna"
+        android:text="@string/pengguna"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:layout_marginTop="16dp"

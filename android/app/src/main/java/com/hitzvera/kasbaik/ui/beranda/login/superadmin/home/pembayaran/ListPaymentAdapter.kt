@@ -18,7 +18,7 @@ class ListPaymentAdapter(private val onClickListener: ListPaymentAdapter.OnClick
         fun bind(list: ListPaymentAdminResponseItem){
             count +=1
             binding.apply {
-                namaPeminjam.text = "${count}."
+                namaPeminjam.text = "${count}. ${list.idUser}"
                 status.text = "Rp. ${list.loanAmount}"
                 jumlahPinjaman.text = "Rp. ${list.totalPayment}"
                 btHistoryPayment.setOnClickListener {
