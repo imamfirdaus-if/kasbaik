@@ -6,12 +6,13 @@
     android:layout_height="match_parent"
     android:background="@color/background_ijo"
     android:fillViewport="true"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads"
     tools:context=".ui.beranda.login.superadmin.home.HomeAdminActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:tools="http://schemas.android.com/tools" >
+        >
         <TextView
             android:id="@+id/tv_greeting"
             android:layout_width="0dp"

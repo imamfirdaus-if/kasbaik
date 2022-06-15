@@ -161,9 +161,6 @@
         <activity
             android:name=".ui.beranda.BerandaActivity"
             android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
     </application>
 
 </manifest>
